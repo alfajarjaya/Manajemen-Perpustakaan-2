@@ -1,0 +1,16 @@
+{
+    "fajar": {
+        "user": "fajar",
+        "password": "fajar"
+    },
+
+    "diyan": {
+        "user": "diyan",
+        "password": 456
+    },
+
+    "kimi": {
+        "user":"kimi",
+        "password":789
+    }
+}
