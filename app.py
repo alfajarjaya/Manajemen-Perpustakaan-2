@@ -23,15 +23,22 @@ def login():
 
             if user == name and password == pw:
                 session['user'] = user
+                session['password'] = password
+                
+                db.add_login()
+                
                 return dashboard.home()
 
-        for keys, value in dataClient.items():
-            namec = value['user']
-            pwc = value['password']
+            for keys, value in dataClient.items():
+                namec = value['user']
+                pwc = value['password']
 
-            if user == namec and password == pwc:
-                session['user'] = user
-                return dashboard.home()
+                if user == namec and password == pwc:
+                    session['user'] = user
+                    session['password'] = password
+                    
+                    db.add_login()
+                    return dashboard.home()
 
         return render_template('login.html', error='username / password is wrong')
 

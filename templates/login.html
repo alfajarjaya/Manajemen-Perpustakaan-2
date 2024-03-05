@@ -21,11 +21,25 @@
                 <input type="text" name="username" id="username" placeholder="Username" required />
             </div>
             <div class="passwd-user">
-                <input type="password" name="password" id="password" placeholder="Password" required />
+                <input type="password" name="password" id="password" placeholder="Password" required class="pw" />
+            </div>
+            <div class="check-passwd">
+                <input type="checkbox" name="checkPw" id="checkPw" onclick="checkPass()">
+                <label for="checkPw">Lihat Password</label>
+                <script>
+                    function checkPass() {
+                        var pw = document.getElementById('password');
+                        if (pw.type === "password") {
+                            pw.type = "text";
+                        } else {
+                            pw.type = "password";
+                        }
+                    }
+                </script>
             </div>
             <div class="error">{{ error }}</div>
             <button class="btn" type="submit" id="btn">Masuk</button>
-            
+
             <script>
                 window.Login = {{ url_for('home') }}
             </script>

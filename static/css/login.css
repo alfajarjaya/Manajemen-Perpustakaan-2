@@ -105,3 +105,17 @@ hr {
         margin: 0px 500px;
     }
 }
+
+.check-passwd {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: -30px;
+    margin-bottom: 40px;
+    position: relative;
+    left: 17%;
+}
+
+#checkPw {
+    margin: 0px 10px;
+}

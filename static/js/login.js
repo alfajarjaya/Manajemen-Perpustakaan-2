@@ -1,5 +1,5 @@
-var btnLogin = document.getElementById('btn');
+var btnLogin = document.getElementById("btn");
 
-btnLogin.addEventListener('click', () => {
+btnLogin.addEventListener("click", () => {
     window.location.href = window.Login;
-})
+});

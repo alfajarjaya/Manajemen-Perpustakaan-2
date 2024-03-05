@@ -103,19 +103,16 @@ div .log-out {
   justify-content: center;
 }
 
-#log-out {
+#button {
   background: red;
   border: none;
   padding: 7px 25px;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 2px 2px 10px;
-}
-
-#log-out a {
+  box-shadow: 2px 2px 10px #000;
   color: #fff;
 }
 
-#log-out:active {
+#button:active {
   background: rgb(255, 107, 131);
 }
