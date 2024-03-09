@@ -8,6 +8,11 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="./static/css/daftar_buku.css" />
+    <style>
+        input {
+            padding: 3px 5px;
+        }
+    </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -20,24 +25,20 @@
         </section>
 
         <div class="daftar-menu">
+            {%for key,val in book.items()%}
+            {%for title, fill in val.items()%}
             <ul class="list">
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
-                            <img src="./static/img/buku.png" alt="daftar buku" width="40%" />
+                            <img src="{{ fill['img'] }}" alt="daftar buku" width="40%" />
                             <div class="deskripsi-buku">
-                                <form action="/daftar-buku" method="post">
-                                    <h3></h3>
-                                    <p name="sisa" id="tersisa" class="tersisa">Tersisa : </p>
-                                    <input type="hidden" name="id" value="">
-                                    <input type="hidden" name="tersisa_value" id="tersisa_value" value="" class="tersisa_value">
+                                <form action="/daftarBuku" method="post">
+                                    <h3 name="{{ fill['nama'] }}">{{ fill['nama'] }}</h3>
+                                    <p name="sisa" id="tersisa" class="tersisa">Tersisa :  </p>
+                                    <input type="hidden" name="{{ fill['id'] }}" >
                                     <div class="setting">
-                                        <button type="button" class="plus" data-book-id="">
-                                            <i data-feather="plus" width="15px"></i>
-                                        </button>
-                                        <button type="button" class="minus" data-book-id="">
-                                            <i data-feather="minus" width="15px"></i>
-                                        </button>
+                                        <input type="number" name="tersisa_inp" id="tersisa" placeholder="sisa terbaru" required>
                                     </div>
                                     <div class="btn">
                                         <button type="submit" id="btn">Kirim</button>
@@ -48,6 +49,8 @@
                     </div>
                 </li>
             </ul>
+            {%endfor%}
+            {%endfor%}
         </div>
     </section>
 

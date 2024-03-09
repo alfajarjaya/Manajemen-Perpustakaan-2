@@ -8,4 +8,3 @@ with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\use
     
 with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\daftar_buku.json', 'r') as list_book:
     listBook = json.load(list_book)
-    

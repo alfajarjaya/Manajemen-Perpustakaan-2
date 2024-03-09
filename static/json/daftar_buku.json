@@ -1,13 +1,34 @@
 {
-    "fantasi": {
-        "fantasi_1":{
-            "judul":"cahaya sang mentari"
-        },
-        "fantasi_2":{
-            "judul":"cahaya sang mentari"
-        },
-        "fantasi_3":{
-            "judul":"cahaya sang mentari"
-        }
+  "listBook": {
+    "Buku1": {
+      "nama": "Patah Sebelah Sayapku",
+      "id": "BOOK001",
+      "img": "/static/img/book/book1.png"
+    },
+    "Buku2": {
+      "nama": "CAPTAIN'S 10G",
+      "id": "BOOK002",
+      "img": "/static/img/book/book2.png"
+    },
+    "Buku3": {
+      "nama": "THE CANARY",
+      "id": "BOOK003",
+      "img": "/static/img/book/book3.png"
+    },
+    "Buku4": {
+      "nama": "THE BOOK OF HAPPINESS",
+      "id": "BOOK004",
+      "img": "/static/img/book/book4.png"
+    },
+    "Buku5": {
+      "nama": "VINTAGE BOOK COVER MOCKUP",
+      "id": "BOOK005",
+      "img": "/static/img/book/book5.png"
+    },
+    "Buku6": {
+      "nama": "AUTUMN",
+      "id": "BOOK006",
+      "img": "/static/img/book/book6.png"
     }
+  }
 }

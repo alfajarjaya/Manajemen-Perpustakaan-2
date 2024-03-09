@@ -1,4 +1,12 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    request,
+    session,
+    redirect,
+    url_for
+)
+
 import assets.admin as admin
 import assets.client as client
 import assets.import_json as json
@@ -39,50 +47,96 @@ def login():
                     
                     db.add_login()
                     return dashboard.home()
+                
+            return render_template('login.html', nf='Username not found')
 
         return render_template('login.html', error='username / password is wrong')
 
     return render_template('login.html')
 
 class dashboard:
-    @app.route('/dashboard', methods=['POST','GET'])
+    @app.route('/dashboard', methods=['POST', 'GET'])
     def home():
         user = session.get('user')
-        for key, value in dataAdmin.items():
-            name = value['user']
-            if user == name:
-                return admin.home()
-            else:
-                return client.home_user()
-            
+
+        if user:
+            for key, value in dataAdmin.items():
+                name = value['user']
+                if user == name:
+                    return admin.home()
+
+            for keys, values in dataClient.items():
+                name = values['user']
+                if user == name:
+                    return client.home_user()
+
+        return login()
+
+                
 @app.route('/admin_pinjam', methods=['POST','GET'])
 def pinjam_admin():
+    user = session.get('user')
     
-    if request.method == 'POST':
-        nama = request.form.get('nama')
-        kelas = request.form.get('kelas')
-        pinjam = request.form.get('pinjam')
-        kembali  = request.form.get('kembali')
+    for key, val in dataAdmin.items():
+        name = val['user']
         
-        session['nama'] = nama
-        session['kelas'] = kelas
-        session['pinjam'] = pinjam
-        session['kembali'] = kembali
+        if user == name:
+            if request.method == 'POST':
+                nama = request.form.get('nama')
+                kelas = request.form.get('kelas')
+                pinjam = request.form.get('pinjam')
+                kembali  = request.form.get('kembali')
         
-        db.pinjam()
+                session['nama'] = nama
+                session['kelas'] = kelas
+                session['pinjam'] = pinjam
+                session['kembali'] = kembali
+
+                db.pinjam()
         
-        return admin.peminjaman()
+                return admin.peminjaman()
+            
+            if request.method == 'GET':
+                return admin.peminjaman()
         
+        else:
+            return login()
+
+    
     return admin.peminjaman()
 
 @app.route('/profil')
 def profil_admin():
-    return admin.profil()
-
-@app.route('/daftarBuku')
+    user = session.get('user')
+    
+    for key,val in dataAdmin.items():
+        name = val['user']
+        
+        if user == name:
+            return admin.profil()
+        else:
+            return render_template('login.html', nf='Username not found')
+        
+@app.route('/daftarBuku', methods=['POST', 'GET'])
 def list_book_admin():
-    return admin.listBook()
-
+    tersisa_inp = request.form.get('tersisa_inp')
+    session['tersisa_inp'] = tersisa_inp
+    
+    user = session.get('user')
+    
+    for key,val in dataAdmin.items():
+        name = val['user']
+        
+        if user == name:
+            if request.method == 'POST':
+        
+                admin.listBook()
+                db.insert_listBook()
+                
+            return admin.listBook()
+            
+        return render_template('login.html', nf='Username not found')
+            
 @app.route('/data-pengunjung')
 def dataPengunjung():
     return admin.dataPengunjung()

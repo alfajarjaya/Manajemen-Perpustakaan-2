@@ -1,5 +1,5 @@
 {
-    "admin_1":{
+    "admin":{
         "user":"admin",
         "password":"admin"
     },
@@ -13,4 +13,6 @@
         "user":"smkn1mjk",
         "password":"smkn1mjk"
     }
+
+    
 }
