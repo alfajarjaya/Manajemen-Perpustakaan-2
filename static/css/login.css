@@ -21,10 +21,15 @@ body {
     display: block;
     align-items: center;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 hr {
     border: 2px dashed var(--black);
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .title-text {
@@ -94,7 +99,7 @@ hr {
     border-radius: 20px;
 }
 
-@media only screen and (min-width:800px) and (max-width:1080px) {
+@media only screen and (min-width:701px) and (max-width:1080px) {
     body {
         margin: 0px 200px;
     }
@@ -103,7 +108,23 @@ hr {
 @media only screen and (min-width:1140px) {
     body {
         margin: 0px 500px;
+        padding-bottom: 100px;
     }
+}
+
+@media only screen and (max-width:768px) {
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+}
+
+@media only screen and (max-width:760px) {
+    body {
+        overflow: hidden;
+    }
+    
 }
 
 .check-passwd {

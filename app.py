@@ -36,7 +36,9 @@ def login():
                 db.add_login()
                 
                 return dashboard.home()
-
+            else:
+                render_template('login.html', nf='Username not found')
+                
             for keys, value in dataClient.items():
                 namec = value['user']
                 pwc = value['password']
@@ -47,8 +49,8 @@ def login():
                     
                     db.add_login()
                     return dashboard.home()
-                
-            return render_template('login.html', nf='Username not found')
+                else:
+                    return render_template('login.html', nf='Username not found')
 
         return render_template('login.html', error='username / password is wrong')
 
@@ -140,6 +142,10 @@ def list_book_admin():
 @app.route('/data-pengunjung')
 def dataPengunjung():
     return admin.dataPengunjung()
+
+@app.route('/daftar-buku')
+def list_book_client():
+    return client.listBook()
 
         
 if __name__ == '__main__':

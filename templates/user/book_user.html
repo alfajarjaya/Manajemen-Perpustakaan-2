@@ -8,6 +8,11 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="./static/css/daftar_buku.css" />
+    <style>
+        input {
+            padding: 3px 5px;
+        }
+    </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -20,30 +25,24 @@
         </section>
 
         <div class="daftar-menu">
+            {%for key,val in book.items()%}
+            {%for title, fill in val.items()%}
             <ul class="list">
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
-                            <img src="./static/img/buku.png" alt="daftar buku" width="40%" />
+                            <img src="{{ fill['img'] }}" alt="daftar buku" width="40%" />
                             <div class="deskripsi-buku">
-                                <h3>Nama Buku</h3>
-                                <form method="get">
-                                    <p>Tersisa : {{ tersisa }}</p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cover">
-                        <div class="nama-buku">
-                            <img src="./static/img/buku.png" alt="daftar buku" width="40%" />
-                            <div class="deskripsi-buku">
-                                <h3>Nama Buku</h3>
-                                <p>Tersisa : {{ tersisa }}</p>
+                                <h3 name="{{ fill['nama'] }}">{{ fill['nama'] }}</h3>
+                                <p name="sisa" id="tersisa" class="tersisa">Tersisa :  </p>
+                                <input type="hidden" name="{{ fill['id'] }}" >
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
+            {%endfor%}
+            {%endfor%}
         </div>
     </section>
 
@@ -53,11 +52,11 @@
                 <ul>
                     <li>
                         <a href="{{ url_for('home') }}">
-                            <i data-feather="home" ></i>
+                            <i data-feather="home"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('profilUser') }}">
+                        <a href="{{ url_for('profil_admin') }}">
                             <i data-feather="user"></i>
                         </a>
                     </li>
@@ -69,7 +68,7 @@
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/dashboard.js"></script>
+    <script type="text/javascript" src="./static/js/list_book.js"></script>
 </body>
 
 </html>
