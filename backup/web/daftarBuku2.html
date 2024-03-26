@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="manajemen-perpustakaan" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Hi ! {{ userName }}</title>
+    <link rel="stylesheet" href="./static/css/daftar_buku.css" />
+    <style>
+        input {
+            padding: 3px 5px;
+        }
+        .buttn {
+            height: 30%;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            width: 80%;
+            height: 100%;
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <section id="book">
+        <section id="daftar-buku">
+            <div class="title-buku">
+                <h1>Daftar Buku</h1>
+            </div>
+        </section>
+
+        <div class="daftar-menu">
+            {% for book_item in bookSisa %}
+                <ul class="list">
+                    <li class="list-item">
+                        <div class="cover">
+                            <div class="nama-buku">
+                                <img src="{{ book_item['fill']['img'] }}" alt="daftar buku" width="40%" />
+                                <div class="deskripsi-buku">
+                                    <form method="post">
+                                        <h3 name="{{ book_item['fill']['nama'] }}">{{ book_item['fill']['nama'] }}</h3>
+                                        <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}">
+                                        <input type="hidden" name="nama_buku" value="{{ book_item['fill']['nama'] }}">
+                                        {% if book_item['sisa'] is not none %}
+                                            <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
+                                        {% else %}
+                                            <p name="sisa_buku" class="tersisa">Tersisa : Data tidak tersedia</p>
+                                        {% endif %}
+                                        <div class="buttn">
+                                            <button type="button" class="btn" data-book-id="{{ book_item['fill']['id'] }}" data-book-name="{{ book_item['fill']['nama'] }}" id="btn">
+                                                <i data-feather="edit"></i>
+                                                <p>Edit</p>
+                                            </button>
+                                        </div>
+                                        <div>{{ success }}</div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="footer">
+        <footer class="footer">
+            <div class="navbar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('profil_admin') }}">
+                            <i data-feather="user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        feather.replace();
+
+    </script>
+</body>
+
+</html>

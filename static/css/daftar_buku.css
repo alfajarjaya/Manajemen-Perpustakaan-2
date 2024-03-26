@@ -50,8 +50,9 @@ body {
 
 .deskripsi-buku {
     display: grid;
-    align-content: center;
     grid-gap: 10px;
+    justify-items: center;
+    align-items: center;
 }
 
 .setting {
@@ -131,4 +132,37 @@ ul li {
     body {
         margin: 0px 500px;
     }
+}
+
+input {
+    padding: 3px 5px;
+}
+
+.buttn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    margin: 10px 0px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    height: 100%;
+}
+
+.btn-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    height: 100%;
+
 }

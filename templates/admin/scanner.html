@@ -1,28 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scanner || data</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to bottom, #d5d,#d66,#d33);
-        }
 
-        img {
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="manajemen-perpustakaan" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Hi ! {{ user }}</title>
+    <link rel="stylesheet" href="./static/css/profil.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <section>
+        <footer class="footer">
+            <div class="navbar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for("home") }}">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('profil_admin') }}">
+                            <i data-feather="user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </section>
+    <div class="any">
+        <div class="video_feed">
+            <img width="640" height="480" src={{ url_for('video_feed') }} alt="jpg">
+        </div>
+    </div>
+    <style>
+        .any {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .video_feed {
             border: 7px dashed #fff;
         }
+
+        @media only screen and (max-width: 768px) {
+            .video_feed img {
+                width: 80%;
+                height: 100%;
+            }
+        }
     </style>
-</head>
-<body>
-    <div>
-        <video width="640" height="480" controls autoplay>
-            <source src="{{ url_for('video_feed') }}">
-        </video>
-    </div>
+    <script>
+        feather.replace();
+    </script>
+
+    <script type="text/javascript" src="./static/js/login.js"></script>
+
 </body>
+
 </html>

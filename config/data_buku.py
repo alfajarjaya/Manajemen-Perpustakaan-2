@@ -1,4 +1,4 @@
-import assets.import_json as fileJson
+import config.import_json as fileJson
 import app
 
 for key,val in fileJson.listBook.items():

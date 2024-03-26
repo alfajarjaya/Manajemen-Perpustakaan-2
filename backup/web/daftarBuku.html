@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="manajemen-perpustakaan" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Hi ! {{ userName }}</title>
+    <link rel="stylesheet" href="./static/css/daftar_buku.css" />
+    <style>
+        input {
+            padding: 3px 5px;
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <section id="book">
+        <section id="daftar-buku">
+            <div class="title-buku">
+                <h1>Daftar Buku</h1>
+            </div>
+        </section>
+
+        <div class="daftar-menu">
+            {% for key, val in book.items() %}
+            {% for title, fill in val.items() %}
+            <ul class="list">
+                <li class="list-item">
+                    <div class="cover">
+                        <div class="nama-buku">
+                            <img src="{{ fill['img'] }}" alt="daftar buku" width="40%" />
+                            <div class="deskripsi-buku">
+                                <form action="/daftarBuku" method="post">
+                                    <h3>{{ fill['nama'] }}</h3>
+                                    <input type="hidden" name="book_id" value="{{ fill['id'] }}">
+                                    <input type="hidden" name="nama_buku" value="{{ fill['nama'] }}">
+                                    <input type="hidden" name="sisa_buku" value="{{ fill['sisa'] }}"> <!-- Tambahkan input untuk sisa buku -->
+                                    <div class="buttn">
+                                        <button type="button" class="btn" id="btn">
+                                            <i data-feather="edit"></i>
+                                            <p>Edit</p>
+                                        </button>
+                                        <style>
+                                            .buttn {
+                                                height: 30%;
+                                            }
+                                            .btn {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                background-color: transparent;
+                                                border: none;
+                                                cursor: pointer;
+                                                width: 80%;
+                                                height: 100%;
+                                            }
+                                        </style>
+                                    </div>
+                                    <div>{{ success }}</div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const editButtons = document.querySelectorAll(".btn");
+                    editButtons.forEach(function (button) {
+                        button.addEventListener("click", function () {
+                            const bookName = this.closest(".deskripsi-buku").querySelector("h3").textContent;
+                            const bookId = this.closest(".deskripsi-buku").querySelector("input[name='book_id']").value;
+                            const newCount = prompt("Masukkan jumlah buku tersisa untuk " + bookName + ":");
+        
+                            if (newCount !== null) {
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", "/updateBookCount", true);
+                                xhr.setRequestHeader("Content-Type", "application/json");
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        if (xhr.status === 200) {
+                                            const response = JSON.parse(xhr.responseText);
+                                            alert(response.message);
+                                            window.location.reload();
+                                        } else {
+                                            alert("Gagal memperbarui jumlah buku.");
+                                        }
+                                    }
+                                };
+                                const data = JSON.stringify({ bookId: bookId, newCount: newCount });
+                                xhr.send(data);
+                            }
+                        });
+                    });
+                });
+            </script>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="footer">
+        <footer class="footer">
+            <div class="navbar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('profil_admin') }}">
+                            <i data-feather="user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </section>
+
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

@@ -6,9 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="manajemen-perpustakaan" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link rel="shortcut icon" href="./static/img/portofolio pribadi.jpg" type="image/x-icon">
     <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="./static/css/daftar_buku.css" />
+    <link rel="stylesheet" href="./static/css/logOut.css" />
+    <style>
+        input {
+            padding: 3px 5px;
+        }
+
+        .buttn {
+            height: 30%;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            width: 70%;
+            height: 100%;
+        }
+
+        .btn-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            width: 70%;
+            height: 100%;
+        }
+    </style>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -21,32 +50,43 @@
         </section>
 
         <div class="daftar-menu">
+            {% for book_item in bookSisa %}
             <ul class="list">
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
-                            <img src="./static/img/buku.png" alt="daftar buku" width="40%" />
+                            <img src="{{ book_item['fill']['img'] }}" alt="daftar buku" width="40%" />
                             <div class="deskripsi-buku">
-                                <form action="/daftarBuku" method="post">
-                                    <p name="sisa" id="tersisa" class="tersisa">Tersisa : {{}}</p>
-                                    <input type="hidden" name="tersisa">
-                                    <div class="setting">
-                                        <input type="number" name="sisa_terbaru" id="sisa_terbaru" placeholder="sisa terbaru" required>
-                                        <style>
-                                            input {
-                                                padding: 3px 5px;
-                                            }
-                                        </style>
+                                <form method="post">
+                                    <h3 name="{{ book_item['fill']['nama'] }}">
+                                        {{ book_item['fill']['nama'] }}
+                                    </h3>
+                                    <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}" />
+                                    <input type="hidden" name="nama_buku" value="{{ book_item['fill']['nama'] }}" />
+                                    {% if book_item['sisa'] is not none %}
+                                    <p name="sisa_buku" class="tersisa">
+                                        Tersisa : {{ book_item['sisa'] }}
+                                    </p>
+                                    {% else %}
+                                    <p name="sisa_buku" class="tersisa">
+                                        Tersisa : Data tidak tersedia
+                                    </p>
+                                    {% endif %}
+                                    <div class="buttn">
+                                        <button type="button" class="btn" data-book-id="{{ book_item['fill']['id'] }}"
+                                            data-book-name="{{ book_item['fill']['nama'] }}" id="btn">
+                                            <i data-feather="edit"></i>
+                                            <p>Edit</p>
+                                        </button>
                                     </div>
-                                    <div class="btn">
-                                        <button type="submit" id="btn">Kirim</button>
-                                    </div>
+                                    <div>{{ success }}</div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
+            {% endfor %}
         </div>
     </section>
 
@@ -69,10 +109,95 @@
         </footer>
     </section>
 
+    <section id="myAlert" class="overlay" style="display: none">
+        {% for book_item in bookSisa %}
+        <div class="cover-alert">
+            <div class="alert-book">
+                <div class="nama-buku">
+                    <img src="{{ book_item['fill']['img'] }}" alt="buku" width="40%" />
+                    <div class="deskripsi-buku">
+                        <form method="post">
+                            <h3 id="nama_buku"></h3>
+                            <input type="hidden" name="book_id" id="book_id" />
+                            <input type="hidden" name="nama_buku" id="nama_buku_input" />
+                            <input type="number" name="sisa_buku" id="sisa_buku" placeholder="ubah sisa buku" />
+                            <div class="buttn" style="display: grid; justify-items: center">
+                                <button type="button" class="btn" id="btn-save">
+                                    <i data-feather="save"></i>
+                                    <p style="margin: 0px 10px">Simpan</p>
+                                </button>
+                                <button type="button" style="margin: 15px 0px; height: 70%" class="btn-2"
+                                    id="btn-cancel">
+                                    <i data-feather="x"></i>
+                                    <p style="margin: 0px 10px">Kembali</p>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    <script type="text/javascript">
+        const editButtons = document.querySelectorAll(".btn");
+        const myAlert = document.getElementById("myAlert");
+        const namaBukuInput = document.getElementById("nama_buku_input");
+        const namaBuku = document.getElementById("nama_buku");
+        const bookIdInput = document.getElementById("book_id");
+        const sisaBukuInput = document.getElementById("sisa_buku");
+
+        editButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                myAlert.style.display = "block";
+                const bookId = this.getAttribute("data-book-id");
+                const bookName = this.getAttribute("data-book-name");
+
+                bookIdInput.value = bookId;
+                namaBukuInput.value = bookName;
+                namaBuku.innerText = bookName;
+            });
+        });
+
+        const cancelBtn = document.querySelector("#btn-cancel");
+        cancelBtn.addEventListener("click", function () {
+            myAlert.style.display = "none";
+        });
+
+        const saveBtn = document.querySelector("#btn-save");
+        saveBtn.addEventListener("click", function () {
+            const bookId = bookIdInput.value;
+            const bookName = namaBukuInput.value;
+            const newCount = sisaBukuInput.value;
+
+            if (newCount !== null) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/updateBookCount", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            alert(response.message);
+                            window.location.reload();
+                        } else {
+                            alert("Gagal memperbarui jumlah buku.");
+                        }
+                    }
+                };
+                const data = JSON.stringify({
+                    bookId: bookId,
+                    newCount: newCount,
+                    nama: bookName,
+                });
+                xhr.send(data);
+            }
+        });
+    </script>
+
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/list_book.js"></script>
 </body>
 
 </html>

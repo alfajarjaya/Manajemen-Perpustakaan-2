@@ -1,16 +1,6 @@
 {
-    "Alfajjar":{
-        "user":"fajar",
-        "password":"fajar"
-    },
-    
-    "Diyan":{
-        "user":"diyan",
-        "password":"diyan"
-    },
-
-    "Kimi":{
-        "user":"kimi",
-        "password": "kimi"
+    "Alfajjar": {
+        "user": "fajar",
+        "password": "fajar"
     }
 }

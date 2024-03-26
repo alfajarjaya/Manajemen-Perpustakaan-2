@@ -25,24 +25,27 @@
         </section>
 
         <div class="daftar-menu">
-            {%for key,val in book.items()%}
-            {%for title, fill in val.items()%}
+            {% for book_item in bookSisa %}
             <ul class="list">
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
-                            <img src="{{ fill['img'] }}" alt="daftar buku" width="40%" />
+                            <img src="{{ book_item['fill']['img'] }}" alt="daftar buku" width="40%" />
                             <div class="deskripsi-buku">
-                                <h3 name="{{ fill['nama'] }}">{{ fill['nama'] }}</h3>
-                                <p name="sisa" id="tersisa" class="tersisa">Tersisa :  </p>
-                                <input type="hidden" name="{{ fill['id'] }}" >
+                                <h3 name="nama_buku">{{ book_item['fill']['nama'] }}</h3>
+                                <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}">
+                                <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
+                                {% if book_item['sisa'] is not none %}
+                                <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
+                                {% else %}
+                                <p name="sisa_buku" class="tersisa">Tersisa : Data tidak tersedia</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
-            {%endfor%}
-            {%endfor%}
+            {% endfor %}
         </div>
     </section>
 
@@ -56,7 +59,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('profil_admin') }}">
+                        <a href="{{ url_for('profil_client') }}">
                             <i data-feather="user"></i>
                         </a>
                     </li>

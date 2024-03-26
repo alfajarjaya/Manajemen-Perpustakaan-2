@@ -29,6 +29,16 @@
       "nama": "AUTUMN",
       "id": "BOOK006",
       "img": "/static/img/book/book6.png"
+    },
+    "Buku7": {
+      "nama": "Resiliensi ILMU ILMU KEISLAMAN",
+      "id": "BOOK007",
+      "img": "/static/img/book/book7.png"
+    },
+    "Buku8": {
+      "nama": "MODEL PENERIMAAN TEKNOLOGI TAM",
+      "id": "BOOK008",
+      "img": "/static/img/book/book8.png"
     }
   }
 }

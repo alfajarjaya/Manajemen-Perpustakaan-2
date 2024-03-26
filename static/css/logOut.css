@@ -38,6 +38,17 @@
     text-align: center;
 }
 
+.alert-book {
+    background: lightgrey;
+    position: relative;
+    padding: 50px 20px;
+    z-index: 2000;
+    text-align: center;
+    z-index: 23;
+    text-align: center;
+    bottom: -100px;
+}
+
 .choose-btn {
     display: flex;
     justify-content: center;
