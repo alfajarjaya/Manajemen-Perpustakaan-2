@@ -39,6 +39,66 @@
       "nama": "MODEL PENERIMAAN TEKNOLOGI TAM",
       "id": "BOOK008",
       "img": "/static/img/book/book8.png"
+    },
+    "Buku9": {
+      "nama": "Buku Ajar FILSAFAT HUKUM",
+      "id": "BOOK009",
+      "img": "/static/img/book/book9.png"
+    },
+    "Buku10": {
+      "nama": "Api Tauhid. Cahaya Keagungan Cinta Sang Mujaddid",
+      "id": "BOOK010",
+      "img": "/static/img/book/book10.png"
+    },
+    "Buku11": {
+      "nama": "Manusia Tanpa Sekolah",
+      "id": "BOOK011",
+      "img": "/static/img/book/book11.png"
+    },
+    "Buku12": {
+      "nama": "Daulat Kebudayaan",
+      "id": "BOOK012",
+      "img": "/static/img/book/book12.png"
+    },
+    "Buku13": {
+      "nama": "Berhubung (di) Perjalanan",
+      "id": "BOOK013",
+      "img": "/static/img/book/book13.png"
+    },
+    "Buku14": {
+      "nama": "Tentang Kehidupan",
+      "id": "BOOK014",
+      "img": "/static/img/book/book14.png"
+    },
+    "Buku15": {
+      "nama": "From A Woman With An Arranged To Be Creative Industry Entrepeneur",
+      "id": "BOOK015",
+      "img": "/static/img/book/book15.png"
+    },
+    "Buku16": {
+      "nama": "Jejak Kehidupan",
+      "id": "BOOK016",
+      "img": "/static/img/book/book16.png"
+    },
+    "Buku17": {
+      "nama": "Sang Jubah Pembela",
+      "id": "BOOK017",
+      "img": "/static/img/book/book17.png"
+    },
+    "Buku18": {
+      "nama": "Jejak sang Perindu",
+      "id": "BOOK018",
+      "img": "/static/img/book/book18.png"
+    },
+    "Buku19": {
+      "nama": "Nikmati Kegagalanmu Raih Kesuksesanmu",
+      "id": "BOOK019",
+      "img": "/static/img/book/book19.png"
+    },
+    "Buku20": {
+      "nama": "Menyingkap Rahasia Jenis-jenis Tumbuhan Obat di Taman Nasional Matalawa Sumba- NTT",
+      "id": "BOOK020",
+      "img": "/static/img/book/book20.png"
     }
   }
 }

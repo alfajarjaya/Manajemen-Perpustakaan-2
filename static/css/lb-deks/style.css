@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,500;1,200;1,400&display=swap");
+
+:root {
+  --black: #000;
+  --navbar: #edb953;
+  --bg: #ffe600;
+}
+
+.lb-deskripsi-buku {
+  background: var(--bg);
+  margin: 50px;
+  padding: 30px;
+}
+
+.tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  margin: 0px 20px;
+  padding: 10px;
+}
+
+.edit {
+  border-bottom: 1px solid grey;
+}
+
+.no {
+  width: 5%;
+}
+
+.id,
+.jmlh-buku,
+.action {
+  width: 10%;
+}
+
+.judul {
+  width: 50%;
+}
+
+.search-box {
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.search-btn {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.search-input {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  width: 0px;
+  transition: 1s;
+}
+
+.search-box:hover>.search-input {
+  width: 240px;
+  padding: 10px;
+  margin-right: 5px ;
+  background: white;
+  border-radius: 5px;
+  color: black;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px){
+  .search-box {
+    border-radius: 5px;
+  }
+  .search-box:hover>.search-input {
+    width: 100px;
+  }
+}

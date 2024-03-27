@@ -53,8 +53,6 @@ def list_book():
     return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books)
 
 
-
-
 def dataPengunjung():
     file = 'D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx'
     
