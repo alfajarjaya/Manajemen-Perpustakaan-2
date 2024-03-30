@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en, id" style="scroll-behavior: smooth !important">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="manajemen-perpustakaan" />
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title>Hi ! {{ user }}</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="manajemen-perpustakaan">
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
+
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
+
+    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
+    <meta property="og:title" content="manajemen-perpustakaan">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id, ID">
+    <meta property="og:description" content="manajemen-perpustakaan">
+
+    <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="./static/css/profil.css" type="text/css" />
     <link rel="stylesheet" href="./static/css/logOut.css" type="text/css">
+    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -23,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('profil_admin') }}">
+                        <a href="{{ url_for('profil') }}">
                             <i data-feather="user"></i>
                         </a>
                     </li>

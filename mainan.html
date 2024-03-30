@@ -29,8 +29,6 @@
     <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css">
     <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
 
-    <script src="https://unpkg.com/feather-icons"></script>
-
     <style>
         @media only screen and (max-width: 1139px) {
             .LB-Desktop {
@@ -60,22 +58,27 @@
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
-                            <div class="cover-img">
-                                <img src="{{ book_item['fill']['img'] }}" alt="daftar buku" width="110%" />
-                            </div>
                             <div class="deskripsi-buku">
                                 <form method="post">
                                     <h3 name="nama_buku" id="jdl-buku">{{ book_item['fill']['nama'] }}</h3>
-                                    <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}">
+                                    <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}"
+                                        id="id-book">
                                     <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
+                                    <input type="hidden" name="author"
+                                        data-author-value="{{ book_item['fill']['penerbit'] }}" id="author_input">
                                     {% if book_item['sisa'] is not none %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
+                                    <input type="hidden" name="sisa_buku_input" value="{{ book_item['sisa'] }}"
+                                        id="sisa_buku_hidden">
                                     {% else %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : Data tidak tersedia</p>
+                                    <input type="hidden" name="sisa_buku_input" value="Data tidak tersedia"
+                                        id="sisa_buku_hidden">
                                     {% endif %}
                                     <div class="buttn">
                                         <button type="button" class="btn" data-book-id="{{ book_item['fill']['id'] }}"
                                             data-book-name="{{ book_item['fill']['nama'] }}"
+                                            data-book-author="{{ book_item['fill']['penerbit'] }}"
                                             id="btn-edit-{{ loop.index }}">
                                             <i data-feather="edit-3" width="15px"></i>
                                             <h6>Edit</h6>
@@ -118,23 +121,31 @@
                                     <h3>{{ loop.index }}</h3>
                                 </div>
                                 <div class="id">
-                                    <h3 name="book_id">{{ book_item['fill']['id'] }}</h3>
+                                    <h3 name="book_id" id="id-book">{{ book_item['fill']['id'] }}</h3>
                                 </div>
                                 <div class="judul">
                                     <h3 name="nama_buku" id="jdl-buku">{{ book_item['fill']['nama'] }}</h3>
                                 </div>
                                 <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}">
                                 <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
+                                <input type="hidden" name="author"
+                                    data-author-value="{{ book_item['fill']['penerbit'] }}" id="author_input">
                                 <div class="jmlh-buku">
                                     {% if book_item['sisa'] is not none %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
+                                    <input type="hidden" name="sisa_buku_input" value="{{ book_item['sisa'] }}"
+                                        id="sisa_buku_hidden">
                                     {% else %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : Data tidak tersedia</p>
+                                    <input type="hidden" name="sisa_buku_input" value="Data tidak tersedia"
+                                        id="sisa_buku_hidden">
                                     {% endif %}
                                 </div>
                                 <div class="lb-button action">
                                     <button type="button" class="btn" data-book-id="{{ book_item['fill']['id'] }}"
-                                        data-book-name="{{ book_item['fill']['nama'] }}" id="btn-edit-{{ loop.index }}">
+                                        data-book-name="{{ book_item['fill']['nama'] }}"
+                                        data-book-author="{{ book_item['fill']['penerbit'] }}"
+                                        id="btn-edit-{{ loop.index }}">
                                         <i data-feather="edit-3" width="15px"></i>
                                         <h6>Edit</h6>
                                     </button>
@@ -152,21 +163,24 @@
         <div class="cover-alert">
             <div class="alert-book">
                 <div class="nama-buku">
-                    <img src="" alt="buku" width="40%" id="nama_buku_image" />
                     <div class="deskripsi-buku">
                         <form method="post">
-                            <h3 name="nama_buku" id="nama_buku"></h3>
+                            <div class="data-buku">
+                                <p name="nama_buku" id="nama_buku"></p>
+                                <p name="penerbit" id="penerbit"></p>
+                                <p name="sisa" id="sisa"></p>
+                            </div>
                             <input type="hidden" name="book_id" id="book_id" />
                             <input type="hidden" name="nama_buku_input" id="nama_buku_input" />
                             <input type="number" name="sisa_buku" id="sisa_buku" required
-                                placeholder="ubah sisa buku" />
+                                placeholder="ubah sisa buku..." min-length="1" />
+                            <input type="hidden" name="penerbit_buku" id="penerbit_buku" />
                             <div class="buttn" style="display: grid; justify-items: center">
                                 <button type="button" class="btn" id="btn-save">
                                     <i data-feather="save"></i>
                                     <p style="margin: 0px 10px">Simpan</p>
                                 </button>
-                                <button type="button" style="margin: 15px 0px; height: 70%" class="btn-2"
-                                    id="btn-cancel">
+                                <button type="button" class="btn-2" id="btn-cancel">
                                     <i data-feather="x"></i>
                                     <p style="margin: 0px 10px">Kembali</p>
                                 </button>
@@ -188,12 +202,13 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="{{ url_for('profil_admin') }}">
+                        <a href="{{ url_for('profil') }}">
                             <i data-feather="user"></i>
                         </a>
                     </li>
                     <li class="search-box active">
-                        <input type="text" name="filter" id="filter" class="search-input" placeholder="Cari buku...">
+                        <input type="text" name="filter" id="filter" class="search-input"
+                            placeholder="Cari judul/id buku...">
                         <a class="search-btn" id="search">
                             <i data-feather="search" class="fas fa-search" color="#000"></i>
                         </a>
@@ -205,7 +220,8 @@
 
 
     <script type="text/javascript" src="./static/js/list_book.js"></script>
-    <script type="text/javascript" src="./static/js/search/search.js"></script>
+    <script type="text/javascript" src="./static/js/module/search.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
     <script>
         feather.replace();
     </script>

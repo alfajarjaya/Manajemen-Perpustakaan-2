@@ -34,9 +34,7 @@ def profil_users():
         return render_template(
             'client/profil.html', 
                                userName=user,
-                               nama=data_user['nama'],
-                               kelas=data_user['kelas'],
-                               nomor=data_user['nomor']
+                               nama=valClient.databaseProfil(user),
                            )
     else:
         return "Username tidak ditemukan"

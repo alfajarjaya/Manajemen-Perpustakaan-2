@@ -57,24 +57,25 @@
   outline: none;
   float: left;
   padding: 0;
-  width: 0px;
-  transition: 1s;
+  width: 0;
+  transition: 2s;
 }
 
 .search-box:hover>.search-input {
   width: 240px;
   padding: 10px;
-  margin-right: 5px ;
+  margin-right: 5px;
   background: white;
   border-radius: 5px;
   color: black;
   align-items: center;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .search-box {
     border-radius: 5px;
   }
+
   .search-box:hover>.search-input {
     width: 100px;
   }

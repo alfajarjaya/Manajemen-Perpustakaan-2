@@ -11,13 +11,15 @@ from flask import (
 
 import config.admin.admin as admin
 import config.client.client as client
-from config.client.client_valid import ValidateName
+from config.client.client_valid import name_and_pw_client
+from config.client.client_valid import user_client_valid
 import config.import_json as json
 import database.db_sql as db
 from database.client import user as userClient
 from config.admin import qrCodeAdmin as adminQr
 import os
 import openpyxl
+import config.admin.val_admin as validateUserAdmin
 
 app = Flask(__name__)
 app.secret_key = '1'
@@ -32,53 +34,41 @@ def login():
     password = request.form.get('password')
 
     if request.method == 'POST':
-        for key, values in dataAdmin.items():
-            name = values['user']
-            pw = values['password']
-
-            if user == name and password == pw:
-                session['user'] = user
-                session['password'] = password
+        if validateUserAdmin.val_user_and_pw_admin(user, password):
+            session['user'] = user
+            session['password'] = password
                 
-                db.add_login()
-                
-                return redirect(url_for('home'))
+            db.add_login()
+            return redirect(url_for('home'))
             
-        for keys, value in dataClient.items():
-            namec = value['user']
-            pwc = value['password']
+        elif name_and_pw_client(user, password):
 
-            if user == namec and password == pwc:
-                session['user'] = user
-                session['password'] = password
+            session['user'] = user
+            session['password'] = password
                     
-                db.add_login()
-                return redirect(url_for('home'))
-            
-        return render_template('login.html', nf='Username not found')
+            db.add_login()
+            return redirect(url_for('home'))
+        
+        else:
+            return render_template('login.html', nf='Username not found')
     
-    session.clear()    
     return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     session.clear()
-    return render_template('login.html')
+    return redirect(url_for('login'))
 
 @app.route('/dashboard', methods=['POST', 'GET'])
 def home():
     user = session.get('user')
 
     if user:
-        for key, value in dataAdmin.items():
-            name = value['user']
-            if user == name:
-                return admin.home()
+        if validateUserAdmin.val_user_admin(user):
+            return admin.home()
 
-        for keys, values in dataClient.items():
-            name = values['user']
-            if user == name:
-                return client.home_user()
+        if user_client_valid(user):
+            return client.home_user()
 
     return redirect(url_for('login'))
 
@@ -86,75 +76,55 @@ def home():
 @app.route('/admin_pinjam', methods=['POST','GET'])
 def pinjam_admin():
     user = session.get('user')
-    
-    for key, val in dataAdmin.items():
-        name = val['user']
         
-        if user == name:
-            if request.method == 'POST':
-                nama = request.form.get('nama')
-                kelas = request.form.get('kelas')
-                pinjam = request.form.get('pinjam')
-                kembali  = request.form.get('kembali')
+    if validateUserAdmin.val_user_admin(user):
+        if request.method == 'POST':
+            nama = request.form.get('nama')
+            kelas = request.form.get('kelas')
+            pinjam = request.form.get('pinjam')
+            kembali  = request.form.get('kembali')
         
-                session['nama'] = nama
-                session['kelas'] = kelas
-                session['pinjam'] = pinjam
-                session['kembali'] = kembali
+            session['nama'] = nama
+            session['kelas'] = kelas
+            session['pinjam'] = pinjam
+            session['kembali'] = kembali
 
-                db.pinjam()
+            db.pinjam()
         
-                return admin.peminjaman()
+            return admin.peminjaman()
             
-            if request.method == 'GET':
-                return admin.peminjaman()
+        if request.method == 'GET':
+            return admin.peminjaman()
         
-        else:
-            return login()
+    else:
+        return login()
 
-    
-    return admin.peminjaman()
 
 class profil():
     @app.route('/profil')
-    def profil_admin():
+    def profil():
         user = session.get('user')
-    
-        for key,val in dataAdmin.items():
-            name = val['user']
 
-            if user == name:
-                return admin.profil()
-            else:
-                return redirect(url_for('login'))
+        if validateUserAdmin.val_user_admin(user):
+            return admin.profil()
+        if user_client_valid(user):
+            return client.profil_users()
+        else:
+            return redirect(url_for('login'))
             
-    
-    @app.route('/profill')
-    def profil_client():
-        user = session.get('user')
-        
-        for key, val in dataClient.items():
-            name = val['user']
-            
-            if user == name:
-                return client.profil_users()
-            else:
-                return redirect(url_for('login'))
         
 @app.route('/daftarBuku', methods=['POST', 'GET'])
 def list_book_admin():
     user = session.get('user')
     
-    for key, val in dataAdmin.items():
-        name = val['user']
+    if validateUserAdmin.val_user_admin(user):
         
         session['user'] = user
         
-        if user == name:
-            if request.method == 'POST':
-                return admin.list_book()
-            else:
-                return admin.list_book()
+        if request.method == 'POST':
+            return admin.list_book()
+        else:
+            return admin.list_book()
     
     return redirect(url_for('login'))
 
@@ -164,10 +134,11 @@ def update_book_count():
         data = request.json
         namaBuku = data.get('nama')
         bookId = data.get('bookId')
+        author = data.get('author')
         newCount = data.get('newCount')
 
         if bookId is not None and newCount is not None:
-            db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
+            db.update_book_count_and_save_to_database(bookId, namaBuku, author, newCount)
             
             session['bookId'] = bookId
             session['namaBuku'] = namaBuku

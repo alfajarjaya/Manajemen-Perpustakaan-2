@@ -2,32 +2,31 @@
 <html lang="en, id" style="scroll-behavior: smooth !important">
 
 <head>
+    <meta charset="UTF-8" />
 
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="manajemen-perpustakaan" />
 
-    <meta name="description" content="manajemen-perpustakaan">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka" />
 
-    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka" />
 
-    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
-
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
-    <meta property="og:title" content="manajemen-perpustakaan">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="id, ID">
-    <meta property="og:description" content="manajemen-perpustakaan">
+    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com" />
+    <meta property="og:title" content="manajemen-perpustakaan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id, ID" />
+    <meta property="og:description" content="manajemen-perpustakaan" />
 
     <title>Hi ! {{ userName }}</title>
 
     <!-- Style -->
-    <link rel="stylesheet" href="./static/css/daftar_buku.css" type="text/css">
-    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css">
-    <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css">
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./static/css/daftar_buku.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css" />
+    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon" />
 
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -58,26 +57,31 @@
                                 <img src="{{ book_item['fill']['img'] }}" alt="daftar buku" width="90%" />
                             </div>
                             <div class="deskripsi-buku">
-                                <form method="post">
-                                    <h3 name="nama_buku" id="jdl-buku">{{ book_item['fill']['nama'] }}</h3>
-                                    <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}" id="id-book">
-                                    <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
-                                    {% if book_item['sisa'] is not none %}
-                                    <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
-                                    {% else %}
-                                    <p name="sisa_buku" class="tersisa">Tersisa : Data tidak tersedia</p>
-                                    {% endif %}
-                         
+                                <h3 name="nama_buku" id="jdl-buku">
+                                    {{ book_item['fill']['nama'] }}
+                                </h3>
+                                <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}"
+                                    id="id-book" />
+                                <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}" />
+                                {% if book_item['sisa'] is not none %}
+                                <p name="sisa_buku" class="tersisa">
+                                    Tersisa : {{ book_item['sisa'] }}
+                                </p>
+                                {% else %}
+                                <p name="sisa_buku" class="tersisa">
+                                    Tersisa : Data tidak tersedia
+                                </p>
+                                {% endif %}
+                                <button id="btn-pinjam">pinjam buku</button>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
             {% endfor %}
-            
         </div>
     </section>
-    
+
     <section id="footer">
         <footer class="footer">
             <div class="navbar">
@@ -88,12 +92,13 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="{{ url_for('profil_admin') }}">
+                        <a href="{{ url_for('profil') }}">
                             <i data-feather="user"></i>
                         </a>
                     </li>
                     <li class="search-box active">
-                        <input type="text" name="filter" id="filter" class="search-input" placeholder="Cari judul buku...">
+                        <input type="text" name="filter" id="filter" class="search-input"
+                            placeholder="Cari judul buku..." />
                         <a class="search-btn" id="search">
                             <i data-feather="search" class="fas fa-search" color="#000"></i>
                         </a>
@@ -103,9 +108,24 @@
         </footer>
     </section>
 
+    <section id="alert" class="overlay">
+        <div class="cover-alert">
+            <div class="alert">
+                <div class="text-alert">
+                    <h3></h3>
+                </div>
+                <div class="choose-btn">
+                    <button type="button" style="margin: 15px 0px; height: 70%" class="btn-2" id="btn-cancel">
+                        <i data-feather="x"></i>
+                        <p style="margin: 0px 10px">Kembali</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script type="text/javascript" src="./static/js/list_book.js"></script>
-    <script type="text/javascript" src="./static/js/search/search.js"></script>
+    <script type="text/javascript" src="./static/js/module/search.js"></script>
+    <script type="text/javascript" src="./static/js/module/client_pinjam.js"></script>
     <script>
         feather.replace();
     </script>

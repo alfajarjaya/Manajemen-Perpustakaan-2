@@ -36,7 +36,7 @@ def add_login():
     except mysql.connector.errors as e:
         print(f'Error : {e}')
         
-def update_book_count_and_save_to_database(book_id, book_name, new_count):
+def update_book_count_and_save_to_database(book_id, book_name, author, new_count):
     try:
         connection = connect_to_database()
         cursor = connection.cursor()
@@ -48,12 +48,12 @@ def update_book_count_and_save_to_database(book_id, book_name, new_count):
             cursor.execute("UPDATE data_buku SET sisa = %s WHERE id_buku = %s", (new_count, book_id))
             print("Data buku berhasil diperbarui.")
         else:
-            cursor.execute("INSERT INTO data_buku (id_buku, nama_buku, sisa) VALUES (%s, %s, %s)", (book_id, book_name, new_count))
+            cursor.execute("INSERT INTO data_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s,%s)", (book_id, book_name, author, new_count))
             print("Data buku baru berhasil ditambahkan.")
 
         connection.commit()
 
-        cursor.execute("SELECT id_buku, nama_buku, sisa FROM data_buku WHERE id_buku = %s", (book_id,))
+        cursor.execute("SELECT id_buku, nama_buku, penerbit_buku, sisa FROM data_buku WHERE id_buku = %s", (book_id,))
         book_data = cursor.fetchone()
 
         if book_data:

@@ -1,0 +1,124 @@
+<script src="https://unpkg.com/feather-icons"></script>
+
+<main class="main">
+    <div class="search-box active">
+        <input type="text" name="filter" id="filter" class="search-input" placeholder="Cari judul buku..." />
+        <a class="search-btn" id="search">
+            <i data-feather="search" class="fas fa-search" color="#000"></i>
+        </a>
+    </div>
+    <div class="menu-list">
+        <ul class="list">
+            <li class="list-item">
+                <p>Syaifudin</p>
+            </li>
+            <li class="list-item">
+                <p>Mahmud</p>
+            </li>
+            <li class="list-item">
+                <p>Dina</p>
+            </li>
+            <li class="list-item">
+                <p>Wahyu</p>
+            </li>
+            <li class="list-item">
+                <p>Eko</p>
+            </li>
+        </ul>
+    </div>
+</main>
+
+
+<style>
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .search-box {
+        display: flex;
+        border-radius: 5px;
+        background-color: grey;
+        padding: 15px;
+        position: absolute;
+        top: 10%;
+    }
+
+    .search-btn {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background-color: beige;
+        padding: 7px;
+        border-radius: 5px;
+    }
+
+    .search-input {
+        border: none;
+        background: none;
+        outline: none;
+        float: right;
+        padding: 0;
+        width: 0px;
+        transition: all 2s;
+    }
+
+    .search-box:hover>.search-input {
+        width: 240px;
+        padding: 10px;
+        margin-right: 5px;
+        background: white;
+        border-radius: 5px;
+        color: black;
+        align-items: center;
+    }
+
+    .menu-list {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 20%;
+    }
+
+    .menu-list .list {
+        list-style: none;
+    }
+
+    .list .list-item {
+        margin: 5px ;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: grey;
+        color: white;
+    }
+</style>
+
+<script>
+    feather.replace();
+</script>
+<script>
+    const filter = document.querySelector('#filter');
+    const items = document.querySelector('list-item');
+
+
+    filter.addEventListener("input", filters);
+
+    function filtes() {
+        const searchTerm = filter.value.toLowerCase().trim();
+    
+        items.forEach((items) => {
+            const attribute = items.getAttribute('p')
+                .textContent.toLowerCase()
+                .trim();
+    
+            if (items.includes(searchTerm)) {
+                items.style.display = "block";
+            } else {
+                bookItem.style.display = "none";
+            }
+        });
+    }
+
+</script>
