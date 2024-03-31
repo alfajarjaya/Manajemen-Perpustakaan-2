@@ -1,15 +1,11 @@
+const sisaBukuAttribute = document.getElementById("sisa");
 const editButtonsDesktop = document.querySelectorAll(".LB-Desktop .btn");
 const editButtonsMobile = document.querySelectorAll(".LB-Mobile .btn");
 const myAlert = document.getElementById("myAlert");
-
 const namaBukuInput = document.getElementById("nama_buku_input");
 const namaBuku = document.getElementById("nama_buku");
-
 const bookIdInput = document.getElementById("book_id");
-
 const sisaBukuInput = document.getElementById("sisa_buku");
-const sisaBukuAttribute = document.getElementById("sisa");
-
 const penerbitBukuTag = document.getElementById("penerbit");
 
 const cancelBtn = document.querySelector("#btn-cancel");
@@ -30,7 +26,9 @@ for (const button of editButtonsDesktop) {
         const bookId = clickedButton.getAttribute("data-book-id");
         const bookName = clickedButton.getAttribute("data-book-name");
         const authorName = clickedButton.getAttribute("data-book-author");
-        const sisa = clickedButton.closest(".list").querySelector('[name="sisa_buku_input"]').value;
+        const sisa = clickedButton
+            .closest(".list")
+            .querySelector('[name="sisa_buku_input"]').value;
 
         bookIdInput.value = bookId;
         namaBukuInput.value = bookName;
@@ -38,8 +36,11 @@ for (const button of editButtonsDesktop) {
         penerbitBukuTag.innerText = "Penerbit : " + authorName;
         sisaBukuAttribute.innerText = "Sisa : " + sisa;
 
-        console.log(authorName)
-        
+        const authorNames = document.querySelector("#author_input_" + bookId);
+
+        globalAuthorNames = authorNames;
+
+        console.log(globalAuthorNames.value);
     });
 }
 
@@ -50,7 +51,9 @@ for (const button of editButtonsMobile) {
         const bookId = clickedButton.getAttribute("data-book-id");
         const bookName = clickedButton.getAttribute("data-book-name");
         const authorName = clickedButton.getAttribute("data-book-author");
-        const sisa = clickedButton.closest(".list").querySelector('[name="sisa_buku_input"]').value;
+        const sisa = clickedButton
+            .closest(".list")
+            .querySelector('[name="sisa_buku_input"]').value;
 
         bookIdInput.value = bookId;
         namaBukuInput.value = bookName;
@@ -58,14 +61,21 @@ for (const button of editButtonsMobile) {
         penerbitBukuTag.innerText = "Penerbit: " + authorName;
         sisaBukuAttribute.innerText = "Sisa : " + sisa;
 
+        const authorNames = document.querySelector("#author_input_" + bookId);
+
+        globalAuthorNames = authorNames;
     });
 }
+
+let globalAuthorNames;
 
 const saveBtn = document.querySelector("#btn-save");
 saveBtn.addEventListener("click", () => {
     const bookId = bookIdInput.value;
     const bookName = namaBukuInput.value;
     const newCount = sisaBukuInput.value;
+
+    const authorName = globalAuthorNames.value;
 
     if (newCount !== null) {
         const xhr = new XMLHttpRequest();
@@ -85,6 +95,7 @@ saveBtn.addEventListener("click", () => {
         const data = JSON.stringify({
             bookId: bookId,
             nama: bookName,
+            author: authorName,
             newCount: newCount,
         });
         xhr.send(data);

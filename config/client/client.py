@@ -12,6 +12,7 @@ def listBook():
     user = app.session.get('user')
     bookSisa = []
     book = json.listBook
+    dataUser = valClient.databaseProfil(user)
     
     for key, val in book.items():
         for title, fill in val.items():
@@ -24,7 +25,7 @@ def listBook():
                 if books['sisa'] is None:
                     books['sisa'] = 'Data tidak tersedia'
             
-    return render_template('client/book_user.html', userName=user, bookSisa=bookSisa, book=book)
+    return render_template('client/book_user.html', userName=user, bookSisa=bookSisa, book=book, data=dataUser)
 
 def profil_users():
     user = app.session.get('user')
@@ -34,7 +35,7 @@ def profil_users():
         return render_template(
             'client/profil.html', 
                                userName=user,
-                               nama=valClient.databaseProfil(user),
+                               nama=data_user
                            )
     else:
         return "Username tidak ditemukan"

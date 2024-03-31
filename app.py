@@ -134,11 +134,10 @@ def update_book_count():
         data = request.json
         namaBuku = data.get('nama')
         bookId = data.get('bookId')
-        author = data.get('author')
         newCount = data.get('newCount')
 
         if bookId is not None and newCount is not None:
-            db.update_book_count_and_save_to_database(bookId, namaBuku, author, newCount)
+            db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
             
             session['bookId'] = bookId
             session['namaBuku'] = namaBuku

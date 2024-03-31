@@ -169,3 +169,19 @@ button[type="button"] {
     justify-items: center;
     align-items: center;
 }
+
+.data-pinjam-user {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    width: auto;
+    margin: 0px 20px;
+}
+
+.data-pinjam-user input {
+    padding: 7px;
+}
+
+.daftar-menu {
+    margin-top: 80px;
+}

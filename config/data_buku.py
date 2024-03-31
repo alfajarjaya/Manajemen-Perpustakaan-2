@@ -1,21 +1,24 @@
-# import config.import_json as fileJson
-# import app
+# import mysql.connector
+# import json
 
-# for key,val in fileJson.listBook.items():
-#     """MENGAMBIL DATA BUKU DARI FILE JSON"""
-#     Buku_1_nama = val['Buku1']['nama']
-#     Buku_1_id = val['Buku1']['id']
+# with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\daftar_buku.json', 'r') as lb:
+#     listBook = json.load(lb)
+
+# conn = mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     password='',
+#     database='user'
+# )
+# cursor = conn.cursor()
+
+# for buku in listBook['listBook'].values():
+#     id = buku['id']
+#     nama = buku['nama']
+#     penerbit = buku['penerbit']
+#     sisa = 11
     
-#     Buku_2_nama = val['Buku2']['nama']
-#     Buku_2_id = val['Buku2']['id']
-    
-#     for titile, fill in val.items():
-#         """
-#             MENGAMBIL DATA YANG BERADA DI VARIABEL ( val )
-#             Note :
-#                 - title : sebagai variabel yang menampung variabel fill
-#                 - fill : isi dari variabel title yang berisikan :
-#                             1. Nama buku
-#                             2. ID buku
-#                             3. Gambar buku
-#         """
+#     cursor.execute("INSERT INTO data_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s, %s)", (id, nama, penerbit, sisa))
+
+# conn.commit()
+# conn.close()

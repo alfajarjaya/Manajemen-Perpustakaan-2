@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css">
     <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <style>
         @media only screen and (max-width: 1139px) {
             .LB-Desktop {
@@ -51,10 +56,18 @@
                 <h1>Daftar Buku</h1>
             </div>
         </section>
+        <div class="search-book">
+            <div class="nav-search">
+                <input type="text" name="filter" id="filter" class="search-input" placeholder="Cari judul/id buku...">
+                <label for="filter" class="search-btn" id="search">
+                    <i data-feather="search" class="fas fa-search" color="#000"></i>
+                </label>
+            </div>
+        </div>
 
         <div class="daftar-menu LB-Mobile">
             {% for book_item in bookSisa %}
-            <ul class="list">
+            <ul class="list" data-aos="fade-up">
                 <li class="list-item">
                     <div class="cover">
                         <div class="nama-buku">
@@ -64,8 +77,6 @@
                                     <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}"
                                         id="id-book">
                                     <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
-                                    <input type="hidden" name="author"
-                                        data-author-value="{{ book_item['fill']['penerbit'] }}" id="author_input">
                                     {% if book_item['sisa'] is not none %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
                                     <input type="hidden" name="sisa_buku_input" value="{{ book_item['sisa'] }}"
@@ -127,9 +138,6 @@
                                     <h3 name="nama_buku" id="jdl-buku">{{ book_item['fill']['nama'] }}</h3>
                                 </div>
                                 <input type="hidden" name="book_id" value="{{ book_item['fill']['id'] }}">
-                                <input type="hidden" name="nama_buku_input" value="{{ book_item['fill']['nama'] }}">
-                                <input type="hidden" name="author"
-                                    data-author-value="{{ book_item['fill']['penerbit'] }}" id="author_input">
                                 <div class="jmlh-buku">
                                     {% if book_item['sisa'] is not none %}
                                     <p name="sisa_buku" class="tersisa">Tersisa : {{ book_item['sisa'] }}</p>
@@ -206,13 +214,6 @@
                             <i data-feather="user"></i>
                         </a>
                     </li>
-                    <li class="search-box active">
-                        <input type="text" name="filter" id="filter" class="search-input"
-                            placeholder="Cari judul/id buku...">
-                        <a class="search-btn" id="search">
-                            <i data-feather="search" class="fas fa-search" color="#000"></i>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </footer>
@@ -221,9 +222,10 @@
 
     <script type="text/javascript" src="./static/js/list_book.js"></script>
     <script type="text/javascript" src="./static/js/module/search.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script>
         feather.replace();
+        
+        AOS.init();
     </script>
 </body>
 
