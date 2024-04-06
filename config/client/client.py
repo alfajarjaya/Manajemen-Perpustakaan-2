@@ -1,8 +1,9 @@
-from flask import render_template, request
+from flask import render_template
 import app
-import database.db_sql as database
+import database.SQL.connect_to_SQL as database
 import config.import_json as json
 from config.client import client_valid as valClient
+from database.client import peminjaman as db_pinjam_user
 
 def home_user():
     user = app.session.get('user')
@@ -23,19 +24,38 @@ def listBook():
             
             for books in bookSisa:
                 if books['sisa'] is None:
-                    books['sisa'] = 'Data tidak tersedia'
+                    return 'Data tidak tersedia'
             
-    return render_template('client/book_user.html', userName=user, bookSisa=bookSisa, book=book, data=dataUser)
+    return render_template(
+        'client/book_user.html', 
+        userName=user, 
+        bookSisa=bookSisa, 
+        book=book, 
+        data=dataUser
+    )
 
 def profil_users():
     user = app.session.get('user')
     data_user = valClient.databaseProfil(user)
     
-    if data_user:   
+    if isinstance(data_user, dict):
         return render_template(
             'client/profil.html', 
-                               userName=user,
-                               nama=data_user
-                           )
-    else:
-        return "Username tidak ditemukan"
+            userName=user,
+            nama=data_user['nama'],
+            nomor=data_user['nomor'],
+            kelas=data_user['kelas']
+        )
+        
+def peminjaman_buku():
+    user = app.session.get('user')
+    data_user = valClient.databaseProfil(user)
+    valueData = data_user['nama'].lower()
+    
+    data = db_pinjam_user.selectUserDatabase(valueData)
+    
+    return render_template(
+        'client/pinjam_user.html',
+        userName=user,
+        data=data
+    )

@@ -8,9 +8,24 @@
 #     host='localhost',
 #     user='root',
 #     password='',
-#     database='user'
+#     database='sistemperpustakaan_admin',
+#     port=3306
 # )
 # cursor = conn.cursor()
+
+# # try:
+# #     cursor.execute("""
+# #     CREATE TABLE IF NOT EXISTS data_buku (
+# #         id_buku VARCHAR(15) PRIMARY KEY,
+# #         nama_buku TEXT,
+# #         penerbit_buku TEXT,
+# #         sisa INT
+# #     )
+# #     """)
+# # except Exception as e:
+# #     print(e)
+# # finally:
+# #     print('success')
 
 # for buku in listBook['listBook'].values():
 #     id = buku['id']
@@ -18,7 +33,7 @@
 #     penerbit = buku['penerbit']
 #     sisa = 11
     
-#     cursor.execute("INSERT INTO data_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s, %s)", (id, nama, penerbit, sisa))
+#     cursor.execute("INSERT INTO database_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s, %s)", (id, nama, penerbit, sisa))
 
 # conn.commit()
 # conn.close()

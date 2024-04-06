@@ -173,9 +173,13 @@ button[type="button"] {
 .data-pinjam-user {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 5px;
-    width: auto;
+    grid-gap: 8px;
     margin: 0px 20px;
+}
+
+.data-pinjam-user label {
+    display: flex;
+    justify-content: start;
 }
 
 .data-pinjam-user input {
@@ -184,4 +188,14 @@ button[type="button"] {
 
 .daftar-menu {
     margin-top: 80px;
+}
+
+.warning {
+    margin: 30px 10px;
+    text-align: start;
+}
+
+.warning p::before {
+    content: "*note : ";
+    color: red;
 }

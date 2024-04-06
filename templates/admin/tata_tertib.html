@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en, id" style="scroll-behavior: smooth !important">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="manajemen-perpustakaan">
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
+
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
+
+    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
+    <meta property="og:title" content="manajemen-perpustakaan">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id, ID">
+    <meta property="og:description" content="manajemen-perpustakaan">
+
+    <title>Hi ! {{ userName }}</title>
+    <link rel="stylesheet" href="./static/css/dashboard_user.css" />
+    <link rel="stylesheet" href="./static/css/tartib.css">
+    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        @media only screen and (min-width: 768px) and (main-width:1139px) {
+            .main {
+                margin: 0px 250px;
+            }
+        }
+
+        @media only screen and (min-width: 1140px) {
+            .main {
+                margin: 0px 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="tartib">
+            <div class="title">
+                <h1>Tata Tertib Perpustakaan SMKN 1 Mojokerto</h1>
+            </div>
+            <div class="list-tartib">
+                <ol class="list">
+                    {% for key, value in tataTertib.items() %}
+                    {% for fill in value %}
+                    <li class="list-item">
+                        <p>{{ fill }}</p>
+                    </li>
+                    {% endfor %}
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </main>
+    <section>
+        <footer class="footer">
+            <div class="navbar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('profil') }}">
+                            <i data-feather="user"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

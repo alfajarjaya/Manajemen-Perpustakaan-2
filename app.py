@@ -9,20 +9,24 @@ from flask import (
     jsonify
 )
 
+import os
+import openpyxl
+import datetime
+
 import config.admin.admin as admin
+from config.admin import qrCodeAdmin as adminQr
+import config.admin.val_admin as validateUserAdmin
+
 import config.client.client as client
 from config.client.client_valid import name_and_pw_client
 from config.client.client_valid import user_client_valid
+from database.client import peminjaman
+
 import config.import_json as json
-import database.db_sql as db
-from database.client import user as userClient
-from config.admin import qrCodeAdmin as adminQr
-import os
-import openpyxl
-import config.admin.val_admin as validateUserAdmin
+import database.SQL.connect_to_SQL as db
 
 app = Flask(__name__)
-app.secret_key = '1'
+app.secret_key = 'manajemen-perpustakaan-smkn-1-mjk'
 
 dataAdmin = json.adminUser
 dataClient = json.clientUser
@@ -30,27 +34,26 @@ dataClient = json.clientUser
 
 @app.route('/', methods=['POST', 'GET'])
 def login():
-    user = request.form.get('username')
-    password = request.form.get('password')
-
     if request.method == 'POST':
-        if validateUserAdmin.val_user_and_pw_admin(user, password):
-            session['user'] = user
-            session['password'] = password
-                
-            db.add_login()
-            return redirect(url_for('home'))
-            
-        elif name_and_pw_client(user, password):
+        user = request.form.get('username')
+        password = request.form.get('password')
 
-            session['user'] = user
-            session['password'] = password
-                    
-            db.add_login()
-            return redirect(url_for('home'))
-        
-        else:
-            return render_template('login.html', nf='Username not found')
+        if user:
+            if validateUserAdmin.val_user_and_pw_admin(user, password):
+                session['user'] = user
+                session['password'] = password
+
+                db.add_login()
+                return redirect(url_for('home'))
+            
+            elif name_and_pw_client(user, password):
+                session['user'] = user
+                session['password'] = password
+            
+                db.add_login()
+                return redirect(url_for('home'))
+            else:
+                return render_template('login.html', nf='Username or Password is wrong')
     
     return render_template('login.html')
 
@@ -97,20 +100,19 @@ def pinjam_admin():
             return admin.peminjaman()
         
     else:
-        return login()
+        return redirect(url_for('login'))
 
 
-class profil():
-    @app.route('/profil')
-    def profil():
-        user = session.get('user')
+@app.route('/profil')
+def profil():
+    user = session.get('user')
 
-        if validateUserAdmin.val_user_admin(user):
-            return admin.profil()
-        if user_client_valid(user):
-            return client.profil_users()
-        else:
-            return redirect(url_for('login'))
+    if validateUserAdmin.val_user_admin(user):
+        return admin.profil()
+    if user_client_valid(user):
+        return client.profil_users()
+    
+    return redirect(url_for('login'))
             
         
 @app.route('/daftarBuku', methods=['POST', 'GET'])
@@ -142,19 +144,15 @@ def update_book_count():
             session['bookId'] = bookId
             session['namaBuku'] = namaBuku
             
-            return jsonify({'message': 'Jumlah buku berhasil diperbarui dan disimpan ke database.'}), 200
+            return jsonify({'message' : 'Jumlah buku telah berhasil dirubah'}), 200
         else:
-            return jsonify({'message': 'Data yang diperlukan tidak lengkap.'}), 400
+            return jsonify({'message' : 'Jumlah buku gagal dirubah'}), 400
         
     return redirect(url_for('list_book_admin'))
             
 @app.route('/data-pengunjung')
 def dataPengunjung():
     return admin.dataPengunjung()
-
-@app.route('/daftar-buku')
-def list_book_client():
-    return client.listBook()
 
 @app.route('/Scanner')
 def scanner_qrCode():
@@ -163,6 +161,51 @@ def scanner_qrCode():
 @app.route('/video_feed')
 def video_feed():
     return Response(adminQr.generateFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/tata-tertib-perpustakaan-SMKN-1-Mojokerto')
+def tartib():
+    user = session.get('user')
+    
+    if validateUserAdmin.val_user_admin(user):
+        return admin.tataTertib()
+    
+    return redirect(url_for('login'))
+
+@app.route('/daftar-buku')
+def list_book_client():
+    return client.listBook()
+
+@app.route('/pinjamBuku', methods=['POST', 'GET'])
+def pinjam_buku():
+    if request.method == 'POST':
+        data = request.json
+        idBuku = data['bookId']
+        namaBuku = data['bookName']
+        sisaBuku = data['newCount']
+        
+        namaUser = data['nama']
+        kelasUser = data['kelas']
+        nisnUser = data['nisn']
+        tglPinjam = data['tglPinjam']
+        
+        formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
+        
+        peminjaman.peminjamanBuku(
+            idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
+        )
+        sisaBukuTerbaru = int(sisaBuku) - 1
+        
+        db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
+       
+        
+        
+        return jsonify({'message' : 'Berhasil meminjam buku, segera ambil buku di Perpustakaan.'}), 200
+    
+    return redirect(url_for('dataPeminjaman'))
+
+@app.route('/data-peminjaman')
+def dataPeminjaman():
+    return client.peminjaman_buku()
     
 if __name__ == '__main__':
     

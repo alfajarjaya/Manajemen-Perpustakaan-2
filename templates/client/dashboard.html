@@ -54,14 +54,23 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="cover">
                     <div class="data-buku">
-                        <a href="">
+                        <a href="{{ url_for('dataPeminjaman') }}">
                             <img src="./static/img/diagram_batang.png" alt="data buku" width="40%" />
                             <h6>
                                 Data Peminjaman & <br />
                                 Pengembalian buku
+                            </h6>
+                        </a>
+                    </div>
+                </div>
+                <div class="cover">
+                    <div class="data-buku">
+                        <a href="">
+                            <img src="./static/img/warning.png" alt="data buku" width="40%" />
+                            <h6>
+                                Tata Tertib
                             </h6>
                         </a>
                     </div>
@@ -92,7 +101,6 @@
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/dashboard.js"></script>
 </body>
 
 </html>

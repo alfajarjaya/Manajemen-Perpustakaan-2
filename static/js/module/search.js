@@ -25,6 +25,3 @@ searchInput.addEventListener("input", () => {
     });
 
 });
-
-// function filterBooks() {
-// }

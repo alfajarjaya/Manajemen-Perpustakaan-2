@@ -27,6 +27,7 @@
     <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
 
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -47,7 +48,7 @@
             <div class="nomor-user">{{ nomor }}</div>
             <div class="kelas-user">{{ kelas }}</div>
             <div class="log-out">
-                <button type="button" id="btnLogout" onclick="showAlert()">Log Out</button>
+                <button type="button" id="btnLogout" onclick="alert()">Log Out</button>
             </div>
         </div>
     </section>
@@ -57,7 +58,7 @@
             <div class="navbar">
                 <ul>
                     <li>
-                        <a href="{{ url_for("home") }}">
+                        <a href="{{ url_for('home') }}">
                             <i data-feather="home"></i>
                         </a>
                     </li>
@@ -71,57 +72,34 @@
         </footer>
     </section>
 
-    <section id="alert" class="overlay">
-        <div class="cover-alert">
-            <div class="alert">
-                <div class="text-alert">
-                    <h3>Apakah anda yakin ingin keluar ? </h3>
-                </div>
-                <div class="choose-btn">
-                    <button type="button" id="ya">Ya</button>
-                    <script>
-                        window.LogOUT = '{{ url_for('logout') }}';
-                    </script>
-                    <script type="text/javascript">
-                        var btnLogout = document.getElementById("ya");
-                        
-                        btnLogout.addEventListener("click", () => {
-                            window.location.href = window.LogOUT;
-                        })
-                    </script>
-                    <button type="button" id="tidak" onclick="noLogOut()">Tidak</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <script type="text/javascript">
-        var alertElement = document.querySelector('.overlay');
-        var btnNoLogOut = document.getElementById("tidak");
-
-        btnLogout.addEventListener("click", () => {
-            showAlert();
-        });
-
-        function showAlert() {
-            alertElement.style.display = "block";
-        }
-
-        function hideAlert() {
-            alertElement.style.display = "none";
-        }
-
-        function noLogOut() {
-            btnNoLogOut.addEventListener("click", () => {
-                hideAlert();
+    <script type="text/javascript">        
+        function alert() {
+            const swalButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "#ya",
+                    cancelButton: "#tidak"
+                },
+                buttonsStyling: false
             });
+            
+            swalButtons.fire({
+                text: "Apakah kamu yakin ingin keluar?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ url_for('logout') }}";
+                }
+            }); 
         }
     </script>
     <script>
         feather.replace();
     </script>
 
-    <script type="text/javascript" src="./static/js/login.js"></script>
 
 </body>
 

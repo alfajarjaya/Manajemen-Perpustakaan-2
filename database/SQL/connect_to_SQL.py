@@ -1,14 +1,12 @@
 import mysql.connector
 import app
-import config.admin.admin as admin
-import config.data_buku as db_buku
 
 def connect_to_database():
     return mysql.connector.connect(
         host='localhost',
         user='root', 
         password='', 
-        database='user',
+        database='sistemperpustakaan_admin',
         port=3306
     )
 def add_login():
@@ -16,15 +14,26 @@ def add_login():
         konektor = connect_to_database()
         cur = konektor.cursor()
 
-        nama = app.session.get('user')
-        password = app.session.get('password')
+        cur.execute("""
+                    CREATE TABLE IF NOT EXISTS database_login (
+                        id_login INT PRIMARY KEY AUTO_INCREMENT,
+                        nama VARCHAR(255) NOT NULL,
+                        password VARCHAR(255) NOT NULL
+                    )
+                    
+                    """)
 
-        check_query = "SELECT COUNT(*) FROM login WHERE nama = %s"
+        # nama = app.session.get('user')
+        # password = app.session.get('password')
+        nama = 'fajar'
+        password = 'fajar'
+
+        check_query = "SELECT COUNT(*) FROM database_login WHERE nama = %s"
         cur.execute(check_query, (nama,))
         result = cur.fetchone()[0]
 
         if result == 0:
-            insert_query = "INSERT INTO login (nama, password) VALUES (%s, %s)"
+            insert_query = "INSERT INTO database_login (nama, password) VALUES (%s, %s)"
             insert_values = (nama, password)
             cur.execute(insert_query, insert_values)
             konektor.commit()
@@ -33,7 +42,7 @@ def add_login():
             print('Login sudah ada di database')
 
         konektor.close()
-    except mysql.connector.errors as e:
+    except Exception as e:
         print(f'Error : {e}')
         
 def update_book_count_and_save_to_database(book_id, book_name, new_count):
@@ -41,19 +50,19 @@ def update_book_count_and_save_to_database(book_id, book_name, new_count):
         connection = connect_to_database()
         cursor = connection.cursor()
         
-        cursor.execute("SELECT id_buku FROM data_buku WHERE id_buku = %s", (book_id,))
+        cursor.execute("SELECT id_buku FROM database_buku WHERE id_buku = %s", (book_id,))
         existing_book = cursor.fetchone()
 
         if existing_book:
-            cursor.execute("UPDATE data_buku SET sisa = %s WHERE id_buku = %s", (new_count, book_id))
+            cursor.execute("UPDATE database_buku SET sisa = %s WHERE id_buku = %s", (new_count, book_id))
             print("Data buku berhasil diperbarui.")
         else:
-            cursor.execute("INSERT INTO data_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s,%s)", (book_id, book_name, new_count))
+            cursor.execute("INSERT INTO database_buku (id_buku, nama_buku, penerbit_buku, sisa) VALUES (%s, %s, %s,%s)", (book_id, book_name, new_count))
             print("Data buku baru berhasil ditambahkan.")
 
         connection.commit()
 
-        cursor.execute("SELECT id_buku, nama_buku, penerbit_buku, sisa FROM data_buku WHERE id_buku = %s", (book_id,))
+        cursor.execute("SELECT id_buku, nama_buku, penerbit_buku, sisa FROM database_buku WHERE id_buku = %s", (book_id,))
         book_data = cursor.fetchone()
 
         if book_data:
@@ -69,7 +78,7 @@ def selectBook(book_id, book_name):
         connection = connect_to_database()
         cursor = connection.cursor()
         
-        sql = "SELECT sisa FROM `data_buku` WHERE id_buku = %s AND nama_buku = %s"
+        sql = "SELECT sisa FROM `database_buku` WHERE id_buku = %s AND nama_buku = %s"
         cursor.execute(sql, (book_id, book_name,))
         
         book_data = cursor.fetchone()
@@ -95,7 +104,7 @@ def pinjam():
 
     
         db = """
-            INSERT INTO pinjam (nama,kelas,pinjam,kembali) VALUES(%s,%s,%s,%s)
+            INSERT INTO data_pinjam (nama,kelas,tanggal_peminjaman1,tanggal_pengembalian) VALUES(%s,%s,%s,%s)
         """
     
         db_value = (nama,kelas,pinjam,kembali)
@@ -108,3 +117,4 @@ def pinjam():
         print(f'Erorr {e}')
     else:
         print('Data Peminjaman berhasil di simpan')
+        

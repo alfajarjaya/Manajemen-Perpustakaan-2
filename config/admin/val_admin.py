@@ -1,19 +1,19 @@
 import config.import_json as json
 
 
-def val_user_and_pw_admin(user,pw):
+def val_user_and_pw_admin(user, pw):
     valAdmin = json.adminUser
     
     for keys, values in valAdmin.items():
         
         if user == values['admin']['user'] and pw == values['admin']['password']:
-            return values['admin']['user'] == user and values['admin']['password'] == pw
+            return True
         elif user == values['admin_2']['user'] and pw == values['admin_2']['password']:
-            return values['admin_2']['user'] == user and values['admin_2']['password'] == pw
+            return True
         elif user == values['admin_3']['user'] and pw == values['admin_3']['password']:
-            return values['admin_3']['user'] == user and values['admin_3']['password'] == pw
-        else:
-            return None
+            return True
+    
+    return False
         
 def val_user_admin(user):
     valAdmin = json.adminUser

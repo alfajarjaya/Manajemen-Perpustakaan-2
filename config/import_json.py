@@ -9,9 +9,8 @@ with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\use
 with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\profil.json', 'r') as dc:
     dataClient = json.load(dc)
     
-with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\user_val.json', 'r') as cv:
-    clientVal = json.load(cv)
-    
 with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\daftar_buku.json', 'r') as lb:
     listBook = json.load(lb)
     
+with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\tata_tertib.json', 'r') as tartib:
+    tataTertib = json.load(tartib)

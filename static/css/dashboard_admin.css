@@ -9,6 +9,7 @@
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  font-size: 15px;
 }
 
 body {
@@ -45,7 +46,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 30px 0px;
+  margin: 50px 0px;
 }
 
 .daftar-buku,
@@ -53,10 +54,20 @@ body {
   margin: 20px 0px;
 }
 
+.daftar-menu {
+  padding-bottom: 200px;
+}
+
 .menu .daftar-buku img {
   background: #fff;
   width: 40%;
   border-radius: 100%;
+}
+
+.menu .cover:nth-last-child(1) {
+  display: flex;
+  margin-left: 50%;
+  width: 100%;
 }
 
 .menu .data-buku img {

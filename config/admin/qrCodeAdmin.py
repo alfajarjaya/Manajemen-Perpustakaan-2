@@ -3,7 +3,7 @@ import numpy as np
 import mysql.connector as mysql
 import cv2
 from flask import Flask
-import database.db_sql as db
+import database.SQL.connect_to_SQL as db
 import app
 
 def scan_and_save_qrcode(frame, worksheet):

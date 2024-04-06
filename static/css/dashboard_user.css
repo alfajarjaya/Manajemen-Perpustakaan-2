@@ -9,6 +9,7 @@
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  font-size: 15px;
 }
 
 body {
@@ -34,9 +35,10 @@ body {
 }
 
 .daftar-menu {
-    display: flex;
-    justify-content: center;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 200px;
 }
 
 .user-text {
@@ -47,12 +49,12 @@ body {
 
 .menu {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 30px 0px;
-  width: 50%;
+  margin: 40px 0px;
+  width: 100%;
 }
 
 .daftar-buku,
@@ -66,9 +68,15 @@ body {
   border-radius: 100%;
 }
 
+.menu .cover:nth-last-child(1) {
+  display: flex;
+  margin-left: 100%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+}
+
 .menu .data-buku img {
   background: #fff;
-  width: 40%;
   border-radius: 100%;
 }
 

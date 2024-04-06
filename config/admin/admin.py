@@ -9,7 +9,7 @@ from flask import (
     jsonify
 )
 import app
-import database.db_sql as database
+import database.SQL.connect_to_SQL as database
 import config.import_json as fileJson
 import config.admin.qrCodeAdmin as adminQr
 import app
@@ -32,7 +32,7 @@ def peminjaman():
 def profil():
     user = app.session.get('user')
     
-    return render_template('admin/profil.html', user=user, nomor='-',kelas='-')
+    return render_template('admin/profil.html', user=user, nomor='-',kelas='-', userName=user)
         
 def list_book():
     user = app.session.get('user')
@@ -60,3 +60,9 @@ def dataPengunjung():
 
 def scanner():
     return render_template('admin/scanner.html', video=app.video_feed())
+
+def tataTertib():
+    user = app.session.get('user')
+    
+    dataTartib = fileJson.tataTertib
+    return render_template('admin/tata_tertib.html', userName=user, tataTertib=dataTartib)

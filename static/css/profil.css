@@ -4,6 +4,7 @@
   --black: #000;
   --navbar: #edb953;
   --form: #ffe600;
+  --body: #68cbe2;
 }
 
 * {
@@ -13,7 +14,7 @@
 }
 
 body {
-  background: #68cbe2;
+  background: var(--body);
   position: relative;
   padding-bottom: 150px;
 }
@@ -82,7 +83,7 @@ a {
   height: 30px;
   width: 100%;
   position: fixed;
-  z-index: 99999;
+  z-index: 99;
   bottom: 0;
 }
 

@@ -2,74 +2,95 @@
 <html lang="en, id" style="scroll-behavior: smooth !important">
 
 <head>
+    <meta charset="UTF-8" />
 
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="manajemen-perpustakaan" />
 
-    <meta name="description" content="manajemen-perpustakaan">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka" />
 
-    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka" />
 
-    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
-
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
-    <meta property="og:title" content="manajemen-perpustakaan">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="id, ID">
-    <meta property="og:description" content="manajemen-perpustakaan">
+    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com" />
+    <meta property="og:title" content="manajemen-perpustakaan" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id, ID" />
+    <meta property="og:description" content="manajemen-perpustakaan" />
 
     <title>Hi ! {{ userName }}</title>
-    <link rel="stylesheet" href="./static/css/pinjam.css" />
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./static/css/daftar_buku.css" type="text/css" />
+    <link rel="stylesheet" href="./static/css/client/pinjam.css" type="text/css">
+
+    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon" />
+
     <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        @media only screen and (min-width:701px) and (max-width:1080px) {
+            body {
+                margin: 0px 200px;
+            }
+        }
+
+        @media only screen and (min-width:1140px) {
+            body {
+                margin: 0px 500px;
+                padding-bottom: 100px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <section>
-        <div class="custom-shape-divider-top-1708184955">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-        <div class="judul-user">
-            <div class="judul-text-user">
-                <h6>Tanggal pinjam</h6>
-                <h6>Tanggal Kembali</h6>
-            </div>
-        </div>
-        <div class="relative">
-            <div class="value-date">
-                <div class="date">
-                    <p>12-2-2024</p>
-                    <p>12-2-2024</p>
+    <main class="main">
+        <section class="title">
+            <div class="nav-title">
+                <div class="text">
+                    <h2>Peminjaman & Pengembalian Buku</h2>
                 </div>
             </div>
-            <div class="value-date">
-                <div class="date">
-                    <p>12-2-2024</p>
-                    <p>12-2-2024</p>
+        </section>
+
+        <section class="body">
+            <div class="data-header">
+                <div class="header">
+                    <h5>Judul Buku</h5>
+                    <h5>Tanggal Pinjam</h5>
+                    <h5>Tanggal Kembali</h5>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-    <section>
+            <div class="data-body">
+                {% if data is not none%}
+                {% for judul, pinjam, kembali in data%}
+                <div class="data">
+                    <h5>{{ judul }}</h5>
+                    <h5>{{ pinjam }}</h5>
+                    <h5>{{ kembali }}</h5>
+                </div>
+                {% else %}
+                <div class="data">
+                    <h5>Tidak ada data</h5>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+    </main>
+    <section id="footer">
         <footer class="footer">
             <div class="navbar">
-                <ul>
-                    <li>
+                <ul class="nav-link">
+                    <li class="active">
                         <a href="{{ url_for('home') }}">
                             <i data-feather="home"></i>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{{ url_for('profil') }}">
                             <i data-feather="user"></i>
                         </a>
@@ -82,7 +103,6 @@
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/dashboard.js"></script>
 </body>
 
 </html>

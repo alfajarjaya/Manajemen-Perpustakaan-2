@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,500;1,200;1,400&display=swap");
+
+:root {
+  --black: #000;
+  --navbar: #edb953;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.tartib .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    text-align: center;
+}
+
+.tartib .title h1 {
+    font-size: 30px;
+}
+
+.list-tartib {
+    margin: 0px 50px;
+    padding: 20px 40px;
+    background: var(--navbar);
+    border-radius: 20px;
+    height: 70vh;
+    overflow: auto;
+}
+
+.list .list-item {
+    margin: 20px 0px;
+    border-bottom: 1px solid #000;
+}
+
+.list .list-item p {
+    font-size: 15px;
+    margin: 15px 0px;
+}

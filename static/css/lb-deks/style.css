@@ -131,3 +131,13 @@
   border: 1px solid #fff;
   color: #000;
 }
+
+.container {
+  height: 100vh;
+  overflow: auto;
+  padding: 10px;
+}
+
+.cover-alert {
+  top: 0;
+}
