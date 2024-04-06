@@ -14,7 +14,7 @@ import openpyxl
 import datetime
 
 import config.admin.admin as admin
-from config.admin import qrCodeAdmin as adminQr
+from config.admin import scannerQRCODE as adminQr
 import config.admin.val_admin as validateUserAdmin
 
 import config.client.client as client
@@ -160,7 +160,7 @@ def scanner_qrCode():
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(adminQr.generateFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(adminQr.generate(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/tata-tertib-perpustakaan-SMKN-1-Mojokerto')
 def tartib():
@@ -208,14 +208,6 @@ def dataPeminjaman():
     return client.peminjaman_buku()
     
 if __name__ == '__main__':
-    
-    if os.path.exists('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx'):
-        workbook = openpyxl.load_workbook('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx')
-        worksheet = workbook.active    
-    else:
-        workbook = openpyxl.Workbook()
-        worksheet = workbook.active
-
     app.run(
         host='localhost',
         debug=True

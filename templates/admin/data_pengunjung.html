@@ -44,9 +44,9 @@
             }
         }
 
-        .data h5 {
+        .header ,.data h5 {
             font-size: 18px;
-            padding: 10px;
+            padding: 10px 0px;
             border-bottom: none;
         }
     </style>
@@ -64,17 +64,17 @@
 
         <section class="body">
             <div class="data-header">
-                <div class="header">
-                    <h5>Judul Buku</h5>
-                    <h5>Tanggal Pinjam</h5>
-                    <h5>Tanggal Kembali</h5>
-                    <h5>Tanggal Kembali</h5>
+                <div class="header nth">
+                    <h5>NISN</h5>
+                    <h5>NAMA</h5>
+                    <h5>KELAS</h5>
+                    <h5>JURUSAN</h5>
                 </div>
             </div>
             <div class="data-body">
                 {% if data is not none%}
                 {% for a,b,c,d in data%}
-                <div class="data" style="display: flex; align-items: center; text-align: center; border-bottom: 1px solid #000">
+                <div class="data" style="display: flex; align-items: center; text-align: center; border-bottom: 2px solid #000">
                     <h5>{{ a }}</h5>
                     <h5>{{ b }}</h5>
                     <h5>{{ c }}</h5>

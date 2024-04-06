@@ -11,7 +11,7 @@ from flask import (
 import app
 import database.SQL.connect_to_SQL as database
 import config.import_json as fileJson
-import config.admin.qrCodeAdmin as adminQr
+import config.admin.scannerQRCODE as adminQr
 import app
 
 list_Book = fileJson.listBook
@@ -53,13 +53,21 @@ def list_book():
     return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books)
 
 
-def dataPengunjung():
-    file = 'D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx'
+# def dataPengunjung():
+#     file = 'D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx'
     
-    return send_file(file, as_attachment=True)
+#     return send_file(file, as_attachment=True)
 
 def scanner():
     return render_template('admin/scanner.html', video=app.video_feed())
+
+def dataPengunjung():
+    user = app.session.get('user')
+    
+    data = database.dataPengunjung()
+    
+    print(data)
+    return render_template('admin/data_pengunjung.html', userName=user, data=data)
 
 def tataTertib():
     user = app.session.get('user')

@@ -23,10 +23,8 @@ def add_login():
                     
                     """)
 
-        # nama = app.session.get('user')
-        # password = app.session.get('password')
-        nama = 'fajar'
-        password = 'fajar'
+        nama = app.session.get('user')
+        password = app.session.get('password')
 
         check_query = "SELECT COUNT(*) FROM database_login WHERE nama = %s"
         cur.execute(check_query, (nama,))
@@ -118,3 +116,31 @@ def pinjam():
     else:
         print('Data Peminjaman berhasil di simpan')
         
+def dataPengunjung():
+    try:
+        konektor = connect_to_database()
+        cur = konektor.cursor()
+        
+        cur.execute('SELECT * FROM `database_pengunjung`')
+        result = cur.fetchall()
+
+        hasil = []
+        
+        for data in result:
+            nomor_induk = data[0]
+            nama = data[1]
+            kelas = data[2]
+            jurusan = data[3]
+
+            data_user = [
+                nomor_induk,
+                nama,
+                kelas,
+                jurusan
+            ]
+            
+            hasil.append(data_user)
+            
+        return hasil
+    except Exception as e:
+        print(f'Error : {e}')

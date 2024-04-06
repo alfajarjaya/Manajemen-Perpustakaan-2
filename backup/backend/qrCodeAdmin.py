@@ -1,7 +1,6 @@
 import cv2
 import mysql.connector as sql
-import winsound
-import time
+import PySimpleGUI as psg
 
 def database():
     return sql.connect(
@@ -31,23 +30,29 @@ def scan_and_save(frame):
                         qr_data['Jurusan']
                     )
                     
-                    if all(qr_data.values()):
-                        konektor = database()
-                        cur = konektor.cursor()
+                    konektor = database()
+                    cur = konektor.cursor()
                     
-                        data = """
-                            INSERT INTO database_pengunjung (nomor_induk,nama,kelas,jurusan
-                            ) VALUES (%s,%s,%s,%s
-                            )
-                        """
+                    data = """
+                        INSERT INTO database_pengunjung (nomor_induk,nama,kelas,jurusan
+                        ) VALUES (%s,%s,%s,%s
+                        )
+                    """
                     
-                        cur.execute(data, qrCode)
-                        konektor.commit()
+                    cur.execute(data, qrCode)
+                    konektor.commit()
                     
-                        winsound.Beep(3000, 700)
-                        return time.sleep(1.5)
-                    else:
-                        return None
+                    print(f'Data sudah ada di database {konektor}')
+                    
+                    popUP = f'''
+                        Nomor Induk : {qr_data['Nomor Induk']}, \n
+                        Nama        : {qr_data['Nama']}, \n
+                        Kelas       : {qr_data['Kelas']}, \n
+                        Jurusan     : {qr_data['Jurusan']}, \n
+                    '''
+
+                    psg.popup(f'Data QrCode : {popUP}', title="Manajemen Perpustakaan SMKN 1 MOJOKERTO")
+                    return
                 else:
                     print("Data QR code tidak valid.")
     except Exception as e:
@@ -68,12 +73,21 @@ def proses_data(decodeInfo):
                 key, value = line.split(':', 1)
                 qr_data[key.strip()] = value.strip()
         
+        i = f"""
+            Nomor Induk : {qr_data['Nomor Induk']}, \n
+            Nama        : {qr_data['Nama']}, \n
+            Kelas       : {qr_data['Kelas']}, \n
+            Jurusan     : {qr_data['Jurusan']}, \n
+        """
+        
+        print(f'QrCode data : \n {i}')
+        
         return qr_data
     except Exception as e:
         print(f'Error: {e}')
         return None
 
-def generate():
+def main():
     cap = cv2.VideoCapture(0)
     
     while True:
@@ -81,13 +95,12 @@ def generate():
         if not ret:
             print("Error: Can't receive frame (stream end?). Exiting ...")
             break
-            
-        scan_and_save(frame)
+        cv2.imshow('Manajemen Perpustakaan SMKN 1 Mojokerto', frame)
         
-        frame_with_qr = b'--frame\r\nContent-Type: image/jpeg\r\n\r\n' + cv2.imencode('.jpg', frame)[1].tobytes() + b'\r\n'
-        yield frame_with_qr
+        if cv2.waitKey(1) == ord('q'):
+            break
+        
+        scan_and_save(frame)
     
     cap.release()
     cv2.destroyAllWindows()
-    
-
