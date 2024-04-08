@@ -11,6 +11,3 @@ with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\pro
     
 with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\daftar_buku.json', 'r') as lb:
     listBook = json.load(lb)
-    
-with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\tata_tertib.json', 'r') as tartib:
-    tataTertib = json.load(tartib)

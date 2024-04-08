@@ -11,6 +11,12 @@ def databaseProfil(user):
             return data_client['diyan']
         if user == value['kimi']['user']:
             return data_client['kimi']
+        if user == value['nabil']['user']:
+            return data_client['nabil']
+        if user == value['mifta']['user']:
+            return data_client['mifta']
+        if user == value['sandi']['user']:
+            return data_client['sandi']
     return 'Username not found'
 
 def name_and_pw_client(user,pw):
@@ -23,6 +29,13 @@ def name_and_pw_client(user,pw):
             return True
         if user == value['kimi']['user'] and pw == value['kimi']['password']:
             return True
+        if user == value['nabil']['user'] and pw == value['nabil']['password']:
+            return True
+        if user == value['sandi']['user'] and pw == value['sandi']['password']:
+            return True
+        if user == value['mifta']['user'] and pw == value['mifta']['password']:
+            return True
+        
     return False
         
 def user_client_valid(user):
@@ -32,5 +45,11 @@ def user_client_valid(user):
         if user == value['diyan']['user']:
             return True
         if user == value['kimi']['user']:
+            return True
+        if user == value['nabil']['user']:
+            return True
+        if user == value['sandi']['user']:
+            return True
+        if user == value['mifta']['user']:
             return True
     return False

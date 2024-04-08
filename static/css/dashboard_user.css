@@ -18,6 +18,10 @@ body {
   padding-bottom: 100px;
 }
 
+#main {
+  border: 1px solid #fff;
+}
+
 .user {
   display: flex;
   justify-content: start;
@@ -67,14 +71,6 @@ body {
   width: 40%;
   border-radius: 100%;
 }
-
-.menu .cover:nth-last-child(1) {
-  display: flex;
-  margin-left: 100%;
-  transform: translate(-50%, 50%);
-  width: 100%;
-}
-
 .menu .data-buku img {
   background: #fff;
   border-radius: 100%;

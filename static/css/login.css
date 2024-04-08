@@ -47,18 +47,15 @@ hr {
     border-radius: 0.5rem;
     border: none;
     color: var(--black);
-    padding: 0px 7px;
-}
-
-.user-name input {
-    width: 70%;
+    padding: 0px 20px;
 }
 
 .passwd-user {
     margin: 30px 0px;
 }
 
-.passwd-user input {
+input[type="text"], input[type="password"] {
+    box-shadow: inset 3px 3px 4px rgba(0,0,0);
     width: 70%;
 }
 
@@ -69,8 +66,8 @@ hr {
 
 .btn {
     border: none;
-    border-radius: 15px;
-    padding: 10px 30px;
+    border-radius: 10px;
+    padding: 15px 50px;
     font-size: 13px;
     font-weight: bold;
     color: black;

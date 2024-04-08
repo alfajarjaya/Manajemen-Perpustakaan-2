@@ -57,30 +57,38 @@ def peminjamanBuku(id_buku, nama_buku, nama_user, kelas_user, nisn_user, tanggal
         print(f'Error di : {e}')
         
 # peminjamanBuku('BOOK002', 'cerita cuy', 'kimi hugo', 'XI TKJ 123', 121212, datetime.date(2008, 12, 23))
+
 def selectUserDatabase(nama_user):
     try:
         konektor = connectToDatabase_2()
         cursor = konektor.cursor()
+        
+        cursor.execute("SHOW TABLES")
+        tables = cursor.fetchall()
+        
         tabelName = f'peminjaman_buku_{nama_user}'.replace(' ', '_')
-        selectTabel = f'SELECT `nama_buku`, `tanggal_peminjaman`, `tanggal_pengembalian` FROM `{tabelName}` WHERE nama_user = %s'
-        cursor.execute(selectTabel, (nama_user,))
         
-        result = cursor.fetchall()
+        if (tabelName,) in tables:
+            selectTabel = f'SELECT `nama_buku`, `tanggal_peminjaman`, `tanggal_pengembalian` FROM `{tabelName}` WHERE nama_user = %s'
+            cursor.execute(selectTabel, (nama_user,))
         
-        cursor.close()
-        konektor.close()
+            result = cursor.fetchall()
         
-        hasil = []
+            cursor.close()
+            konektor.close()
         
-        for row in result:
-            nama_buku = row[0]
-            tanggal_peminjaman = row[1]
-            tanggal_pengembalian = row[2]
-            hasil.append((nama_buku, tanggal_peminjaman, tanggal_pengembalian))
+            hasil = []
         
-        return hasil
-            
+            for row in result:
+                nama_buku = row[0]
+                tanggal_peminjaman = row[1]
+                tanggal_pengembalian = row[2]
+                hasil.append((nama_buku, tanggal_peminjaman, tanggal_pengembalian))
+
+            return hasil
+        else:
+            return None
+        
     except Exception as e:
         print(f'Error di : {e}')
-        
-        
+

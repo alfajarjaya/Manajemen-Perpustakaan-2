@@ -1,22 +1,12 @@
 from flask import (
     render_template, 
-    request, 
-    send_file, 
-    session,
-    url_for,
-    Response,
-    redirect,
-    jsonify
+    request
 )
 import app
 import database.SQL.connect_to_SQL as database
 import config.import_json as fileJson
-import config.admin.scannerQRCODE as adminQr
-import app
 
 list_Book = fileJson.listBook
-
-apk = app.app
 
 def home():
     user = app.session.get('user')
@@ -65,8 +55,6 @@ def dataPengunjung():
     user = app.session.get('user')
     
     data = database.dataPengunjung()
-    
-    print(data)
     return render_template('admin/data_pengunjung.html', userName=user, data=data)
 
 def tataTertib():

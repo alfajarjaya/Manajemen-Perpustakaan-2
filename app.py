@@ -9,8 +9,6 @@ from flask import (
     jsonify
 )
 
-import os
-import openpyxl
 import datetime
 
 import config.admin.admin as admin
@@ -43,14 +41,14 @@ def login():
                 session['user'] = user
                 session['password'] = password
 
-                db.add_login()
+                db.add_login(user, password)
                 return redirect(url_for('home'))
             
             elif name_and_pw_client(user, password):
                 session['user'] = user
                 session['password'] = password
             
-                db.add_login()
+                db.add_login(user, password)
                 return redirect(url_for('home'))
             else:
                 return render_template('login.html', nf='Username or Password is wrong')
@@ -62,7 +60,7 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@app.route('/dashboard', methods=['POST', 'GET'])
+@app.route('/dashboard')
 def home():
     user = session.get('user')
 
@@ -125,8 +123,8 @@ def list_book_admin():
         
         if request.method == 'POST':
             return admin.list_book()
-        else:
-            return admin.list_book()
+
+        return admin.list_book()
     
     return redirect(url_for('login'))
 
@@ -162,15 +160,6 @@ def scanner_qrCode():
 def video_feed():
     return Response(adminQr.generate(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/tata-tertib-perpustakaan-SMKN-1-Mojokerto')
-def tartib():
-    user = session.get('user')
-    
-    if validateUserAdmin.val_user_admin(user):
-        return admin.tataTertib()
-    
-    return redirect(url_for('login'))
-
 @app.route('/daftar-buku')
 def list_book_client():
     return client.listBook()
@@ -193,12 +182,13 @@ def pinjam_buku():
         peminjaman.peminjamanBuku(
             idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
         )
+        print(sisaBuku)
+        
         sisaBukuTerbaru = int(sisaBuku) - 1
+        print(sisaBukuTerbaru)
         
         db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
        
-        
-        
         return jsonify({'message' : 'Berhasil meminjam buku, segera ambil buku di Perpustakaan.'}), 200
     
     return redirect(url_for('dataPeminjaman'))

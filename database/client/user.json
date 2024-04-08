@@ -11,6 +11,18 @@
         "kimi":{
             "user":"kimi",
             "password":"kimi"
+        },
+        "nabil": {
+            "user": "nabil",
+            "password": "nabil"
+        },
+        "sandi": {
+            "user": "sandi",
+            "password": "sandi"
+        },
+        "mifta": {
+            "user": "mifta",
+            "password": "mifta"
         }
     }
 }

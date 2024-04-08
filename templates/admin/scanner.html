@@ -15,16 +15,17 @@
 
     <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
 
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
     <meta property="og:title" content="manajemen-perpustakaan">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="id, ID">
     <meta property="og:description" content="manajemen-perpustakaan">
 
     <title>Hi ! {{ userName }}</title>
-    <link rel="stylesheet" href="./static/css/profil.css" type="text/css" />
-    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css">
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profil.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon">
+
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 

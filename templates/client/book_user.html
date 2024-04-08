@@ -14,7 +14,7 @@
 
     <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka" />
 
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com" />
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
     <meta property="og:title" content="manajemen-perpustakaan" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id, ID" />
@@ -23,11 +23,10 @@
     <title>Hi ! {{ userName }}</title>
 
     <!-- Style -->
-    <link rel="stylesheet" href="./static/css/daftar_buku.css" type="text/css" />
-    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css" />
-    <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css" />
-
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/daftar_buku.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lb-deks/style.css') }}" type="text/css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon" />
 
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -248,9 +247,8 @@
         </footer>
     </section>
 
-    <script type="text/javascript" src="./static/js/module/search.js"></script>
-    <script type="text/javascript" src="./static/js/module/send_db.js"></script>
-    <script type="text/javascript" src="./static/js/lb_client.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/module/lb_client.js') }}"></script>
     <script>
         feather.replace();
     </script>

@@ -9,7 +9,7 @@ def connect_to_database():
         database='sistemperpustakaan_admin',
         port=3306
     )
-def add_login():
+def add_login(nama, password):
     try:
         konektor = connect_to_database()
         cur = konektor.cursor()
@@ -23,8 +23,6 @@ def add_login():
                     
                     """)
 
-        nama = app.session.get('user')
-        password = app.session.get('password')
 
         check_query = "SELECT COUNT(*) FROM database_login WHERE nama = %s"
         cur.execute(check_query, (nama,))
@@ -35,7 +33,6 @@ def add_login():
             insert_values = (nama, password)
             cur.execute(insert_query, insert_values)
             konektor.commit()
-            print('Login berhasil disimpan')
         else:
             print('Login sudah ada di database')
 
@@ -63,8 +60,6 @@ def update_book_count_and_save_to_database(book_id, book_name, new_count):
         cursor.execute("SELECT id_buku, nama_buku, penerbit_buku, sisa FROM database_buku WHERE id_buku = %s", (book_id,))
         book_data = cursor.fetchone()
 
-        if book_data:
-            print("Data buku yang diperbarui atau ditambahkan:", book_data)
         
         cursor.close()
         connection.close()
@@ -113,8 +108,6 @@ def pinjam():
         
     except mysql.connector.errors as e:
         print(f'Erorr {e}')
-    else:
-        print('Data Peminjaman berhasil di simpan')
         
 def dataPengunjung():
     try:

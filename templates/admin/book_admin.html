@@ -23,10 +23,10 @@
     <title>Hi ! {{ userName }}</title>
 
     <!-- Style -->
-    <link rel="stylesheet" href="./static/css/daftar_buku.css" type="text/css" />
-    <link rel="stylesheet" href="./static/css/logOut.css" type="text/css" />
-    <link rel="stylesheet" href="./static/css/lb-deks/style.css" type="text/css" />
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/daftar_buku.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lb-deks/style.css') }}" type="text/css" />
+    <link rel="shortcut icon" href="{{ url_for('static' ,filename='img/skanesa.ico') }}" type="image/x-icon" />
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
@@ -256,9 +256,8 @@
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/module/send_db.js"></script>
-    <script type="text/javascript" src="./static/js/list_book.js"></script>
-    <script type="text/javascript" src="./static/js/module/search.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static' ,filename='js/module/lb_admin.js') }}"></script>
 </body>
 
 </html>

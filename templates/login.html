@@ -15,22 +15,22 @@
 
     <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
 
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
     <meta property="og:title" content="manajemen-perpustakaan">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="id, ID">
     <meta property="og:description" content="manajemen-perpustakaan">
 
     <title>Manajemen-Perpustakaan || Login</title>
-    <link rel="stylesheet" type="text/css" href="./static/css/login.css" />
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}" />
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/skanesa.ico')}}" type="image/x-icon">
 
 </head>
 
 <body>
     <section id="signIn">
         <div class="img">
-            <img src="./static/img/login.png" alt="jpg" width="100%" />
+            <img src="{{url_for('static', filename='img/login.png')}}" alt="jpg" width="100%" />
             <hr>
         </div>
         <div class="title-text">LOGIN</div>
@@ -44,18 +44,6 @@
             <div class="check-passwd">
                 <input type="checkbox" name="checkPw" id="checkPw">
                 <label for="checkPw" style="color: #000">Lihat Password</label>
-                <script>
-                    var btnCheckPw = document.getElementById('checkPw');
-
-                    btnCheckPw.addEventListener('click', () => {
-                        var pw = document.getElementById('password');
-                        if (pw.type === "password") {
-                            pw.type = "text";
-                        } else {
-                            pw.type = "password";
-                        }
-                    })
-                </script>
             </div>
             <div class="error">{{ error }}</div>
             <div class="error">{{ nf }}</div>
@@ -64,7 +52,7 @@
             <script>
                 window.Login = {{ url_for('home') }}
             </script>
-            <script type="text/javascript" src="./static/js/login.js"></script>
+            <script type="text/javascript" src="{{url_for('static', filename='js/login.js')}}"></script>
         </form>
     </section>
 </body>

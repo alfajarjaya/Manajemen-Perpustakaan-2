@@ -1,4 +1,3 @@
-
 const editButtonsDesktop = document.querySelectorAll(".LB-Desktop .btn");
 const editButtonsMobile = document.querySelectorAll(".LB-Mobile .btn");
 const myAlert = document.getElementById("myAlert");
@@ -59,5 +58,38 @@ for (const button of editButtonsMobile) {
         namaBuku.innerText = "Judul : " + bookName;
         penerbitBukuTag.innerText = "Penerbit: " + authorName;
         sisaBukuAttribute.innerText = "Sisa : " + sisa;
+    });
+}
+
+function ListBookToDatabase() {
+    const saveBtn = document.querySelector("#btn-save");
+    saveBtn.addEventListener("click", () => {
+        const bookId = bookIdInput.value;
+        const bookName = namaBukuInput.value;
+        const newCount = sisaBukuInput.value;
+
+        if (newCount !== null) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/updateBookCount", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        alert(response.message);
+                        window.location.reload();
+                    } else {
+                        alert("Gagal memperbarui jumlah buku.");
+                    }
+                }
+            };
+            const data = JSON.stringify({
+                bookId: bookId,
+                nama: bookName,
+                newCount: newCount,
+            });
+            xhr.send(data);
+            sisaBuku.value = "";
+        }
     });
 }
