@@ -1,5 +1,4 @@
 import mysql.connector
-import app
 
 def connect_to_database():
     return mysql.connector.connect(
@@ -84,31 +83,6 @@ def selectBook(book_id, book_name):
         print("Error while fetching book data:", e)
         return None
 
-def pinjam():
-    try:
-        konektor = connect_to_database()
-
-        cur = konektor.cursor()
-
-        nama = app.session.get('nama')
-        kelas = app.session.get('kelas')
-        pinjam = app.session.get('pinjam')
-        kembali = app.session.get('kembali')
-
-    
-        db = """
-            INSERT INTO data_pinjam (nama,kelas,tanggal_peminjaman1,tanggal_pengembalian) VALUES(%s,%s,%s,%s)
-        """
-    
-        db_value = (nama,kelas,pinjam,kembali)
-    
-        cur.execute(db,db_value)
-        konektor.commit()
-        konektor.close()
-        
-    except mysql.connector.errors as e:
-        print(f'Erorr {e}')
-        
 def dataPengunjung():
     try:
         konektor = connect_to_database()
@@ -137,3 +111,113 @@ def dataPengunjung():
         return hasil
     except Exception as e:
         print(f'Error : {e}')
+        
+class pinjamAdmin:
+    def ambilTabel():
+        try:
+            konektor = mysql.connector.connect(
+                host='localhost',
+                user='root', 
+                password='', 
+                database='sistemperpustakaan_client',
+                port=3306
+            )
+        
+            cursor = konektor.cursor()
+
+            cursor.execute('SHOW TABLES')
+            results = cursor.fetchall()
+        
+            formatted_results = []
+            for row in results:
+                for table_name in row:
+                    formatted_table_name = ' '.join(word.capitalize() for word in table_name.split('_'))
+                    formatted_results.append(formatted_table_name)
+            
+            return formatted_results
+        except mysql.connector.errors as e:
+            print(f'Error {e}')
+    
+    def removeTabel(nama_user):
+        try:
+            konektor = mysql.connector.connect(
+                host='localhost',
+                user='root', 
+                password='', 
+                database='sistemperpustakaan_client',
+                port=3306
+            )
+            
+            cursor = konektor.cursor()
+            cursor.execute(f'DROP TABLE `{nama_user}`')
+            
+            cursor.close()
+            konektor.close()
+            
+        except mysql.connector.errors as e:
+            print(f'Error {e}')
+            
+    def ambilDataTabel(nama_user):
+        try:
+            konektor = mysql.connector.connect(
+                host='localhost',
+                user='root', 
+                password='', 
+                database='sistemperpustakaan_client',
+                port=3306
+            )
+            
+            cursor = konektor.cursor()
+            cursor.execute('SHOW TABLES')
+            tables = cursor.fetchall()
+            
+            if (nama_user,) in tables:
+                selectTabel = f'SELECT `id_buku`, `nama_buku`, `nama_user`, `kelas_user`, `nisn_user`, DATE(`tanggal_peminjaman`), DATE(`tanggal_pengembalian`) FROM `{nama_user}`'
+                cursor.execute(selectTabel)
+        
+                result = cursor.fetchall()
+        
+                cursor.close()
+                konektor.close()
+        
+                hasil = []
+
+                for row in result:
+                    idBuku = row[0]
+                    namaBuku = row[1]
+                    namaUser = row[2]
+                    kelasUser = row[3]
+                    nisnUser = row[4]
+                    pinjam = row[5].strftime("%Y-%m-%d")
+                    kembali = row[6].strftime("%Y-%m-%d")
+                    
+                    hasil.append((
+                        idBuku, namaBuku, namaUser, kelasUser, nisnUser, pinjam, kembali
+                    ))
+                return hasil
+            else:
+                return None
+            
+        except mysql.connector.errors as e:
+            print(f'Erorr {e}')
+    
+    def hapusDataDariTabel(nama_user, id_buku):
+        try:
+            konektor = mysql.connector.connect(
+                host='localhost',
+                user='root', 
+                password='', 
+                database='sistemperpustakaan_client',
+                port=3306
+            )
+            tabelUser = f'peminjaman_buku_{nama_user}'
+            
+            cursor = konektor.cursor()
+            cursor.execute(f"DELETE FROM `{tabelUser}` WHERE `id_buku` = '{id_buku}'")
+            
+            konektor.commit()
+            cursor.close()
+            konektor.close()
+            
+        except mysql.connector.errors as e:
+            print(f'Error {e}')

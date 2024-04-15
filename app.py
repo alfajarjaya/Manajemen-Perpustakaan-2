@@ -100,6 +100,33 @@ def pinjam_admin():
     else:
         return redirect(url_for('login'))
 
+@app.route('/admin_pinjam/<name>')
+def showData(name):
+    user = session.get('user')
+    
+    if validateUserAdmin.val_user_admin(user):
+        return admin.showDataPeminjaman(name)
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/remove_table', methods=['POST'])
+def remove_table():
+    if request.method == 'POST':
+        table_name = request.json['tableName'].replace(' ','_')
+        db.pinjamAdmin.removeTabel(table_name)
+
+    return jsonify({'message': 'Tabel berhasil dihapus.'}), 200
+
+@app.route('/remove_data', methods=['POST'])
+def remove_data():
+    if request.method == 'POST':
+        data = request.json
+        nama = data['name'].replace(' ', '_').lower()
+        id = data['id']
+        
+        db.pinjamAdmin.hapusDataDariTabel(nama, id)
+
+    return jsonify({'message': f'Data {nama} dengan id buku {id} berhasil dihapus.'}), 200
 
 @app.route('/profil')
 def profil():
@@ -164,7 +191,7 @@ def video_feed():
 def list_book_client():
     return client.listBook()
 
-@app.route('/pinjamBuku', methods=['POST', 'GET'])
+@app.route('/pinjamBuku', methods=['POST'])
 def pinjam_buku():
     if request.method == 'POST':
         data = request.json
@@ -177,21 +204,27 @@ def pinjam_buku():
         nisnUser = data['nisn']
         tglPinjam = data['tglPinjam']
         
-        formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
         
-        peminjaman.peminjamanBuku(
-            idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
-        )
-        print(sisaBuku)
         
         sisaBukuTerbaru = int(sisaBuku) - 1
-        print(sisaBukuTerbaru)
         
-        db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
+        if sisaBukuTerbaru < 0:
+            return jsonify({'message': f'Buku ``{namaBuku}`` lagi tidak tersedia.'}), 400
+        else:
+            formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
+            
+            if formatTglPinjam < datetime.date.today():
+                return jsonify({'message': 'Tgl. Pinjam tidak boleh kurang dari hari ini.'}), 400
+            elif formatTglPinjam > datetime.date.today():
+                return jsonify({'message': 'Tgl. Pinjam tidak boleh melebihi dari hari ini.'}), 400
+            else:
+                peminjaman.peminjamanBuku(
+                    idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
+                )
+            
+                db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
        
         return jsonify({'message' : 'Berhasil meminjam buku, segera ambil buku di Perpustakaan.'}), 200
-    
-    return redirect(url_for('dataPeminjaman'))
 
 @app.route('/data-peminjaman')
 def dataPeminjaman():
@@ -199,6 +232,7 @@ def dataPeminjaman():
     
 if __name__ == '__main__':
     app.run(
-        host='localhost',
+        host='0.0.0.0',
+        port=5000,
         debug=True
     )

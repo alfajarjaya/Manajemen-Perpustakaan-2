@@ -43,10 +43,17 @@
     <section class="profil-data">
         <div class="data">
             <div class="data-user">
-                <h4>{{ user }}</h4>
+                <h4>Username</h4>
+                <p>{{ user }}</p>
             </div>
-            <div class="nomor-user">{{ nomor }}</div>
-            <div class="kelas-user">{{ kelas }}</div>
+            <div class="nomor-user">
+                <h4>Nomor Induk</h4>
+                <p>{{ nomor }}</p>
+            </div>
+            <div class="kelas-user">
+                <h4>Kelas</h4>
+                <p>{{ kelas }}</p>
+            </div>
             <div class="log-out">
                 <button type="button" id="btnLogout" onclick="alert()">Log Out</button>
             </div>

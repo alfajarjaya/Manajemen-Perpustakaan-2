@@ -2,23 +2,24 @@
 <html lang="en, id" style="scroll-behavior: smooth !important">
 
 <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
 
-    <meta name="description" content="manajemen-perpustakaan" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="manajemen-perpustakaan">
 
-    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
-    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka" />
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
 
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com" />
-    <meta property="og:title" content="manajemen-perpustakaan" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="id, ID" />
-    <meta property="og:description" content="manajemen-perpustakaan" />
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
+
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
+    <meta property="og:title" content="manajemen-perpustakaan">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id, ID">
+    <meta property="og:description" content="manajemen-perpustakaan">
 
     <title>Hi ! {{ userName }}</title>
 
@@ -148,7 +149,7 @@
                                     <h3>Jmlh Buku</h3>
                                 </div>
                                 <div class="action">
-                                    <h3>Edit</h3>
+                                    <h3>Aksi</h3>
                                 </div>
                             </div>
                             {% for book_item in bookSisa %}
@@ -219,7 +220,7 @@
                                 placeholder="ubah sisa buku..." min-length="1" />
                             <input type="hidden" name="penerbit_buku" id="penerbit_buku" />
                             <div class="buttn" style="display: grid; justify-items: center">
-                                <button type="button" class="btn" id="btn-save" onclick="ListBookToDatabase()">
+                                <button type="button" class="btn" id="btn-save">
                                     <p style="margin: 0px 10px">Simpan</p>
                                 </button>
                                 <button type="button" class="btn-2" id="btn-cancel">

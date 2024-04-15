@@ -22,7 +22,7 @@
     <meta property="og:description" content="manajemen-perpustakaan">
 
     <title>Hi ! {{ userName }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filter='css/profil.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profil.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/logOut.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon" />
 
@@ -44,10 +44,17 @@
     <section class="profil-data">
         <div class="data">
             <div class="data-user">
-                <h4>{{ nama }}</h4>
+                <h4>Username</h4>
+                <p>{{ nama }}</p>
             </div>
-            <div class="nomor-user">{{ nomor }}</div>
-            <div class="kelas-user">{{ kelas }}</div>
+            <div class="nomor-user">
+                <h4>Nomor Induk</h4>
+                <p>{{ nomor }}</p>
+            </div>
+            <div class="kelas-user">
+                <h4>Kelas</h4>
+                <p>{{ kelas }}</p>
+            </div>
             <div class="log-out">
                 <button type="button" id="btnLogout" onclick="alert()">Log Out</button>
             </div>

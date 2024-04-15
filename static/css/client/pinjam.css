@@ -16,6 +16,7 @@
 body {
     background: var(--body);
     box-sizing: border-box;
+    margin-bottom: 200px;
 }
 
 .main {
@@ -57,11 +58,6 @@ body {
     border-bottom: 1px solid #000000;
 }
 
-.data-body {
-    height: 100vh;
-    overflow: auto;
-}
-
 .data {
     display: flex;
     justify-content: space-around;
@@ -76,4 +72,26 @@ body {
     width: 25%;
     border-bottom: 1px solid #000;
     overflow: auto;
+}
+
+.show {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+
+#btn-show {
+    background: var(--bg);
+    color: #000;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #000;
+    width: 50%;
+}
+
+#btn-show:active {
+    transform: scale(0.95);
 }

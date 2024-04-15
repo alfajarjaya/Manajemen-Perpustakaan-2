@@ -14,10 +14,10 @@ def home():
 
 def peminjaman():
     user = app.session.get('user')
-    
+    tabel = database.pinjamAdmin
     if request.method == 'POST':
         return render_template('admin/pinjam_admin.html', userName=user, success='Data berhasil masuk')   
-    return render_template('admin/pinjam_admin.html', userName=user)
+    return render_template('admin/pinjam_admin.html', userName=user, tabel=tabel.ambilTabel())
 
 def profil():
     user = app.session.get('user')
@@ -57,8 +57,17 @@ def dataPengunjung():
     data = database.dataPengunjung()
     return render_template('admin/data_pengunjung.html', userName=user, data=data)
 
-def tataTertib():
+def showDataPeminjaman(name):
     user = app.session.get('user')
     
-    dataTartib = fileJson.tataTertib
-    return render_template('admin/tata_tertib.html', userName=user, tataTertib=dataTartib)
+    name_formatted = name.replace(' ', '_').lower()
+    
+    data = database.pinjamAdmin.ambilDataTabel(name_formatted)
+    
+    return render_template('admin/show_data_peminjaman.html', userName=user, data=data)
+
+# def tataTertib():
+#     user = app.session.get('user')
+    
+#     dataTartib = fileJson.tataTertib
+#     return render_template('admin/tata_tertib.html', userName=user, tataTertib=dataTartib)

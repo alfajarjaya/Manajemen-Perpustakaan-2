@@ -15,21 +15,49 @@
 
     <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
 
-    <meta property="og:url" content="https://manajemen-perpustakaan.herokuapp.com">
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
     <meta property="og:title" content="manajemen-perpustakaan">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="id, ID">
     <meta property="og:description" content="manajemen-perpustakaan">
 
     <title>Hi ! {{ userName }}</title>
-    <link rel="stylesheet" href="./static/css/pinjam.css" />
-    <link rel="shortcut icon" href="./static/img/skanesa.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pinjam.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico' ) }}" type="image/x-icon">
 
     <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        @media only screen and (max-width:768px) {
+            main {
+                margin: 0px 10px;
+            }
+
+            body {
+                padding-bottom: 200px;
+            }
+        }
+
+        @media only screen and (min-width:701px) and (max-width:1080px) {
+            main {
+                margin: 0px 200px;
+            }
+        }
+
+        @media only screen and (min-width:1140px) {
+            main {
+                margin: 0px 500px;
+            }
+
+            body {
+                padding-bottom: 100px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <section>
+    <main>
         <div class="judul">
             <div class="judul-text">
                 <h4>Peminjaman & Pengembalian Buku</h4>
@@ -43,25 +71,33 @@
                     class="shape-fill"></path>
             </svg>
         </div>
-        <form action="/admin_pinjam" method="post" id="pinjam-form">
-            <div class="value-data">
-                <div class="data">
-                    <label for="nama">Nama : </label>
-                    <input type="text" name="nama" id="nama" required placeholder="Nama...">
-                    <label for="kelas">Kelas : </label>
-                    <input type="text" name="kelas" id="kelas" required placeholder="Kelas...">
-                    <label for="pinjam">Tanggal Peminjaman : </label>
-                    <input type="date" name="pinjam" id="pinjam" required >
-                    <label for="kembali">Tanggal Pengembalian : </label>
-                    <input type="date" name="kembali" id="kembali" required>
-                    <div class="success">{{ success }}</div>
-                    <div class="btn">
-                        <button type="submit" id="to-pinjam-user">Kirim</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </section>
+        <div class="container">
+            <table class="table">
+                <thead class="t-head">
+                    <th class="th-body">Nama</th>
+                    <th class="th-body">Aksi</th>
+                </thead>
+                <tbody class="t-body">
+                    {% for name in tabel %}
+                    <tr class="t-row">
+                        <td class="t-name">
+                            <h4>{{ name }}</h4>
+                        </td>
+                        <td class="t-col">
+                            <div class="btn">
+                                <a href="/admin_pinjam/{{ name }}" class="btn-action show">show</a>
+                                <input type="hidden" name="name" id="name" value="{{ name }}">
+                                <button type="button" class="btn-action btn-remove" id="btn-remove-{{ loop.index }}" data-name="{{ name }}">
+                                    <p>remove</p>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <section>
         <footer class="footer">
@@ -85,8 +121,7 @@
     <script>
         feather.replace();
     </script>
-    <script type="text/javascript" src="./static/js/pinjam.js"></script>
-    <script type="text/javascript" src="./static/js/alert.js"></script>
+    <script src="{{ url_for('static', filename='js/peminjamanAdmin.js') }}"></script>"
 </body>
 
 </html>

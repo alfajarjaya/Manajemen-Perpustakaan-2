@@ -173,8 +173,8 @@ button[type="button"] {
 .data-pinjam-user {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 8px;
-    margin: 0px 20px;
+    grid-gap: 3px;
+    margin: -10px 20px;
 }
 
 .data-pinjam-user label {

@@ -68,6 +68,21 @@ body {
   box-shadow: 2px 2px 5px;
 }
 
+.data-user h4,
+.nomor-user h4,
+.kelas-user h4 {
+  margin: 0px 10px;
+}
+
+.data-user p,
+.nomor-user p,
+.kelas-user p {
+  margin: 0px 10px;
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+}
+
 a {
   text-decoration: none;
   color: #000;

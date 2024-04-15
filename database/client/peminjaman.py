@@ -84,11 +84,9 @@ def selectUserDatabase(nama_user):
                 tanggal_peminjaman = row[1]
                 tanggal_pengembalian = row[2]
                 hasil.append((nama_buku, tanggal_peminjaman, tanggal_pengembalian))
-
             return hasil
         else:
             return None
         
     except Exception as e:
         print(f'Error di : {e}')
-
