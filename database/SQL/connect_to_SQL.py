@@ -133,7 +133,7 @@ class pinjamAdmin:
                 for table_name in row:
                     formatted_table_name = ' '.join(word.capitalize() for word in table_name.split('_'))
                     formatted_results.append(formatted_table_name)
-            
+                    
             return formatted_results
         except mysql.connector.errors as e:
             print(f'Error {e}')
@@ -179,7 +179,7 @@ class pinjamAdmin:
         
                 cursor.close()
                 konektor.close()
-        
+
                 hasil = []
 
                 for row in result:
@@ -194,6 +194,8 @@ class pinjamAdmin:
                     hasil.append((
                         idBuku, namaBuku, namaUser, kelasUser, nisnUser, pinjam, kembali
                     ))
+                    
+                print(hasil)
                 return hasil
             else:
                 return None

@@ -24,7 +24,13 @@ def listBook():
             
             for books in bookSisa:
                 if books['sisa'] is None:
-                    return 'Data tidak tersedia'
+                    return '''
+                            <div class="container">
+                                <h2>Maaf terjadi sedikit kesalahan</h2>
+                                <hr>
+                                <p>Mohon tunggu beberapa menit ke depan</P
+                            </div>
+                        '''
             
     return render_template(
         'client/book_user.html', 

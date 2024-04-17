@@ -25,8 +25,8 @@ import database.SQL.connect_to_SQL as db
 app = Flask(__name__)
 app.secret_key = 'manajemen-perpustakaan-smkn-1-mjk'
 
-dataAdmin = json.adminUser
-dataClient = json.clientUser
+# dataAdmin = json.adminUser
+# dataClient = json.clientUser
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -72,6 +72,20 @@ def home():
 
     return redirect(url_for('login'))
 
+@app.route('/daftarBuku', methods=['POST', 'GET'])
+def list_book_admin():
+    user = session.get('user')
+    
+    if validateUserAdmin.val_user_admin(user):
+        
+        session['user'] = user
+        
+        if request.method == 'POST':
+            return admin.list_book()
+
+        return admin.list_book()
+    
+    return redirect(url_for('login'))
                 
 @app.route('/admin_pinjam')
 def pinjam_admin():
@@ -82,6 +96,14 @@ def pinjam_admin():
             
     else:
         return redirect(url_for('login'))
+    
+@app.route('/remove_table', methods=['POST'])
+def remove_table():
+    if request.method == 'POST':
+        table_name = request.json['tableName'].replace(' ','_')
+        db.pinjamAdmin.removeTabel(table_name)
+
+    return jsonify({'message': 'Tabel berhasil dihapus.'}), 200
 
 @app.route('/admin_pinjam/<name>')
 def showData(name):
@@ -91,14 +113,6 @@ def showData(name):
         return admin.showDataPeminjaman(name)
     else:
         return redirect(url_for('login'))
-
-@app.route('/remove_table', methods=['POST'])
-def remove_table():
-    if request.method == 'POST':
-        table_name = request.json['tableName'].replace(' ','_')
-        db.pinjamAdmin.removeTabel(table_name)
-
-    return jsonify({'message': 'Tabel berhasil dihapus.'}), 200
 
 @app.route('/remove_data', methods=['POST'])
 def remove_data():
@@ -123,20 +137,7 @@ def profil():
     return redirect(url_for('login'))
             
         
-@app.route('/daftarBuku', methods=['POST', 'GET'])
-def list_book_admin():
-    user = session.get('user')
-    
-    if validateUserAdmin.val_user_admin(user):
-        
-        session['user'] = user
-        
-        if request.method == 'POST':
-            return admin.list_book()
 
-        return admin.list_book()
-    
-    return redirect(url_for('login'))
 
 @app.route('/updateBookCount', methods=['POST'])
 def update_book_count():

@@ -1,16 +1,12 @@
-const btnLogin = document.getElementById("btn");
-
-btnLogin.addEventListener("click", () => {
+document.getElementById("btn").addEventListener('submit', () => {
     window.location.href = window.Login;
 });
 
-const btnCheckPw = document.getElementById("checkPw");
-
-btnCheckPw.addEventListener("click", () => {
-    const pw = document.getElementById("password");
-    if (pw.type === "password") {
-        pw.type = "text";
+document.getElementById("checkPw").addEventListener("click", () => {
+    const password = document.getElementById("password");
+    if (password.type === "password") {
+        password.type = "text";
     } else {
-        pw.type = "password";
+        password.type = "password";
     }
 });

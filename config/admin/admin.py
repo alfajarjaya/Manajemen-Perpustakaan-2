@@ -1,6 +1,5 @@
 from flask import (
-    render_template, 
-    request
+    render_template
 )
 import app
 import database.SQL.connect_to_SQL as database
@@ -37,7 +36,13 @@ def list_book():
             
             for books in bookSisa:
                 if books['sisa'] is None:
-                    books['sisa'] = 'Data tidak tersedia'
+                    return '''
+                            <div class="container">
+                                <h2>Maaf terjadi sedikit kesalahan</h2>
+                                <hr>
+                                <p>Mohon tunggu beberapa menit ke depan</P
+                            </div>
+                        '''
                     
     return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books)
 

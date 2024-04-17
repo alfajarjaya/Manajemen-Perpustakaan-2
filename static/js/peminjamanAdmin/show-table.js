@@ -4,7 +4,7 @@ btnRemove.forEach((button) => {
     button.addEventListener('click', (event) => {
         let tableName = button.getAttribute('data-name');
 
-        let confirmation = () => {
+        const confirmation = () => {
             return (
                 `
                 <section id="myAlert" class="ovly">
