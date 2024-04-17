@@ -12,7 +12,7 @@ btnShow.addEventListener('click', function () {
                             <div class="data">
                                 <h4>Tidak ada data</h4>
                             </div>
-                        </div>
+                        </div> 
                     `
                 );
             };

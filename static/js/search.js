@@ -1,6 +1,5 @@
 const searchInput = document.getElementById("filter");
 const bookItems = document.querySelectorAll(".list");
-
 searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase().trim();
     

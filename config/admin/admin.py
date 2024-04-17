@@ -15,8 +15,7 @@ def home():
 def peminjaman():
     user = app.session.get('user')
     tabel = database.pinjamAdmin
-    if request.method == 'POST':
-        return render_template('admin/pinjam_admin.html', userName=user, success='Data berhasil masuk')   
+
     return render_template('admin/pinjam_admin.html', userName=user, tabel=tabel.ambilTabel())
 
 def profil():
@@ -43,11 +42,6 @@ def list_book():
     return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books)
 
 
-# def dataPengunjung():
-#     file = 'D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\data_pengunjung\\data.xlsx'
-    
-#     return send_file(file, as_attachment=True)
-
 def scanner():
     return render_template('admin/scanner.html', video=app.video_feed())
 
@@ -65,9 +59,3 @@ def showDataPeminjaman(name):
     data = database.pinjamAdmin.ambilDataTabel(name_formatted)
     
     return render_template('admin/show_data_peminjaman.html', userName=user, data=data)
-
-# def tataTertib():
-#     user = app.session.get('user')
-    
-#     dataTartib = fileJson.tataTertib
-#     return render_template('admin/tata_tertib.html', userName=user, tataTertib=dataTartib)

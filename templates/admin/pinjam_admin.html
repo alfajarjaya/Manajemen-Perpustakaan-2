@@ -23,6 +23,7 @@
 
     <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/pinjam.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico' ) }}" type="image/x-icon">
 
     <script src="https://unpkg.com/feather-icons"></script>
@@ -99,6 +100,7 @@
         </div>
     </main>
 
+
     <section>
         <footer class="footer">
             <div class="navbar">
@@ -121,7 +123,7 @@
     <script>
         feather.replace();
     </script>
-    <script src="{{ url_for('static', filename='js/peminjamanAdmin.js') }}"></script>"
+    <script src="{{ url_for('static', filename='js/peminjamanAdmin/show-table.js') }}"></script>"
 </body>
 
 </html>

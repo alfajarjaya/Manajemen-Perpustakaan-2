@@ -8,7 +8,6 @@ from flask import (
     Response,
     jsonify
 )
-
 import datetime
 
 import config.admin.admin as admin
@@ -74,29 +73,13 @@ def home():
     return redirect(url_for('login'))
 
                 
-@app.route('/admin_pinjam', methods=['POST','GET'])
+@app.route('/admin_pinjam')
 def pinjam_admin():
     user = session.get('user')
         
     if validateUserAdmin.val_user_admin(user):
-        if request.method == 'POST':
-            nama = request.form.get('nama')
-            kelas = request.form.get('kelas')
-            pinjam = request.form.get('pinjam')
-            kembali  = request.form.get('kembali')
-        
-            session['nama'] = nama
-            session['kelas'] = kelas
-            session['pinjam'] = pinjam
-            session['kembali'] = kembali
-
-            db.pinjam()
-        
             return admin.peminjaman()
             
-        if request.method == 'GET':
-            return admin.peminjaman()
-        
     else:
         return redirect(url_for('login'))
 
@@ -164,14 +147,17 @@ def update_book_count():
         newCount = data.get('newCount')
 
         if bookId is not None and newCount is not None:
-            db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
+            if int(newCount) < 0:
+                return jsonify({'message' : f'Jumlah buku yang anda masukkan tidak valid'}), 400
+            else:
+                db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
             
-            session['bookId'] = bookId
-            session['namaBuku'] = namaBuku
+                session['bookId'] = bookId
+                session['namaBuku'] = namaBuku
             
-            return jsonify({'message' : 'Jumlah buku telah berhasil dirubah'}), 200
+            return jsonify({'message' : f'Jumlah buku "{namaBuku}" telah berhasil dirubah'}), 200
         else:
-            return jsonify({'message' : 'Jumlah buku gagal dirubah'}), 400
+            return jsonify({'message' : f'Jumlah buku "{namaBuku}" gagal dirubah'}), 400
         
     return redirect(url_for('list_book_admin'))
             
@@ -209,14 +195,14 @@ def pinjam_buku():
         sisaBukuTerbaru = int(sisaBuku) - 1
         
         if sisaBukuTerbaru < 0:
-            return jsonify({'message': f'Buku ``{namaBuku}`` lagi tidak tersedia.'}), 400
+            return jsonify({'message': f'Buku "{namaBuku}" lagi tidak tersedia.'}), 400
         else:
             formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
             
             if formatTglPinjam < datetime.date.today():
-                return jsonify({'message': 'Tgl. Pinjam tidak boleh kurang dari hari ini.'}), 400
+                return jsonify({'message': 'Tanggal Pinjam tidak boleh kurang dari hari ini.'}), 400
             elif formatTglPinjam > datetime.date.today():
-                return jsonify({'message': 'Tgl. Pinjam tidak boleh melebihi dari hari ini.'}), 400
+                return jsonify({'message': 'Tanggal Pinjam tidak boleh melebihi dari hari ini.'}), 400
             else:
                 peminjaman.peminjamanBuku(
                     idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
@@ -224,7 +210,7 @@ def pinjam_buku():
             
                 db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
        
-        return jsonify({'message' : 'Berhasil meminjam buku, segera ambil buku di Perpustakaan.'}), 200
+        return jsonify({'message' : f'Berhasil meminjam buku dengan judul "{namaBuku}" dan ID buku "{idBuku}", segera ambil buku di Perpustakaan.'}), 200
 
 @app.route('/data-peminjaman')
 def dataPeminjaman():

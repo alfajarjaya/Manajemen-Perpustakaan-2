@@ -127,7 +127,7 @@ class pinjamAdmin:
 
             cursor.execute('SHOW TABLES')
             results = cursor.fetchall()
-        
+            
             formatted_results = []
             for row in results:
                 for table_name in row:

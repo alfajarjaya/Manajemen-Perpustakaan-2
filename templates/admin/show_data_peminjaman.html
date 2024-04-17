@@ -24,6 +24,7 @@
     <title>Hi ! {{ userName }}</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profil.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/client/pinjam.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daftar_buku.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css" />
@@ -100,7 +101,7 @@
             <div class="nama-buku">
                 <div class="deskripsi-buku">
                     <div class="data-pinjam-user">
-
+                        
                     </div>
                     <div class="buttn" style="display: grid; justify-items: center">
                         <button type="button" class="btn" id="btn-rmv" data-rmv="">
@@ -148,7 +149,7 @@
     <script>
         feather.replace();
     </script>
-    <script src="{{ url_for('static', filename='js/peminjamanAdmin.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/peminjamanAdmin/show-data.js') }}" type="text/javascript"></script>
 
 </body>
 

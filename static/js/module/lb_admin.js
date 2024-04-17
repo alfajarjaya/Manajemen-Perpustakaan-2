@@ -73,12 +73,100 @@ saveBtn.addEventListener("click", () => {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+                const response = JSON.parse(xhr.responseText);
                 if (xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    alert(response.message);
-                    window.location.reload();
+                    const success = () => {
+                        return (
+                            `
+                            <section id="myAlert" class="ovly">
+                                <div class="cover-alert">
+                                    <div class="alert-book" style="top: 15px;">
+                                        <div class="data-pinjam-user">
+                                            <h5>${response.message}</h5>
+                                        </div>
+                                        <div class="buttn">
+                                            <button type="button" class="btn" id="btn-ok-done">
+                                                Oke
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <style>
+                                .cover-alert {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                }
+                                .data-pinjam-user {
+                                    width: 90%;
+                                    text-align: center;
+                                }
+                                    .buttn {
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                }
+                                    .btn,
+                                    .btn-2 {
+                                    padding: 10px 20px;
+                                }
+                            </style>
+                            `
+                        )
+                    }
+                    document.body.insertAdjacentHTML('beforeend', success());
+
+                    document.getElementById('btn-ok-done').addEventListener('click', () => {
+                        document.querySelector('.ovly').remove();
+                        window.location.reload();
+                    });
                 } else {
-                    alert("Gagal memperbarui jumlah buku.");
+                    const error = () => {
+                        return (
+                            `
+                            <section id="myAlert" class="ovly">
+                                <div class="cover-alert">
+                                    <div class="alert-book" style="top: 15px;">
+                                        <div class="data-pinjam-user">
+                                            <h5>${response.message}</h5>
+                                        </div>
+                                        <div class="buttn">
+                                            <button type="button" class="btn" id="btn-ok-done2">
+                                                Oke
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <style>
+                                .cover-alert {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                }
+                                .data-pinjam-user {
+                                    width: 90%;
+                                    text-align: center;
+                                }
+                                    .buttn {
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                }
+                                    .btn,
+                                    .btn-2 {
+                                    padding: 10px 20px;
+                                }
+                            </style>
+                            `
+                        )
+                    }
+                    document.body.insertAdjacentHTML('beforeend', error());
+
+                    document.getElementById('btn-ok-done2').addEventListener('click', () => {
+                        document.querySelector('.ovly').remove();
+                    });
                 }
             }
         };
@@ -88,6 +176,6 @@ saveBtn.addEventListener("click", () => {
             newCount: newCount,
         });
         xhr.send(data);
-        sisaBuku.value = "";
+        sisaBukuInput.value = '';
     }
 });

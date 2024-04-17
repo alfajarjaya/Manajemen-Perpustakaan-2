@@ -81,18 +81,98 @@ btnPinjam.addEventListener("click", () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 const response = JSON.parse(xhr.responseText);
                 if (xhr.status === 200) {
-                    if (tglValue < response.tglPinjam) {
-                        alert(response.message);
-                    } else if (tglValue > response.tglPinjam) {
-                        alert(response.message);
-                    } else {
-                        const message = `` 
-
-                        alert(response.message);
-                        window.location.reload();
+                    const success = () => {
+                        return (
+                            `
+                            <section id="myAlert" class="ovly">
+                                <div class="cover-alert">
+                                    <div class="alert-book" style="top: 15px;">
+                                        <div class="data-pinjam-user">
+                                            <h5>${response.message}</h5>
+                                        </div>
+                                        <div class="buttn">
+                                            <button type="button" class="btn" id="btn-ok">
+                                                Oke
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <style>
+                                .cover-alert {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                }
+                                .data-pinjam-user {
+                                    width: 90%;
+                                    text-align: center;
+                                }
+                                    .buttn {
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                }
+                                    .btn,
+                                    .btn-2 {
+                                    padding: 10px 20px;
+                                }
+                            </style>
+                            `
+                        )
                     }
+                    document.body.insertAdjacentHTML('beforeend', success());
+
+                    document.getElementById('btn-ok').addEventListener('click', () => {
+                        document.querySelector('.ovly').remove();
+                        window.location.reload();
+                    });
                 } else {
-                    alert(response.message);
+                    const error = () => {
+                        return (
+                            `
+                            <section id="myAlert" class="ovly">
+                                <div class="cover-alert">
+                                    <div class="alert-book" style="top: 15px;">
+                                        <div class="data-pinjam-user">
+                                            <h5>${response.message}</h5>
+                                        </div>
+                                        <div class="buttn">
+                                            <button type="button" class="btn" id="btn-ok-2">
+                                                Oke
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <style>
+                                .cover-alert {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                }
+                                .data-pinjam-user {
+                                    width: 90%;
+                                    text-align: center;
+                                }
+                                    .buttn {
+                                    display: flex;
+                                    justify-content: space-evenly;
+                                }
+                                    .btn,
+                                    .btn-2 {
+                                    padding: 10px 20px;
+                                }
+                            </style>
+                            `
+                        )
+                    }
+                    document.body.insertAdjacentHTML('beforeend', error());
+
+                    document.getElementById('btn-ok-2').addEventListener('click', () => {
+                        document.querySelector('.ovly').remove();
+                    });
                 }
             }
         };
