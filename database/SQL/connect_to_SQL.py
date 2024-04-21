@@ -1,13 +1,21 @@
 import mysql.connector
 
 def connect_to_database():
-    return mysql.connector.connect(
+    
+    try :
+        mysql.connector.connect(
         host='localhost',
         user='root', 
         password='', 
         database='sistemperpustakaan_admin',
         port=3306
     )
+        
+    except Exception as e:
+        print ("Error connecting to database")
+        
+connect_to_database()
+
 def add_login(nama, password):
     try:
         konektor = connect_to_database()
