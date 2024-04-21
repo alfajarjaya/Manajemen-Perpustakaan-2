@@ -23,7 +23,7 @@ def add_login(nama, password):
                     """)
 
 
-        check_query = "SELECT COUNT(*) FROM database_login WHERE nama = %s"
+        check_query = "SELECT * FROM `database_login` WHERE nama = '%(nama)s"
         cur.execute(check_query, (nama,))
         result = cur.fetchone()[0]
 
@@ -38,6 +38,8 @@ def add_login(nama, password):
         konektor.close()
     except Exception as e:
         print(f'Error : {e}')
+        
+# add_login('0077079282', '0077079282')
         
 def update_book_count_and_save_to_database(book_id, book_name, new_count):
     try:
@@ -91,6 +93,7 @@ def dataPengunjung():
         cur.execute('SELECT * FROM `database_pengunjung`')
         result = cur.fetchall()
 
+        print(result)
         hasil = []
         
         for data in result:
@@ -113,6 +116,7 @@ def dataPengunjung():
         print(f'Error : {e}')
         
 class pinjamAdmin:
+    
     def ambilTabel():
         try:
             konektor = mysql.connector.connect(
@@ -135,7 +139,7 @@ class pinjamAdmin:
                     formatted_results.append(formatted_table_name)
                     
             return formatted_results
-        except mysql.connector.errors as e:
+        except Exception as e:
             print(f'Error {e}')
     
     def removeTabel(nama_user):
@@ -154,7 +158,7 @@ class pinjamAdmin:
             cursor.close()
             konektor.close()
             
-        except mysql.connector.errors as e:
+        except Exception as e:
             print(f'Error {e}')
             
     def ambilDataTabel(nama_user):
@@ -172,7 +176,7 @@ class pinjamAdmin:
             tables = cursor.fetchall()
             
             if (nama_user,) in tables:
-                selectTabel = f'SELECT `id_buku`, `nama_buku`, `nama_user`, `kelas_user`, `nisn_user`, DATE(`tanggal_peminjaman`), DATE(`tanggal_pengembalian`) FROM `{nama_user}`'
+                selectTabel = f'SELECT * FROM `{nama_user}`'
                 cursor.execute(selectTabel)
         
                 result = cursor.fetchall()
@@ -183,16 +187,17 @@ class pinjamAdmin:
                 hasil = []
 
                 for row in result:
-                    idBuku = row[0]
-                    namaBuku = row[1]
-                    namaUser = row[2]
-                    kelasUser = row[3]
-                    nisnUser = row[4]
-                    pinjam = row[5].strftime("%Y-%m-%d")
-                    kembali = row[6].strftime("%Y-%m-%d")
+                    idPeminjaman= row[0]
+                    idBuku = row[1]
+                    namaBuku = row[2]
+                    namaUser = row[3]
+                    kelasUser = row[4]
+                    nisnUser = row[5]
+                    pinjam = row[6].strftime("%Y-%m-%d")
+                    kembali = row[7].strftime("%Y-%m-%d")
                     
                     hasil.append((
-                        idBuku, namaBuku, namaUser, kelasUser, nisnUser, pinjam, kembali
+                        idPeminjaman, idBuku, namaBuku, namaUser, kelasUser, nisnUser, pinjam, kembali
                     ))
                     
                 print(hasil)
@@ -200,26 +205,26 @@ class pinjamAdmin:
             else:
                 return None
             
-        except mysql.connector.errors as e:
+        except Exception as e:
             print(f'Erorr {e}')
     
-    def hapusDataDariTabel(nama_user, id_buku):
+    def hapusDataDariTabel(nama_user, id_peminjaman):
         try:
             konektor = mysql.connector.connect(
-                host='localhost',
-                user='root', 
-                password='', 
-                database='sistemperpustakaan_client',
-                port=3306
-            )
+            host='localhost',
+            user='root', 
+            password='', 
+            database='sistemperpustakaan_client',
+            port=3306
+        )
             tabelUser = f'peminjaman_buku_{nama_user}'
-            
+        
             cursor = konektor.cursor()
-            cursor.execute(f"DELETE FROM `{tabelUser}` WHERE `id_buku` = '{id_buku}'")
-            
+            cursor.execute(f"DELETE FROM `{tabelUser}` WHERE `id_peminjaman` = '{id_peminjaman}'")
+        
             konektor.commit()
             cursor.close()
             konektor.close()
-            
-        except mysql.connector.errors as e:
+        
+        except Exception as e:
             print(f'Error {e}')

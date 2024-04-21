@@ -30,21 +30,29 @@
 </head>
 
 <body>
-    <section>
+    <section class="nv">
         <footer class="footer">
             <div class="navbar">
-                <ul>
-                    <li>
+                <ul class="nav-link">
+                    <li class="active">
                         <a href="{{ url_for("home") }}">
-                            <i data-feather="home"></i>
+                            <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
                         </a>
                     </li>
                     <li>
                         <a href="{{ url_for('profil') }}">
-                            <i data-feather="user"></i>
+                            <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                         </a>
                     </li>
+                    
                 </ul>
+                <style>
+                    ul {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 15px;
+                    }
+                </style>
             </div>
         </footer>
     </section>
@@ -71,10 +79,6 @@
             }
         }
     </style>
-    <script>
-        feather.replace();
-    </script>
-
 </body>
 
 </html>

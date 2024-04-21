@@ -1,6 +1,4 @@
-from flask import (
-    render_template
-)
+from flask import render_template
 import app
 import database.SQL.connect_to_SQL as database
 import config.import_json as fileJson
@@ -38,9 +36,9 @@ def list_book():
                 if books['sisa'] is None:
                     return '''
                             <div class="container">
-                                <h2>Maaf terjadi sedikit kesalahan</h2>
+                                <h2>Terjadi sedikit kesalahan</h2>
                                 <hr>
-                                <p>Mohon tunggu beberapa menit ke depan</P
+                                <p>Data buku tidak tersedia</p>
                             </div>
                         '''
                     

@@ -40,14 +40,12 @@ def login():
                 session['user'] = user
                 session['password'] = password
 
-                db.add_login(user, password)
                 return redirect(url_for('home'))
             
             elif name_and_pw_client(user, password):
                 session['user'] = user
                 session['password'] = password
             
-                db.add_login(user, password)
                 return redirect(url_for('home'))
             else:
                 return render_template('login.html', nf='Username or Password is wrong')
@@ -123,7 +121,7 @@ def remove_data():
         
         db.pinjamAdmin.hapusDataDariTabel(nama, id)
 
-    return jsonify({'message': f'Data {nama} dengan id buku {id} berhasil dihapus.'}), 200
+    return jsonify({'message': f'Data <b>{nama}</b> dengan <b>id peminjaman {id}</b> berhasil dihapus.'}), 200
 
 @app.route('/profil')
 def profil():
@@ -135,8 +133,6 @@ def profil():
         return client.profil_users()
     
     return redirect(url_for('login'))
-            
-        
 
 
 @app.route('/updateBookCount', methods=['POST'])
@@ -191,18 +187,18 @@ def pinjam_buku():
         nisnUser = data['nisn']
         tglPinjam = data['tglPinjam']
         
-        
-        
         sisaBukuTerbaru = int(sisaBuku) - 1
         
         if sisaBukuTerbaru < 0:
             return jsonify({'message': f'Buku "{namaBuku}" lagi tidak tersedia.'}), 400
+        if tglPinjam == '' or tglPinjam is None:
+                return jsonify({'message': 'Tanggal Pinjam tidak boleh kosong.'}), 400
         else:
             formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
             
             if formatTglPinjam < datetime.date.today():
                 return jsonify({'message': 'Tanggal Pinjam tidak boleh kurang dari hari ini.'}), 400
-            elif formatTglPinjam > datetime.date.today():
+            if formatTglPinjam > datetime.date.today():
                 return jsonify({'message': 'Tanggal Pinjam tidak boleh melebihi dari hari ini.'}), 400
             else:
                 peminjaman.peminjamanBuku(

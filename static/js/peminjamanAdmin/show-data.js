@@ -14,29 +14,18 @@ btnDetails.forEach((btn) => {
         dataPinjamUser.innerHTML = `
             <div class="desc">
                 <h3>Informasi Peminjaman</h3>
-                <p>ID Buku : <span class="id">${arrayForInfo[0]}</span></p>
-                <p>Judul Buku : <span>${arrayForInfo[1]}</span></p>
-                <p>Nama : <span class="nam">${arrayForInfo[2]}</span></p>
-                <p>Kelas : <span>${arrayForInfo[3]}</span></p>
-                <p>NISN : <span>${arrayForInfo[4]}</span></p>
-                <p>Tgl Pinjam : <span>${arrayForInfo[5]}</span></p>
-                <p>Tgl Kembali : <span>${arrayForInfo[6]}</span></p>
+                <hr>
+                <p>ID Peminjaman : <span class="id">${arrayForInfo[0]}</span></p>
+                <p>ID Buku : <span>${arrayForInfo[1]}</span></p>
+                <p>Judul Buku : <span>${arrayForInfo[2]}</span></p>
+                <p>Nama : <span class="nam">${arrayForInfo[3]}</span></p>
+                <p>Kelas : <span>${arrayForInfo[4]}</span></p>
+                <p>NISN : <span>${arrayForInfo[5]}</span></p>
+                <p>Tgl Pinjam : <span>${arrayForInfo[6]}</span></p>
+                <p>Tgl Kembali : <span>${arrayForInfo[7]}</span></p>
             </div>
 
-            <style>
-                .desc {
-                    margin-top: 50px;
-                }
-
-                p {
-                    margin: 5px 0px;
-                }
-
-                span {
-                    font-weight: bold;
-                    font-style: italic;
-                }
-            </style>
+            
         `;
         myAlert.style.display = "block";
     });
@@ -55,7 +44,7 @@ btnRemoveDataTabel.addEventListener('click', () => {
                 <div class="cover-alert">
                     <div class="alert-book" style="top: 15px;">
                         <div class="data-pinjam-user">
-                            <h5>Apakah anda yakin ingin menghapus data dari <u>'${name}'</u> dengan ID buku <u>'${id}'</u> ?</h5>
+                            <h5>Apakah anda yakin ingin menghapus data dari <u>'${name}'</u> dengan ID Peminjaman <u>'${id}'</u> ?</h5>
                         </div>
                         <div class="buttn">
                             <button type="button" class="btn" id="btn-rmv-conf">
@@ -68,26 +57,6 @@ btnRemoveDataTabel.addEventListener('click', () => {
                     </div>
                 </div>
             </section>
-            <style>
-                .cover-alert {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100vh;
-                }
-                .data-pinjam-user {
-                    width: 90%;
-                    text-align: center;
-                }
-                    .buttn {
-                    display: flex;
-                    justify-content: space-evenly;
-                }
-                    .btn,
-                    .btn-2 {
-                    padding: 10px 20px;
-                }
-            </style>
             `
         )
 
@@ -122,27 +91,6 @@ btnRemoveDataTabel.addEventListener('click', () => {
                                     </div>
                                 </div>
                             </section>
-                            <style>
-                                .cover-alert {
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    height: 100vh;
-                                }
-                                .data-pinjam-user {
-                                    width: 90%;
-                                    text-align: center;
-                                }
-                                    .buttn {
-                                    display: flex;
-                                    justify-content: space-evenly;
-                                }
-                                    .btn,
-                                    .btn-2 {
-                                    padding: 10px 20px;
-                                }
-                            </style>
-
                         `
                     )
                 }
@@ -171,27 +119,6 @@ btnRemoveDataTabel.addEventListener('click', () => {
                                     </div>
                                 </div>
                             </section>
-                            <style>
-                                .cover-alert {
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    height: 100vh;
-                                }
-                                .data-pinjam-user {
-                                    width: 90%;
-                                    text-align: center;
-                                }
-                                    .buttn {
-                                    display: flex;
-                                    justify-content: space-evenly;
-                                }
-                                    .btn,
-                                    .btn-2 {
-                                    padding: 10px 20px;
-                                }
-                            </style>
-
                         `
                     )
                 }

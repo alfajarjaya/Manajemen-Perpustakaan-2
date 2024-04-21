@@ -75,6 +75,7 @@ def databaseProfil(user):
             return data_client['0074754002']
         if user == value['350061989492']['user']:
             return data_client['0061989492']
+        
     return 'Username not found'
 
 def name_and_pw_client(user,pw):

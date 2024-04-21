@@ -189,7 +189,6 @@
                                             data-book-name="{{ book_item['fill']['nama'] }}"
                                             data-book-author="{{ book_item['fill']['penerbit'] }}"
                                             id="btn-edit-{{ loop.index }}">
-                                            <i data-feather="edit-3" width="15px"></i>
                                             <h6>Edit</h6>
                                         </button>
                                     </div>
@@ -234,29 +233,26 @@
         </div>
     </section>
 
-    <section id="footer">
+    <section class="nv">
         <footer class="footer">
             <div class="navbar">
                 <ul class="nav-link">
                     <li class="active">
-                        <a href="{{ url_for('home') }}">
-                            <i data-feather="home"></i>
+                        <a href="{{ url_for("home") }}">
+                            <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{ url_for('profil') }}">
-                            <i data-feather="user"></i>
+                            <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                         </a>
                     </li>
+                    
                 </ul>
             </div>
         </footer>
     </section>
 
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script>
-        feather.replace();
-    </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static' ,filename='js/module/lb_admin.js') }}"></script>
 </body>

@@ -24,7 +24,7 @@ def peminjamanBuku(id_buku, nama_buku, nama_user, kelas_user, nisn_user, tanggal
         nama_buku TEXT NULL,
         nama_user TEXT NULL,
         kelas_user VARCHAR(10) NULL,
-        nisn_user INT NULL,
+        nisn_user TEXT NULL,
         tanggal_peminjaman DATE NULL,
         tanggal_pengembalian DATE NULL
     )

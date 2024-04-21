@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_admin.css') }}" type="text/css"/>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon">
 
-    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body>
@@ -98,22 +97,26 @@
                     <ul>
                         <li>
                             <a href="#">
-                                <i data-feather="home"></i>
+                                <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
                             </a>
                         </li>
                         <li>
                             <a href="{{ url_for('profil') }}">
-                                <i data-feather="user"></i>
+                                <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                             </a>
                         </li>
+                        <style>
+                            ul {
+                                display: flex;
+                                align-items: center;
+                                margin-top: 15px;
+                            }
+                        </style>
                     </ul>
                 </div>
             </footer>
         </section>
     </main>
-    <script>
-        feather.replace();
-    </script>
 </body>
 
 </html>

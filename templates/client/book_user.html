@@ -28,8 +28,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/lb-deks/style.css') }}" type="text/css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon" />
 
-    <script src="https://unpkg.com/feather-icons"></script>
-
     <style>
         @media only screen and (max-width: 1139px) {
             .LB-Desktop {
@@ -229,20 +227,21 @@
         </div>
     </section>
 
-    <section id="footer">
+    <section class="nv">
         <footer class="footer">
             <div class="navbar">
                 <ul class="nav-link">
                     <li class="active">
-                        <a href="{{ url_for('home') }}">
-                            <i data-feather="home"></i>
+                        <a href="{{ url_for("home") }}">
+                            <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{ url_for('profil') }}">
-                            <i data-feather="user"></i>
+                            <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                         </a>
                     </li>
+                    
                 </ul>
             </div>
         </footer>
@@ -250,9 +249,6 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/search.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/module/lb_client.js') }}"></script>
-    <script>
-        feather.replace();
-    </script>
 </body>
 
 </html>

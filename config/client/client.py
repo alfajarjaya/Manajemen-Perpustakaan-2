@@ -26,9 +26,9 @@ def listBook():
                 if books['sisa'] is None:
                     return '''
                             <div class="container">
-                                <h2>Maaf terjadi sedikit kesalahan</h2>
+                                <h2>Terjadi sedikit kesalahan</h2>
                                 <hr>
-                                <p>Mohon tunggu beberapa menit ke depan</P
+                                <p>Data buku tidak tersedia</p>
                             </div>
                         '''
             
@@ -50,7 +50,8 @@ def profil_users():
             userName=user,
             nama=data_user['nama'],
             nomor=data_user['nomor'],
-            kelas=data_user['kelas']
+            kelas=data_user['kelas'],
+            img=data_user['img']
         )
         
 def peminjaman_buku():

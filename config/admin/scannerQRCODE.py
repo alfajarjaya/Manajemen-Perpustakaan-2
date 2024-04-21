@@ -40,7 +40,7 @@ def scan_and_save(frame):
                             ) VALUES (%s,%s,%s,%s
                             )
                         """
-                    
+
                         cur.execute(data, qrCode)
                         konektor.commit()
                     

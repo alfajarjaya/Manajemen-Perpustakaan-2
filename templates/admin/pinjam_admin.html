@@ -24,9 +24,9 @@
     <title>Hi ! {{ userName }}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/pinjam.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/logOut.css') }}" type="text/css">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico' ) }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modules/globalAlert.css') }}" type="text/css">
 
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico' ) }}" type="image/x-icon">
 
     <style>
         @media only screen and (max-width:768px) {
@@ -73,18 +73,19 @@
             </svg>
         </div>
         <div class="container">
-            <table class="table">
-                <thead class="t-head">
-                    <th class="th-body">Nama</th>
-                    <th class="th-body">Aksi</th>
-                </thead>
-                <tbody class="t-body">
+            <div class="table">
+                <div class="t-head">
+                    <p class="th-body">Nama</p>
+                    <p class="th-body">Aksi</p>
+                </div>
+                <div class="t-body">
+                    {% if tabel is not none%}
                     {% for name in tabel %}
-                    <tr class="t-row">
-                        <td class="t-name">
+                    <div class="t-row">
+                        <div class="t-name">
                             <h4>{{ name }}</h4>
-                        </td>
-                        <td class="t-col">
+                        </div>
+                        <div class="t-col">
                             <div class="btn">
                                 <a href="/admin_pinjam/{{ name }}" class="btn-action show">show</a>
                                 <input type="hidden" name="name" id="name" value="{{ name }}">
@@ -92,37 +93,48 @@
                                     <p>remove</p>
                                 </button>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="t-row">
+                        <div class="t-name">
+                            <h4>Tidak ada data tabel</h4>
+                        </div>
+                    </div>
                     {% endfor %}
-                </tbody>
-            </table>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </main>
 
 
-    <section>
+    <section class="nv">
         <footer class="footer">
             <div class="navbar">
                 <ul>
                     <li>
-                        <a href="{{ url_for('home') }}">
-                            <i data-feather="home"></i>
+                        <a href="{{ url_for("home") }}">
+                            <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
                         </a>
                     </li>
                     <li>
                         <a href="{{ url_for('profil') }}">
-                            <i data-feather="user"></i>
+                            <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                         </a>
                     </li>
+                    <style>
+                        ul {
+                            display: flex;
+                            align-items: center;
+                            margin-top: 15px;
+                        }
+                    </style>
                 </ul>
             </div>
         </footer>
     </section>
 
-    <script>
-        feather.replace();
-    </script>
     <script src="{{ url_for('static', filename='js/peminjamanAdmin/show-table.js') }}"></script>"
 </body>
 
