@@ -9,6 +9,8 @@ from flask import (
     jsonify
 )
 import datetime
+import os
+import dotenv
 
 import config.admin.admin as admin
 from config.admin import scannerQRCODE as adminQr
@@ -23,7 +25,8 @@ import config.import_json as json
 import database.SQL.connect_to_SQL as db
 
 app = Flask(__name__)
-app.secret_key = 'manajemen-perpustakaan-smkn-1-mjk'
+dotenv.load_dotenv()
+app.secret_key = os.getenv('SECRET_KEY')
 
 # dataAdmin = json.adminUser
 # dataClient = json.clientUser
@@ -215,7 +218,7 @@ def dataPeminjaman():
     
 if __name__ == '__main__':
     app.run(
-        host='0.0.0.0',
-        port=5000,
-        debug=True
+        host=os.getenv('HOST_RUNNING_APP'),
+        port=os.getenv('PORT_RUNNING_APP'),
+        debug=os.getenv('DEBUG_MODE')
     )

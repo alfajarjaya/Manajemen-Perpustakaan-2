@@ -1,21 +1,23 @@
 import mysql.connector
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 def connect_to_database():
     
     try :
-        mysql.connector.connect(
-        host='localhost',
-        user='root', 
-        password='', 
-        database='sistemperpustakaan_admin',
-        port=3306
+        return mysql.connector.connect(
+            host=os.getenv('HOST'),
+            user=os.getenv('USER'), 
+            password=os.getenv('PASSWDORD'), 
+            database=os.getenv('DATABASE_ADMIN'),
+            port=os.getenv('PORT')
     )
         
     except Exception as e:
         print ("Error connecting to database")
         
-connect_to_database()
-
 def add_login(nama, password):
     try:
         konektor = connect_to_database()
@@ -124,15 +126,14 @@ def dataPengunjung():
         print(f'Error : {e}')
         
 class pinjamAdmin:
-    
     def ambilTabel():
         try:
             konektor = mysql.connector.connect(
-                host='localhost',
-                user='root', 
-                password='', 
-                database='sistemperpustakaan_client',
-                port=3306
+                host=os.getenv('HOST'),
+                user=os.getenv('USER'), 
+                password=os.getenv('PASSWDORD'), 
+                database=os.getenv('DATABASE_CLIENT'),
+                port=os.getenv('PORT')
             )
         
             cursor = konektor.cursor()
@@ -153,11 +154,11 @@ class pinjamAdmin:
     def removeTabel(nama_user):
         try:
             konektor = mysql.connector.connect(
-                host='localhost',
-                user='root', 
-                password='', 
-                database='sistemperpustakaan_client',
-                port=3306
+                host=os.getenv('HOST'),
+                user=os.getenv('USER'), 
+                password=os.getenv('PASSWDORD'), 
+                database=os.getenv('DATABASE_CLIENT'),
+                port=os.getenv('PORT')
             )
             
             cursor = konektor.cursor()
@@ -172,11 +173,11 @@ class pinjamAdmin:
     def ambilDataTabel(nama_user):
         try:
             konektor = mysql.connector.connect(
-                host='localhost',
-                user='root', 
-                password='', 
-                database='sistemperpustakaan_client',
-                port=3306
+                host=os.getenv('HOST'),
+                user=os.getenv('USER'), 
+                password=os.getenv('PASSWDORD'), 
+                database=os.getenv('DATABASE_CLIENT'),
+                port=os.getenv('PORT')
             )
             
             cursor = konektor.cursor()
@@ -208,7 +209,6 @@ class pinjamAdmin:
                         idPeminjaman, idBuku, namaBuku, namaUser, kelasUser, nisnUser, pinjam, kembali
                     ))
                     
-                print(hasil)
                 return hasil
             else:
                 return None
@@ -219,12 +219,13 @@ class pinjamAdmin:
     def hapusDataDariTabel(nama_user, id_peminjaman):
         try:
             konektor = mysql.connector.connect(
-            host='localhost',
-            user='root', 
-            password='', 
-            database='sistemperpustakaan_client',
-            port=3306
-        )
+                host=os.getenv('HOST'),
+                user=os.getenv('USER'), 
+                password=os.getenv('PASSWDORD'), 
+                database=os.getenv('DATABASE_CLIENT'),
+                port=os.getenv('PORT')
+            )
+            
             tabelUser = f'peminjaman_buku_{nama_user}'
         
             cursor = konektor.cursor()

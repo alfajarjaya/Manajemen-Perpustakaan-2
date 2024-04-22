@@ -1,13 +1,17 @@
 import mysql.connector as mysql
 import datetime
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 def connectToDatabase_2():
     toSQL = mysql.connect(
-        host='localhost',
-        user='root', 
-        password='', 
-        database='sistemperpustakaan_client',
-        port=3306
+        host=os.getenv('HOST'),
+        user=os.getenv('USER'), 
+        password=os.getenv('PASSWDORD'), 
+        database=os.getenv('DATABASE_CLIENT'),
+        port=os.getenv('PORT')
     )
     
     return toSQL
