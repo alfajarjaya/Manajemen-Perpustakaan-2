@@ -47,6 +47,14 @@
             padding: 10px 0px;
             border-bottom: none;
         }
+
+        .btn {
+            margin: 0;
+            padding: 0;
+            width: 10%;
+            background: none;
+        }
+
     </style>
 </head>
 
@@ -77,6 +85,9 @@
                     <h5>{{ b }}</h5>
                     <h5>{{ c }}</h5>
                     <h5>{{ d }}</h5>
+                    <button class="btn btn-remove" id="btn-remove" type="button" data="{{ a,b,c,d }}">
+                        <img src="{{ url_for('static', filename='img/trash.png') }}" alt="home" width="30px"/>
+                    </button>
                 </div>
                 {% else %}
                 <div class="data">
@@ -102,12 +113,12 @@
                             <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
                         </a>
                     </li>
-                    
                 </ul>
             </div>
         </footer>
     </section>
     
+    <script type="text/javascript" src={{ url_for('static', filename="js/dataPengunjung.js")}}></script>
 </body>
 
 </html>

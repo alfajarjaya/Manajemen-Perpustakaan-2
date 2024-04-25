@@ -61,6 +61,15 @@ def peminjaman_buku():
     
     data = db_pinjam_user.selectUserDatabase(valueData)
     
+    if data is None:
+        return '''
+                    <div class="container">
+                        <h2>Terjadi sedikit kesalahan</h2>
+                            <hr>
+                            <p>Data peminjaman tidak tersedia.</p>
+                    </div>
+                '''
+                
     return render_template(
         'client/pinjam_user.html',
         userName=user,

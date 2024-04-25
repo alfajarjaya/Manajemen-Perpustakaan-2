@@ -8,9 +8,11 @@ from flask import (
     Response,
     jsonify
 )
+
 import datetime
 import os
 import dotenv
+import time
 
 import config.admin.admin as admin
 from config.admin import scannerQRCODE as adminQr
@@ -30,7 +32,6 @@ app.secret_key = os.getenv('SECRET_KEY')
 
 # dataAdmin = json.adminUser
 # dataClient = json.clientUser
-
 
 @app.route('/', methods=['POST', 'GET'])
 def login():
@@ -103,6 +104,7 @@ def remove_table():
     if request.method == 'POST':
         table_name = request.json['tableName'].replace(' ','_')
         db.pinjamAdmin.removeTabel(table_name)
+        time.sleep(2)
 
     return jsonify({'message': 'Tabel berhasil dihapus.'}), 200
 
@@ -121,8 +123,9 @@ def remove_data():
         data = request.json
         nama = data['name'].replace(' ', '_').lower()
         id = data['id']
-        
         db.pinjamAdmin.hapusDataDariTabel(nama, id)
+        
+        time.sleep(2)
 
     return jsonify({'message': f'Data <b>{nama}</b> dengan <b>id peminjaman {id}</b> berhasil dihapus.'}), 200
 
@@ -195,7 +198,7 @@ def pinjam_buku():
         if sisaBukuTerbaru < 0:
             return jsonify({'message': f'Buku "{namaBuku}" lagi tidak tersedia.'}), 400
         if tglPinjam == '' or tglPinjam is None:
-                return jsonify({'message': 'Tanggal Pinjam tidak boleh kosong.'}), 400
+            return jsonify({'message': 'Tanggal Pinjam tidak boleh kosong.'}), 400
         else:
             formatTglPinjam = datetime.datetime.strptime(tglPinjam, '%Y-%m-%d').date()
             
@@ -209,7 +212,7 @@ def pinjam_buku():
                 )
             
                 db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
-       
+                
         return jsonify({'message' : f'Berhasil meminjam buku dengan judul "{namaBuku}" dan ID buku "{idBuku}", segera ambil buku di Perpustakaan.'}), 200
 
 @app.route('/data-peminjaman')

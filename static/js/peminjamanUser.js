@@ -24,6 +24,5 @@ btnShow.addEventListener('click', function () {
     } else {
         const dataBody = document.querySelector('.data-body');
         dataBody.style.display = 'block';
-
     }
 });

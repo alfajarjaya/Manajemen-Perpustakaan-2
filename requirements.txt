@@ -4,3 +4,4 @@ Jinja2==3.0.2
 mysql-connector-python==8.0.28
 opencv-python==4.9.0.80
 python-dotenv==1.0.1
+python-time==0.3.0

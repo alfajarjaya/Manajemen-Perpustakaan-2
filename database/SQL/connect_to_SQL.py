@@ -123,7 +123,7 @@ def dataPengunjung():
             
         return hasil
     except Exception as e:
-        print(f'Error : {e}')
+        return None
         
 class pinjamAdmin:
     def ambilTabel():
@@ -149,7 +149,7 @@ class pinjamAdmin:
                     
             return formatted_results
         except Exception as e:
-            print(f'Error {e}')
+            return None
     
     def removeTabel(nama_user):
         try:

@@ -50,8 +50,16 @@ def scanner():
 
 def dataPengunjung():
     user = app.session.get('user')
-    
     data = database.dataPengunjung()
+    if data is None:
+        return '''
+                <div class="container">
+                    <h2>Terjadi sedikit kesalahan</h2>
+                        <hr>
+                    <p>Data pengunjung tidak ditemukan.</p>
+                </div>
+            '''
+
     return render_template('admin/data_pengunjung.html', userName=user, data=data)
 
 def showDataPeminjaman(name):

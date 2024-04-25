@@ -2,15 +2,20 @@ import cv2
 import mysql.connector as sql
 import winsound
 import time
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 def database():
     return sql.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="sistemperpustakaan_admin"
+        host=os.getenv('HOST'),
+        user=os.getenv('USER'), 
+        password=os.getenv('PASSWDORD'), 
+        database=os.getenv('DATABASE_ADMIN'),
+        port=os.getenv('PORT')
     )
-
+    
 def scan_and_save(frame):
     try:
         color = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
