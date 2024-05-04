@@ -154,11 +154,11 @@ def update_book_count():
             if int(newCount) < 0:
                 return jsonify({'message' : f'Jumlah buku yang anda masukkan tidak valid'}), 400
             else:
+                time.sleep(1)
                 db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
             
                 session['bookId'] = bookId
                 session['namaBuku'] = namaBuku
-            
             return jsonify({'message' : f'Jumlah buku "{namaBuku}" telah berhasil dirubah'}), 200
         else:
             return jsonify({'message' : f'Jumlah buku "{namaBuku}" gagal dirubah'}), 400
@@ -208,6 +208,8 @@ def pinjam_buku():
             if formatTglPinjam > datetime.date.today():
                 return jsonify({'message': 'Tanggal Pinjam tidak boleh melebihi dari hari ini.'}), 400
             else:
+                
+                
                 peminjaman.peminjamanBuku(
                     idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
                 )

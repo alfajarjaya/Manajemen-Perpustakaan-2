@@ -74,7 +74,8 @@ script.onload = () => {
                                         if (res.isConfirmed) {
                                             Swal.fire({
                                                 text: "Mohon tunggu halaman sedang di reload.",
-                                                confirmButtonText: "Oke"
+                                                confirmButtonText: "Oke",
+                                                icon: "warning"
                                             }).then((r) => {
                                                 if (r.isConfirmed){
                                                     window.location.reload();
