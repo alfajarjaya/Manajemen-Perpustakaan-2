@@ -23,7 +23,7 @@ from config.client.client_valid import name_and_pw_client
 from config.client.client_valid import user_client_valid
 from database.client import peminjaman
 
-import config.import_json as json
+# import config.import_json as json
 import database.SQL.connect_to_SQL as db
 
 app = Flask(__name__)
@@ -104,7 +104,7 @@ def remove_table():
     if request.method == 'POST':
         table_name = request.json['tableName'].replace(' ','_')
         db.pinjamAdmin.removeTabel(table_name)
-        time.sleep(2)
+        time.sleep(1)
 
     return jsonify({'message': 'Tabel berhasil dihapus.'}), 200
 
@@ -123,11 +123,12 @@ def remove_data():
         data = request.json
         nama = data['name'].replace(' ', '_').lower()
         id = data['id']
+        name = data['name']
         db.pinjamAdmin.hapusDataDariTabel(nama, id)
         
-        time.sleep(2)
+        time.sleep(1)
 
-    return jsonify({'message': f'Data <b>{nama}</b> dengan <b>id peminjaman {id}</b> berhasil dihapus.'}), 200
+    return jsonify({'message': f'Data {name} dengan id peminjaman {id} berhasil dihapus.'}), 200
 
 @app.route('/profil')
 def profil():

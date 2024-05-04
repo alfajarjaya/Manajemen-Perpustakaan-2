@@ -11,3 +11,7 @@ with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\database\\client\\pro
     
 with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\daftar_buku.json', 'r') as lb:
     listBook = json.load(lb)
+    
+with open('D:\\produktif bu Tya\\manajemen_perpustakaan-2\\static\\json\\buku.json', 'r') as lbg:
+    listGambarBuku = json.load(lbg)
+    

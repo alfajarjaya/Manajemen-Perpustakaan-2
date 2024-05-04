@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 100000;
+    z-index: 100;
 }
 
 .ovly {
@@ -20,7 +20,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 100000;
+    z-index: 100;
 
 }
 

@@ -1,181 +1,127 @@
-const editButtonsDesktop = document.querySelectorAll(".LB-Desktop .btn");
-const editButtonsMobile = document.querySelectorAll(".LB-Mobile .btn");
-const myAlert = document.getElementById("myAlert");
+const script = document.createElement("script");
+script.src = "/static/modules/sweetalert.js";
+document.head.appendChild(script);
 
-const namaBukuInput = document.getElementById("nama_buku_input");
-const namaBuku = document.getElementById("nama_buku");
+script.onload = () => {
 
-const bookIdInput = document.getElementById("book_id");
+    const editButtonsDesktop = document.querySelectorAll(".LB-Desktop .btn");
+    const editButtonsMobile = document.querySelectorAll(".LB-Mobile .btn");
+    const myAlert = document.getElementById("myAlert");
 
-const sisaBukuInput = document.getElementById("sisa_buku");
-const sisaBukuAttribute = document.getElementById("sisa");
+    const namaBukuInput = document.getElementById("nama_buku_input");
+    const namaBuku = document.getElementById("nama_buku");
 
-const penerbitBukuTag = document.getElementById("penerbit");
+    const bookIdInput = document.getElementById("book_id");
 
-const cancelBtn = document.querySelector("#btn-cancel");
-cancelBtn.addEventListener("click", () => {
-    myAlert.style.display = "none";
-    bookIdInput.value = "";
-    namaBukuInput.value = "";
-    namaBuku.innerText = "";
-    penerbitBukuTag.innerText = "";
-    sisaBukuAttribute.innerText = "";
-    sisaBukuInput.value = "";
-});
+    const sisaBukuInput = document.getElementById("sisa_buku");
+    const sisaBukuAttribute = document.getElementById("sisa");
 
-for (const button of editButtonsDesktop) {
-    button.addEventListener("click", (event) => {
-        const clickedButton = event.currentTarget;
-        myAlert.style.display = "block";
-        const bookId = clickedButton.getAttribute("data-book-id");
-        const bookName = clickedButton.getAttribute("data-book-name");
-        const authorName = clickedButton.getAttribute("data-book-author");
-        const sisa = clickedButton
-            .closest(".list")
-            .querySelector('[name="sisa_buku_input"]').value;
+    const penerbitBukuTag = document.getElementById("penerbit");
 
-        bookIdInput.value = bookId;
-        namaBukuInput.value = bookName;
-        namaBuku.innerText = `Judul : ${bookName}`;
-        penerbitBukuTag.innerText = `Penerbit : ${authorName}`;
-        sisaBukuAttribute.innerText = `Sisa : ${sisa}`;
+    const cancelBtn = document.querySelector("#btn-cancel");
+    cancelBtn.addEventListener("click", () => {
+        myAlert.style.display = "none";
+        bookIdInput.value = "";
+        namaBukuInput.value = "";
+        namaBuku.innerText = "";
+        penerbitBukuTag.innerText = "";
+        sisaBukuAttribute.innerText = "";
+        sisaBukuInput.value = "";
     });
-}
 
-for (const button of editButtonsMobile) {
-    button.addEventListener("click", (event) => {
-        const clickedButton = event.currentTarget;
-        myAlert.style.display = "block";
-        const bookId = clickedButton.getAttribute("data-book-id");
-        const bookName = clickedButton.getAttribute("data-book-name");
-        const authorName = clickedButton.getAttribute("data-book-author");
-        const sisa = clickedButton
-            .closest(".list")
-            .querySelector('[name="sisa_buku_input"]').value;
+    for (const button of editButtonsDesktop) {
+        button.addEventListener("click", (event) => {
+            const clickedButton = event.currentTarget;
+            myAlert.style.display = "block";
+            const bookId = clickedButton.getAttribute("data-book-id");
+            const bookName = clickedButton.getAttribute("data-book-name");
+            const authorName = clickedButton.getAttribute("data-book-author");
+            const sisa = clickedButton
+                .closest(".list")
+                .querySelector('[name="sisa_buku_input"]').value;
 
-        bookIdInput.value = bookId;
-        namaBukuInput.value = bookName;
-        namaBuku.innerText = `Judul : ${bookName}`;
-        penerbitBukuTag.innerText = `Penerbit : ${authorName}`;
-        sisaBukuAttribute.innerText = `Sisa : ${sisa}`;
-    });
-}
+            bookIdInput.value = bookId;
+            namaBukuInput.value = bookName;
+            namaBuku.innerText = `Judul : ${bookName}`;
+            penerbitBukuTag.innerText = `Penerbit : ${authorName}`;
+            sisaBukuAttribute.innerText = `Sisa : ${sisa}`;
 
-const saveBtn = document.querySelector("#btn-save");
-saveBtn.addEventListener("click", () => {
-    const bookId = bookIdInput.value;
-    const bookName = namaBukuInput.value;
-    const newCount = sisaBukuInput.value;
-
-    if (newCount !== null) {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/updateBookCount", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                const response = JSON.parse(xhr.responseText);
-                if (xhr.status === 200) {
-                    const success = () => {
-                        return (
-                            `
-                            <section id="myAlert" class="ovly">
-                                <div class="cover-alert">
-                                    <div class="alert-book" style="top: 15px;">
-                                        <div class="data-pinjam-user">
-                                            <h5>${response.message}</h5>
-                                        </div>
-                                        <div class="buttn">
-                                            <button type="button" class="btn" id="btn-ok-done">
-                                                Oke
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <style>
-                                .cover-alert {
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    height: 100vh;
-                                }
-                                .data-pinjam-user {
-                                    width: 90%;
-                                    text-align: center;
-                                }
-                                    .buttn {
-                                    display: flex;
-                                    justify-content: space-evenly;
-                                }
-                                    .btn,
-                                    .btn-2 {
-                                    padding: 10px 20px;
-                                }
-                            </style>
-                            `
-                        )
-                    }
-                    document.body.insertAdjacentHTML('beforeend', success());
-
-                    document.getElementById('btn-ok-done').addEventListener('click', () => {
-                        document.querySelector('.ovly').remove();
-                        window.location.reload();
-                    });
-                } else {
-                    const error = () => {
-                        return (
-                            `
-                            <section id="myAlert" class="ovly">
-                                <div class="cover-alert">
-                                    <div class="alert-book" style="top: 15px;">
-                                        <div class="data-pinjam-user">
-                                            <h5>${response.message}</h5>
-                                        </div>
-                                        <div class="buttn">
-                                            <button type="button" class="btn" id="btn-ok-done2">
-                                                Oke
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <style>
-                                .cover-alert {
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    height: 100vh;
-                                }
-                                .data-pinjam-user {
-                                    width: 90%;
-                                    text-align: center;
-                                }
-                                    .buttn {
-                                    display: flex;
-                                    justify-content: space-evenly;
-                                }
-                                    .btn,
-                                    .btn-2 {
-                                    padding: 10px 20px;
-                                }
-                            </style>
-                            `
-                        )
-                    }
-                    document.body.insertAdjacentHTML('beforeend', error());
-
-                    document.getElementById('btn-ok-done2').addEventListener('click', () => {
-                        document.querySelector('.ovly').remove();
-                    });
-                }
-            }
-        };
-        const data = JSON.stringify({
-            bookId: bookId,
-            nama: bookName,
-            newCount: newCount,
         });
-        xhr.send(data);
-        sisaBukuInput.value = '';
     }
-});
+
+    for (const button of editButtonsMobile) {
+        button.addEventListener("click", (event) => {
+            const clickedButton = event.currentTarget;
+            myAlert.style.display = "block";
+            const bookId = clickedButton.getAttribute("data-book-id");
+            const bookName = clickedButton.getAttribute("data-book-name");
+            const authorName = clickedButton.getAttribute("data-book-author");
+            const sisa = clickedButton
+                .closest(".list")
+                .querySelector('[name="sisa_buku_input"]').value;
+
+            bookIdInput.value = bookId;
+            namaBukuInput.value = bookName;
+            namaBuku.innerText = `Judul : ${bookName}`;
+            penerbitBukuTag.innerText = `Penerbit : ${authorName}`;
+            sisaBukuAttribute.innerText = `Sisa : ${sisa}`;
+        });
+    }
+
+    const saveBtn = document.querySelector("#btn-save");
+    saveBtn.addEventListener("click", () => {
+        const bookId = bookIdInput.value;
+        const bookName = namaBukuInput.value;
+        const newCount = sisaBukuInput.value;
+
+        if (newCount !== null) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/updateBookCount", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (xhr.status === 200) {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: response.message,
+                            icon: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Oke"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    text: "Mohon Tunggu Halaman sedang di reload",
+                                    confirmButtonText: "Oke"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Gagal",
+                            text: response.message,
+                            icon: "error",
+                            showCancelButton: false,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Oke"
+                        });
+                    }
+                }
+            };
+            const data = JSON.stringify({
+                bookId: bookId,
+                nama: bookName,
+                newCount: newCount,
+            });
+            xhr.send(data);
+            sisaBukuInput.value = '';
+        }
+    });
+}

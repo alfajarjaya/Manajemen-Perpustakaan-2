@@ -42,7 +42,7 @@ def list_book():
                             </div>
                         '''
                     
-    return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books)
+    return render_template('admin/book_admin.html', userName=user, bookSisa=bookSisa, bookClick=books, jpg=fileJson.listGambarBuku)
 
 
 def scanner():
