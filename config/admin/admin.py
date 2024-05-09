@@ -7,6 +7,9 @@ list_Book = fileJson.listBook
 
 def home():
     user = app.session.get('user')
+    notif = app.session.get('notif')
+    
+    print(notif)
     return render_template('admin/dashboard.html', userName=user)
 
 def peminjaman():

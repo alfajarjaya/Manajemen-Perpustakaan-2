@@ -1,14 +1,4 @@
-from flask import (
-    Flask,
-    render_template,
-    request,
-    session,
-    redirect,
-    url_for,
-    Response,
-    jsonify
-)
-
+from flask import Flask, render_template, request, session, redirect, url_for, Response, jsonify
 import datetime
 import os
 import dotenv
@@ -94,7 +84,7 @@ def pinjam_admin():
     user = session.get('user')
         
     if validateUserAdmin.val_user_admin(user):
-            return admin.peminjaman()
+        return admin.peminjaman()
             
     else:
         return redirect(url_for('login'))
@@ -130,6 +120,19 @@ def remove_data():
 
     return jsonify({'message': f'Data {name} dengan id peminjaman {id} berhasil dihapus.'}), 200
 
+@app.route('/remove_data_pengunjung', methods=['POST'])
+def remove_data_pengunjung():
+    if request.method == 'POST':
+        data = request.json
+        id = data['id']
+        name = data['name']
+        
+        db.hapusDataPengunjung(id)
+        
+        time.sleep(1)
+        
+    return jsonify({'message': f'Data {name} dengan id pengunjung {id} berhasil dihapus.'}), 200
+
 @app.route('/profil')
 def profil():
     user = session.get('user')
@@ -154,7 +157,6 @@ def update_book_count():
             if int(newCount) < 0:
                 return jsonify({'message' : f'Jumlah buku yang anda masukkan tidak valid'}), 400
             else:
-                time.sleep(1)
                 db.update_book_count_and_save_to_database(bookId, namaBuku, newCount)
             
                 session['bookId'] = bookId
@@ -179,7 +181,12 @@ def video_feed():
 
 @app.route('/daftar-buku')
 def list_book_client():
-    return client.listBook()
+    user = session.get('user')
+    
+    if user_client_valid(user):
+        return client.listBook()
+    
+    return redirect(url_for('login'))
 
 @app.route('/pinjamBuku', methods=['POST'])
 def pinjam_buku():
@@ -208,23 +215,24 @@ def pinjam_buku():
             if formatTglPinjam > datetime.date.today():
                 return jsonify({'message': 'Tanggal Pinjam tidak boleh melebihi dari hari ini.'}), 400
             else:
-                
-                
                 peminjaman.peminjamanBuku(
                     idBuku, namaBuku, namaUser, kelasUser, nisnUser, formatTglPinjam
                 )
             
                 db.update_book_count_and_save_to_database(idBuku, namaBuku, sisaBukuTerbaru)
                 
-        return jsonify({'message' : f'Berhasil meminjam buku dengan judul "{namaBuku}" dan ID buku "{idBuku}", segera ambil buku di Perpustakaan.'}), 200
+                
+                
+                return jsonify({'message' : f'Berhasil meminjam buku dengan judul "{namaBuku}" dan ID buku "{idBuku}", segera ambil buku di Perpustakaan.'}), 200
 
 @app.route('/data-peminjaman')
 def dataPeminjaman():
     return client.peminjaman_buku()
     
+    
 if __name__ == '__main__':
     app.run(
         host=os.getenv('HOST_RUNNING_APP'),
         port=os.getenv('PORT_RUNNING_APP'),
-        debug=os.getenv('DEBUG_MODE')
+        debug= os.getenv('DEBUG_RUNNING_APP')
     )

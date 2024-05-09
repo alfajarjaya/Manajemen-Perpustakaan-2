@@ -1,0 +1,138 @@
+/* responsif.css
+/* Atur tata letak saat berada di perangkat mobile */
+
+@media only screen and (max-width: 768px) {
+    .nav-list {
+        align-items: center;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        background-color: #1d3263;
+    }
+
+    .navbar-nav {
+        display: none;
+        width: 100%;
+        text-align: start;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #1d3263;
+        border-bottom: 2px solid #fff;
+    }
+
+    .list-item a {
+        margin-left: 10%;
+    }
+
+    .navbar-nav.active {
+        display: block;
+    }
+
+    .navbar-nav.hidden {
+        display: none;
+    }
+
+    .list-item {
+        margin-bottom: 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .a-article {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .aside {
+        margin-top: 10vh;
+    }
+
+    .text {
+        width: 100%;
+    }
+
+    .text h1 {
+        font-size: 30px;
+        /* text-align: center; */
+        width: 90%;
+    }
+
+    .rd-mr {
+        margin-left: 10%;
+        width: 35%;
+        padding: 20px 0px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .c-brd h1 {
+        font-size: 22px;
+    }
+
+    .center {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        border-bottom: 1px solid #fff;
+    }
+
+    .text-about .container .content {
+        width: 80%;
+    }
+
+    .text-about .text {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0px;
+    }
+
+    .text-about .text p {
+        font-size: 15px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .cs-layanan {
+        width: 80%;
+    }
+
+    .cs {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        grid-gap: 50px;
+    }
+
+    .container-cs {
+        width: 80%;
+    }
+
+    .c-article .cs iframe {
+        height: 100%;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .c-article .cs iframe {
+        height: 450px;
+    }
+}

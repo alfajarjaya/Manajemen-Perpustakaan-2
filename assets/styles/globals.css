@@ -1,0 +1,32 @@
+.container-cs {
+    background-color: gainsboro;
+    padding: 5%;
+    width: 200px;
+    height: 150px;
+    overflow: auto;
+}
+
+.content-cs {
+    display: grid;
+    grid-template: column;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 40px;
+}
+
+.content-cs p {
+    color: #442063;
+    font-size: 21px;
+}
+
+.ln-ac {
+    background-color: #442063;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 15%;
+}
+
+.center {
+    text-align: center;
+}
+

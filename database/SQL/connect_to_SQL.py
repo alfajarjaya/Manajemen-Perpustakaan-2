@@ -103,16 +103,17 @@ def dataPengunjung():
         cur.execute('SELECT * FROM `database_pengunjung`')
         result = cur.fetchall()
 
-        print(result)
         hasil = []
         
         for data in result:
-            nomor_induk = data[0]
-            nama = data[1]
-            kelas = data[2]
-            jurusan = data[3]
+            id_person = data[0]
+            nomor_induk = data[1]
+            nama = data[2]
+            kelas = data[3]
+            jurusan = data[4]
 
             data_user = [
+                id_person,
                 nomor_induk,
                 nama,
                 kelas,
@@ -122,8 +123,19 @@ def dataPengunjung():
             hasil.append(data_user)
             
         return hasil
-    except Exception as e:
+    except Exception:
         return None
+    
+def hapusDataPengunjung(id):
+    try:
+        konektor = connect_to_database()
+        cur = konektor.cursor()
+        
+        cur.execute('DELETE FROM `database_pengunjung` WHERE id_pengunjung = %s', (id,))
+        konektor.commit()
+        konektor.close()
+    except Exception as e:
+        print(f'Error : {e}')
         
 class pinjamAdmin:
     def ambilTabel():
@@ -237,3 +249,4 @@ class pinjamAdmin:
         
         except Exception as e:
             print(f'Error {e}')
+            

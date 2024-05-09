@@ -111,8 +111,8 @@ function NewCount(bookId, bookName, newCount) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
+            const response = JSON.parse(xhr.responseText);
             if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
                 Swal.fire({
                     title: "Berhasil",
                     text: response.message,
@@ -127,15 +127,11 @@ function NewCount(bookId, bookName, newCount) {
                             text: "Mohon Tunggu Halaman sedang di reload",
                             confirmButtonText: "Oke",
                             icon: "warning"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.reload();
-                            }
                         });
+                        window.location.reload();
                     }
                 });
             } else {
-                const response = JSON.parse(xhr.responseText);
                 Swal.fire({
                     title: "Gagal",
                     text: response.message,

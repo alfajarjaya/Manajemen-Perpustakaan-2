@@ -72,16 +72,28 @@ script.onload = () => {
                                         confirmButtonText: "OKE",
                                     }).then(res => {
                                         if (res.isConfirmed) {
-                                            Swal.fire({
-                                                text: "Mohon tunggu halaman sedang di reload.",
-                                                confirmButtonText: "Oke",
-                                                icon: "warning"
-                                            }).then((r) => {
-                                                if (r.isConfirmed){
-                                                    window.location.reload();
-                                                }
+                                            window.location.reload();
+                                        } else {
+                                            const toats = Swal.mixin({
+                                                toast: true,
+                                                confirmButtonText: false,
+                                                timerProgressBar: true,
+                                                timer: 1000,
+
+                                                didOpen: (toast) => {
+                                                    toast.onmouseenter = Swal.stopTimer;
+                                                    toast.onmouseleave = Swal.resumeTimer;
+                                                },
+                                                
                                             });
-                                        };
+                                            toats.fire({
+                                                icon: "warning",
+                                                title: "Tunggu, Halaman sedang di reload"
+                                            });
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 1000);
+                                        }
                                     });
                                 } else {
                                     Swal.fire({
