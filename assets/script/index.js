@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 const scAlert = document.createElement("script");
-scAlert.src = "./sweetalert.js";
+scAlert.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
 document.body.appendChild(scAlert);
 
 scAlert.onload = () => {
