@@ -129,10 +129,33 @@
     .c-article .cs iframe {
         height: 100%;
     }
+
+    .t-img {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .t-img img {
+        margin: 20px 0px;
+        width: 80%;
+    }
 }
 
 @media only screen and (min-width: 769px) {
     .c-article .cs iframe {
         height: 450px;
+    }
+
+    .t-img {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .t-img img {
+        width: 50%;
     }
 }
