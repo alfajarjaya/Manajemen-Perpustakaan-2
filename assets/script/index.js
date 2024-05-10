@@ -2,13 +2,13 @@ const menuIcon = document.getElementById('menu-icon');
 const menuIconX = document.getElementById('menu-iconX');
 const menuList = document.getElementById('menu-list');
 
-menuIcon.addEventListener('click', function() {
+menuIcon.addEventListener('click', function () {
     menuList.style.display = 'block';
     menuIcon.classList.toggle('hidden');
     menuIconX.classList.toggle('hidden');
 });
 
-menuIconX.addEventListener('click', function() {
+menuIconX.addEventListener('click', function () {
     menuList.style.display = 'none';
     menuIcon.classList.toggle('hidden');
     menuIconX.classList.toggle('hidden');
@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 const scAlert = document.createElement("script");
-scAlert.src = "/static/modules/sweetalert.js";
+scAlert.src = "../../static/modules/sweetalert.js";
 document.body.appendChild(scAlert);
 
-script.onload = () => {
+scAlert.onload = () => {
     if (window.location.href.indexOf('view-source:') > -1) {
         window.location.href = '/';
     } else if (
@@ -76,4 +76,13 @@ script.onload = () => {
             event.preventDefault();
         })
     );
+
+    const rdMr = document.getElementById('rd-mr');
+    rdMr.onclick = () => {
+        Swal.fire({
+            title: '404',
+            text: 'Maaf menu belum tersedia.',
+            icon: 'info',
+        })
+    }
 }
