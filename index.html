@@ -279,7 +279,6 @@
                 <section class="cs" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
                     <div class="t-form">
                         <form id="form" method="post">
-                            <div class="g-recaptcha" data-sitekey="6LdP29gpAAAAAEE9ytdSRsYjZATELFRpqID3UxXp"></div>
                             <div class="form-group">
                                 <input type="email" id="email" name="email" placeholder="Entry Your Email" required>
                             </div>
@@ -290,6 +289,7 @@
                                 <textarea id="message" name="message" placeholder="Entry your criticism and suggestions"
                                     required></textarea>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6LdP29gpAAAAAEE9ytdSRsYjZATELFRpqID3UxXp"></div>
                             <button id="submit" type="submit">Submit</button>
                         </form>
                     </div>
@@ -325,6 +325,7 @@
         AOS.init();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         (function () {
             emailjs.init('-7k1PYuT2Y3Tzfi0d');
@@ -334,10 +335,18 @@
         const handleForm = async (e) => {
             try {
                 await emailjs.sendForm('manajemen-perpus', 'manajemen-perpus', document.getElementById('form'));
-                alert('email sent!');
+                Swal.fire({
+                    title: "Success!",
+                    text: "Kritik dan Saranmu berhasil dikirim!",
+                    icon: "success"
+                });
             } catch (error) {
                 console.error(error);
-                alert('Failed to send email');
+                Swal.fire({
+                    title: "Gagal!",
+                    text: "Kritik dan Saranmu gagal dikirim, silahkan coba lagi!",
+                    icon: "error"
+                });
             }
         };
     </script>
@@ -348,7 +357,7 @@
         });
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
+
 </body>
 
 </html>
