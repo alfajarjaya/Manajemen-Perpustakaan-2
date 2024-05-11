@@ -29,3 +29,47 @@
 .center {
     text-align: center;
 }
+
+.t-form button:hover {
+    box-shadow: 0px 0px 50px var(--bg);
+    background: rgb(237, 185, 83, 0.1);
+    color: white;
+    transition: all 1s;
+}
+
+
+
+.t-form input, textarea {
+    width: 100%;
+    margin: 20px 0px;
+    border-radius: 5px;
+    padding: 10px 5px;
+    border: none;
+    color: #000;
+}
+
+.t-form button {
+    width: 50%;
+    background: var(--btn);
+    color: #000;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.f{
+    .f-1, .f-2 {
+        display: grid;
+        grid-template: column;
+        align-items: center;
+        grid-gap: 10px;
+        p {
+            color: rgb(255,255,255, 0.8);
+        }
+        a {
+            color: rgb(205, 205, 205, 0.5);
+        }
+    }
+}
