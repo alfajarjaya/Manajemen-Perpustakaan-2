@@ -69,7 +69,7 @@ scAlert.onload = () => {
         document.addEventListener('contextmenu', function (event) {
             Swal.fire({
                 title: 'Error!',
-                text: 'You have pressed the right button.',
+                text: 'Kamu menekan tombol Kanan.',
                 icon: 'error',
                 confirmButtonText: 'Oke'
             })
@@ -80,8 +80,8 @@ scAlert.onload = () => {
     const rdMr = document.getElementById('rd-mr');
     rdMr.onclick = () => {
         Swal.fire({
-            title: '404',
-            text: 'Maaf menu belum tersedia.',
+            title: 'Belum tersedia',
+            text: 'Menu ini seharusnya langsung mengarah ke website project, namun untuk saat ini masih belum tersedia',
             icon: 'info',
         })
     }
