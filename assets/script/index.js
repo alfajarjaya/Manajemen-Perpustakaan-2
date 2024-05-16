@@ -85,4 +85,16 @@ scAlert.onload = () => {
             icon: 'info',
         })
     }
+    const email = document.getElementById('email');
+    const name = document.getElementById('name');
+    const message = document.getElementById('message');
+
+    if (!email || !name || !message) {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Mohon lengkapi form sebelum mengirim pesan.',
+            icon: 'error',
+            confirmButtonText: 'Oke'
+        });
+    }
 }
