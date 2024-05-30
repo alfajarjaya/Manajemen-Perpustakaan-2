@@ -63,20 +63,24 @@
                     <h5>Tanggal Kembali</h5>
                 </div>
             </div>
+            {% if data is none%}
+                <div class="data">
+                    <h3>Tidak ada data</h3>
+                </div>
+            {% else %}
+            {% for judul, pinjam, kembali in data%}
             <div class="data-body" style="display: none">
-                {% if data is not none%}
-                {% for judul, pinjam, kembali in data%}
                 <div class="data">
                     <h5>{{ judul }}</h5>
                     <h5>{{ pinjam }}</h5>
                     <h5>{{ kembali }}</h5>
                 </div>
-                {% endfor %}
-                {% endif %}
             </div>
             <div class="show">
                 <button id="btn-show">Tampilkan</button>
             </div>
+            {% endfor %}
+            {% endif %}
         </section>
     </main>
 

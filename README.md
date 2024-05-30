@@ -16,7 +16,7 @@ Tujuan utama proyek ini adalah menyediakan platform yang intuitif dan efisien un
 
 ## Demo
 
-Anda dapat melihat demo aplikasi Manajemen Perpustakaan kami [di sini](https://s.id/manajemen-perpustakaan).
+Anda dapat melihat demo aplikasi Manajemen Perpustakaan kami [Manajemen Perpustakaan](https://s.id/manajemen-perpustakaan).
 
 ## Framework/Library yang Digunakan
 

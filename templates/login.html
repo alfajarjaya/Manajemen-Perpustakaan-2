@@ -35,7 +35,7 @@
             <hr>
         </div>
         <div class="title-text">LOGIN DULU</div>
-        <form class="Log-In" method="post" >
+        <form action="{{ url_for('login') }}" class="Log-In" method="post" >
             <div class="user-name">
                 <input type="text" name="username" id="username" placeholder="Username" required />
             </div>
@@ -49,9 +49,7 @@
             <div class="error">{{ nf }}</div>
             <button class="btn" type="submit" id="btn">Masuk</button>
 
-            <script>
-                window.Login = {{ url_for('home') }}
-            </script>
+           
             <script type="text/javascript" src="{{url_for('static', filename='js/login.js')}}"></script>
             <script type="module" src="{{url_for('static', filename='js/disableMouse.js')}}"></script>
         </form>
