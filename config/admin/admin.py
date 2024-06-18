@@ -73,3 +73,8 @@ def showDataPeminjaman(name):
     data = database.pinjamAdmin.ambilDataTabel(name_formatted)
     
     return render_template('admin/show_data_peminjaman.html', userName=user, data=data)
+
+def addUser():
+    user = app.session.get('user')
+    
+    return render_template('admin/add_user.html', userName=user)

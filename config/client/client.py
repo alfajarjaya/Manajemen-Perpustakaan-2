@@ -2,8 +2,10 @@ from flask import render_template
 import app
 import database.SQL.connect_to_SQL as database
 import config.import_json as json
-from config.client import client_valid as valClient
+import config.client.client_valid as clientValid
 from database.client import peminjaman as db_pinjam_user
+
+valClient = clientValid.client_valid()
 
 def home_user():
     user = app.session.get('user')
@@ -13,7 +15,12 @@ def listBook():
     user = app.session.get('user')
     bookSisa = []
     book = json.listBook
-    dataUser = valClient.databaseProfil(user)
+    dataUser = valClient.profilUser(user)
+    data = {
+        'nama': dataUser[2],
+        'nomor': dataUser[3],
+        'kelas': dataUser[4]
+    }
     
     for key, val in book.items():
         for title, fill in val.items():
@@ -37,29 +44,28 @@ def listBook():
         userName=user, 
         bookSisa=bookSisa, 
         book=book, 
-        data=dataUser
+        data=data
     )
 
 def profil_users():
     user = app.session.get('user')
-    data_user = valClient.databaseProfil(user)
+    data_user = valClient.profilUser(username=user)
+    print(data_user)
     
-    if isinstance(data_user, dict):
-        return render_template(
+    return render_template(
             'client/profil.html', 
             userName=user,
-            nama=data_user['nama'],
-            nomor=data_user['nomor'],
-            kelas=data_user['kelas'],
-            img=data_user['img']
+            nama=data_user[2],
+            nomor=data_user[3],
+            kelas=data_user[4]
         )
         
 def peminjaman_buku():
     user = app.session.get('user')
-    data_user = valClient.databaseProfil(user)
-    valueData = data_user['nama'].lower()
+    valueData = valClient.profilUser(user)
+    valueDataName = valueData[2].lower()
     
-    data = db_pinjam_user.selectUserDatabase(valueData)
+    data = db_pinjam_user.selectUserDatabase(valueDataName)
     
     return render_template(
         'client/pinjam_user.html',

@@ -60,8 +60,6 @@ def peminjamanBuku(id_buku, nama_buku, nama_user, kelas_user, nisn_user, tanggal
     except Exception as e:
         print(f'Error di : {e}')
         
-# peminjamanBuku('BOOK002', 'cerita cuy', 'kimi hugo', 'XI TKJ 123', 121212, datetime.date(2008, 12, 23))
-
 def selectUserDatabase(nama_user):
     try:
         konektor = connectToDatabase_2()

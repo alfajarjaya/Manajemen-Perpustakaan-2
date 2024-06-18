@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en, id" style="scroll-behavior: smooth !important">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="manajemen-perpustakaan">
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <meta name="keywords" content="manajemen, perpustakaan, kurikulum merdeka">
+
+    <meta name="author" content="kelompok 8, produktif mapel pilihan, kurikulum merdeka">
+
+    <meta property="og:url" content="https://smkn1mojokerto.sch.id/sistem-manajemen-perpustakaan/">
+    <meta property="og:title" content="manajemen-perpustakaan">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id, ID">
+    <meta property="og:description" content="manajemen-perpustakaan">
+
+    <title>Hi ! {{ userName }}</title>
+    <style>
+        .main {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            border: none;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 20px;
+            }
+
+            .container h2 {
+                font-size: 20px;
+            }
+
+            .form-group input {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .submit-btn {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_admin.css') }}" type="text/css"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/skanesa.ico') }}" type="image/x-icon">
+
+
+</head>
+<body>
+    <main>
+        <section class="main">
+            <div class="container">
+                <h2>Add new user</h2>
+                <form method="post" id="form-add-user">
+                    <div class="form-group">
+                        <label for="username">Username ( tahun + nisn )</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password ( tahun + nisn )</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap Siswa</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomor-induk">Nomor Induk Siswa Nasional</label>
+                        <input type="text" id="nomor-induk" name="nomor-induk" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas Siswa</label>
+                        <input type="text" id="kelas" name="kelas" required>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">Add User</button>
+                </form>
+            </div>
+        </section>
+        <section class="nv">
+            <footer class="footer">
+                <div class="navbar">
+                    <ul>
+                        <li>
+                            <a href="{{ url_for("home") }}">
+                                <img src="{{ url_for('static', filename='img/home.png') }}" alt="home" width="30px" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('profil') }}">
+                                <img src="{{ url_for('static', filename='img/user.png') }}" alt="user" width="45px" />
+                            </a>
+                        </li>
+                        <style>
+                            ul {
+                                display: flex;
+                                align-items: center;
+                                margin-top: 15px;
+                            }
+                        </style>
+                    </ul>
+                </div>
+            </footer>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('form-add-user');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const [username, password, nama, nomor, kelas] = document.getElementsByTagName('input');
+
+                if (username.value === '' || password.value === '' || nama.value === '' || nomor.value === '' || kelas.value === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Semua field harus diisi!',
+                    });
+                } else {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/add-new-user', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (xhr.status === 200) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: response.message,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 1500);
+                                [username, password, nama, nomor, kelas].forEach(e => e.value = '');
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: response.message,
+                                });
+                            }
+                        }
+                    };
+                    xhr.send(JSON.stringify({
+                        username: username.value,
+                        password: password.value,
+                        nama: nama.value,
+                        nisn: nomor.value,
+                        kelas: kelas.value,
+                    }));
+
+                    [username, password, nama, nisn, kelas].forEach(e => e.value = '');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

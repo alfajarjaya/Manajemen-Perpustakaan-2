@@ -9,19 +9,17 @@ from config.admin import scannerQRCODE as adminQr
 import config.admin.val_admin as validateUserAdmin
 
 import config.client.client as client
-from config.client.client_valid import name_and_pw_client
-from config.client.client_valid import user_client_valid
+import config.client.client_valid as valClient
 from database.client import peminjaman
 
-# import config.import_json as json
 import database.SQL.connect_to_SQL as db
 
 app = Flask(__name__)
 dotenv.load_dotenv()
 app.secret_key = os.getenv('SECRET_KEY')
 
-# dataAdmin = json.adminUser
-# dataClient = json.clientUser
+clientValid = valClient.client_valid()
+
 
 @app.route('/', methods=['POST', 'GET'])
 def login():
@@ -36,7 +34,7 @@ def login():
 
                 return redirect(url_for('home'))
             
-            elif name_and_pw_client(user, password):
+            elif clientValid.selectUser_Password(user, password):
                 session['user'] = user
                 session['password'] = password
             
@@ -58,8 +56,7 @@ def home():
     if user:
         if validateUserAdmin.val_user_admin(user):
             return admin.home()
-
-        if user_client_valid(user):
+        if clientValid.selectUser(user):
             return client.home_user()
 
     return redirect(url_for('login'))
@@ -139,7 +136,7 @@ def profil():
 
     if validateUserAdmin.val_user_admin(user):
         return admin.profil()
-    if user_client_valid(user):
+    if clientValid.selectUser(user):
         return client.profil_users()
     
     return redirect(url_for('login'))
@@ -175,6 +172,28 @@ def dataPengunjung():
 def scanner_qrCode():
     return admin.scanner()
 
+@app.route('/add-user', methods=['POST', 'GET'])
+def addUser():
+    if request.method == 'POST':
+        return redirect(url_for('addNewUser'))
+    return admin.addUser()
+
+@app.route('/add-new-user', methods=['POST'])
+def addNewUser():
+    if request.method == 'POST':
+        data = request.json
+        username = data.get('username')
+        password = data.get('password')
+        name = data.get('nama')
+        kelas = data.get('kelas')
+        nisn = data.get('nisn')
+        
+        if username and password and name and kelas and nisn:
+            clientValid.insertNewUser(username, password, name, nisn, kelas)
+            return jsonify({"status": "success", "message": "Successfully added new user."}), 200
+        else:
+            return jsonify({'status': 'failure', 'message': 'Failed to add new user.'}), 400
+
 @app.route('/video_feed')
 def video_feed():
     return Response(adminQr.generate(), mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -182,8 +201,7 @@ def video_feed():
 @app.route('/daftar-buku')
 def list_book_client():
     user = session.get('user')
-    
-    if user_client_valid(user):
+    if clientValid.selectUser(user):
         return client.listBook()
     
     return redirect(url_for('login'))
@@ -234,5 +252,5 @@ if __name__ == '__main__':
     app.run(
         host=os.getenv('HOST_RUNNING_APP'),
         port=os.getenv('PORT_RUNNING_APP'),
-        debug= os.getenv('DEBUG_RUNNING_APP')
+        debug=True
     )
